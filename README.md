@@ -13,6 +13,23 @@ Open http://localhost:3000. A request to `GET /api/health` returns HTTP 200 and 
 
 To run the production build locally, use `npm run build` followed by `npm start`.
 
+## Buyer journey routes
+
+- `/` — start screen.
+- `/guide/usecase`, `/guide/budget`, `/guide/priority`, `/guide/defects`, `/guide/review` — wizard steps.
+- `/results` — sample ranked offers for the completed journey.
+
+Answers travel in the query string, for example `/results?usecase=office&budget=18000000&priority=price&defect.chassisScratch=acceptable`. That keeps the browser's back and forward buttons working and lets the step routes restore earlier choices. A step route redirects to the first unanswered question when its prerequisites are missing, `/results` redirects to the first unanswered question while the journey is incomplete, and values that fail validation are dropped. The rules live in `app/journey.ts`.
+
+## Tests
+
+```sh
+npm test
+npm run typecheck
+```
+
+`app/journey.ts` holds the journey model and its route helpers; `tests/journey.test.ts` covers parsing, validation, step order and route building.
+
 ## Runtime configuration
 
 The server defaults to port 3000. Use `npm run dev -- --port 3001` to choose another local port, or set `PORT` in the process environment before starting the server.
