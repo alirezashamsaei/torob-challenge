@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { type FormEvent, useEffect, useRef, useState, useTransition } from "react";
 import styles from "./guide.module.css";
 import { Assistant, SiteHeader } from "./chrome";
+import { IntroTransition } from "./intro-transition";
 import {
   type Journey,
   type QuestionStep,
@@ -193,9 +194,10 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
 
   return (
     <div className={styles.guide}>
+      {step === "usecase" && <IntroTransition />}
       <SiteHeader />
       <main className={styles.chat}>
-        <div className={styles.sectionTitle}>
+        <div className={styles.sectionTitle} data-entry-content>
           <div><p>راهنمای انتخاب لپ‌تاپ استوک</p><h2>انتخاب مناسب، ارزش بیشتر</h2></div>
           <ol className={styles.progress} aria-label="مراحل گفت‌وگو">
             {progressLabels.map((label, index) => (
@@ -207,7 +209,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
             ))}
           </ol>
         </div>
-        <ol ref={transcript} className={styles.transcript} aria-label="پیام‌ها" aria-busy={isPending}>
+        <ol ref={transcript} className={styles.transcript} data-entry-transcript aria-label="پیام‌ها" aria-busy={isPending}>
           {order.slice(0, answered).map((answeredStep, index) => (
             <li key={answeredStep} className={styles.exchange}>
               <Assistant>
@@ -217,7 +219,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
               <div className={`${styles.reply} ${index === answered - 1 ? styles.newMessage : ""}`}><span className={styles.speaker}>شما</span><p>{answerText(answeredStep, journey)}</p></div>
             </li>
           ))}
-          <li key={questionKey} className={styles.newMessage}>
+          <li key={questionKey} className={styles.newMessage} data-entry-message>
             <Assistant>
               {answered === 0 && <p>سلام! بیایید لپ‌تاپ استوک مناسبتان را پیدا کنیم.</p>}
               <h1 id="guide-title" ref={heading} tabIndex={-1} aria-label={title}><AnimatedText key={questionKey} text={title} /></h1>
@@ -264,7 +266,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
                   }}
                 />
               ) : (
-                <div className={styles.options} aria-labelledby="guide-title" role="group">
+                <div className={styles.options} data-entry-choices aria-labelledby="guide-title" role="group">
                   {choices.map((choice) => (
                     <button
                       className={`${styles.button} ${selected(choice.params) ? styles.selected : ""}`}
@@ -284,7 +286,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
           {isPending && <li className={styles.thinking} role="status" aria-label="دستیار در حال فکر کردن است"><span /><span /><span /></li>}
         </ol>
         {step !== "review" && step !== "requirement" && (
-          <form className={styles.composer} onSubmit={submitReply}>
+          <form className={styles.composer} data-composer onSubmit={submitReply}>
             <input
               aria-label={step === "budget" && !askingSeverity ? "بودجه به تومان" : "پاسخ"}
               aria-invalid={error ? true : undefined}
@@ -294,11 +296,13 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
               value={draft}
               onChange={(event) => { setDraft(event.target.value); setError(""); }}
             />
-            <button className={styles.send} type="submit" aria-label="ارسال پاسخ" disabled={!draft.trim()}>↑</button>
+            <button className={styles.send} type="submit" aria-label="ارسال پاسخ" disabled={!draft.trim()}>
+              <svg viewBox="0 0 122.56 122.88" aria-hidden="true" focusable="false"><path fillRule="evenodd" d="M2.33,44.58,117.33.37a3.63,3.63,0,0,1,5,4.56l-44,115.61h0a3.63,3.63,0,0,1-6.67.28L53.93,84.14,89.12,33.77,38.85,68.86,2.06,51.24a3.63,3.63,0,0,1,.27-6.66Z" /></svg>
+            </button>
           </form>
         )}
         {error && <p id="reply-error" className={styles.error} role="alert">{error}</p>}
-        <div className={styles.actions}>
+        <div className={styles.actions} data-entry-content>
           {step === "review" && !summary && (
             <Link className={`${styles.button} ${styles.link}`} href={resultsPath(journey)}>دیدن پیشنهادها</Link>
           )}

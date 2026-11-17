@@ -48,16 +48,32 @@
   font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-.start {
+.introQualifier {
+  color: var(--muted);
+  font-size: 0.65em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.intro .introDescription {
+  margin-block-start: 1rem;
+  color: var(--muted);
+  max-inline-size: 30rem;
+  line-height: 1.8;
+}
+
+.intro .start {
+  position: relative;
+  isolation: isolate;
   display: grid;
   place-items: center;
   inline-size: min(100%, 16.375rem);
   min-block-size: 3.125rem;
-  margin-block-start: clamp(3rem, 18svh, 8.5rem);
-  border: 0;
-  border-radius: var(--radius);
-  background: #d7d8da;
-  color: #111;
+  margin-block-start: clamp(2rem, 9svh, 4rem);
+  border: 1px solid #525252;
+  border-radius: 10px;
+  background: #263441;
+  color: #fff;
   font: 700 1.125rem/1.5 var(--font-body);
   text-decoration: none;
   cursor: pointer;
@@ -85,6 +101,8 @@
   white-space: nowrap;
   font-size: 1.25rem;
   font-weight: 700;
+  color: inherit;
+  text-decoration: none;
 }
 
 .brand > span:last-child,
@@ -99,8 +117,7 @@
   flex: none;
   inline-size: 2rem;
   block-size: 2rem;
-  background: url("/torob.svg") center / contain no-repeat;
-  filter: invert(1);
+  overflow: visible;
 }
 
 .brand .mark {
@@ -219,15 +236,23 @@
   scrollbar-color: var(--line) transparent;
 }
 
-.newMessage { animation: message-enter 200ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+.newMessage { transform-origin: top right; animation: message-enter 500ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+.newMessage .options > button { animation: choice-enter 450ms cubic-bezier(0.23, 1, 0.32, 1) backwards; }
+.newMessage .options > button:nth-child(1) { animation-delay: 200ms; }
+.newMessage .options > button:nth-child(2) { animation-delay: 290ms; }
+.newMessage .options > button:nth-child(3) { animation-delay: 380ms; }
+.newMessage .options > button:nth-child(4) { animation-delay: 470ms; }
+.newMessage .options > button:nth-child(5) { animation-delay: 560ms; }
 .thinking { display: flex; gap: 0.3rem; padding: 0.75rem 1rem; width: fit-content; border-radius: 1rem; background: var(--panel); }
 .thinking span { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--muted); animation: thinking 1s ease-in-out infinite alternate; }
 .thinking span:nth-child(2) { animation-delay: 150ms; }
 .thinking span:nth-child(3) { animation-delay: 300ms; }
-@keyframes message-enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes message-enter { from { opacity: 0; transform: translateY(14px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes choice-enter { from { opacity: 0; transform: translateY(12px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes thinking { from { opacity: 0.35; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   .newMessage { animation: none; }
+  .newMessage .options > button { animation: none; }
   .thinking span { animation: none; }
 }
 
@@ -433,15 +458,19 @@
 
 .send {
   flex: none;
+  display: grid;
+  place-items: center;
   inline-size: 2.5rem;
   block-size: 2.5rem;
   border: 0;
   border-radius: var(--radius);
   background: var(--red);
-  color: #171f28;
+  color: #fff;
   font-size: 1.35rem;
   font-weight: 700;
 }
+
+.send svg { inline-size: 1.125rem; block-size: 1.125rem; fill: currentColor; }
 
 .send:disabled { opacity: 0.65; cursor: default; }
 .guide .error { color: #ffb7b1; margin-block-start: var(--space-1); }
