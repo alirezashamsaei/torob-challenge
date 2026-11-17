@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { seedOffers } from "../scripts/seed-offers.mjs";
-import { readStoredOffers, evaluateStoredOffers, storedOfferForDisplay } from "../app/stored-offers.ts";
+import { readStoredOffers, evaluateStoredOffers, storedOfferForDisplay, defectCandidates } from "../app/stored-offers.ts";
 import { readJourney } from "../app/journey.ts";
 
 test("reads the seeded store and retains a decision for every offer", () => {
@@ -26,5 +26,8 @@ test("reads the seeded store and retains a decision for every offer", () => {
     assert.equal(card.url, eligible.offer.offer_url);
     assert.equal(card.shippingToman, null);
     assert.equal(card.lastCheckedAt, eligible.offer.observed_on_tehran);
+    const candidates = defectCandidates(offers, readJourney(new URLSearchParams("usecase=everyday&budget=100000000")));
+    assert.ok(candidates.length > 0);
+    assert.ok(candidates.every((offer) => offer.price_toman_as_listed <= 100000000 && /scratch|خراش/i.test(offer.disclosed_defects)));
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });

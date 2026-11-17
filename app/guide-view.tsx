@@ -84,7 +84,7 @@ function severityChoices(): Choice[] {
   }));
 }
 
-export default function GuideView({ step, journey }: { step: Step; journey: Journey }) {
+export default function GuideView({ step, journey, defectCandidateCount = 0 }: { step: Step; journey: Journey; defectCandidateCount?: number }) {
   const router = useRouter();
   const [draft, setDraft] = useState("");
   const [error, setError] = useState("");
@@ -185,6 +185,13 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
             <Assistant>
               {answered === 0 && <p>سلام! بیایید لپ‌تاپ استوک مناسبتان را پیدا کنیم.</p>}
               <h1 id="guide-title" ref={heading} tabIndex={-1}>{title}</h1>
+              {step === "defects" && (
+                <p className={styles.brief}>
+                  {defectCandidateCount > 0
+                    ? `${numberFormat.format(defectCandidateCount)} پیشنهاد در محدودهٔ کاربرد و بودجه، خط‌وخش بدنه را اعلام کرده‌اند.`
+                    : "در پیشنهادهای فعلیِ این کاربرد و بودجه، خط‌وخش بدنه اعلام نشده است؛ برای بررسی اطلاعاتی که ممکن است ناقص باشد، میزان پذیرش خود را مشخص کنید."}
+                </p>
+              )}
               {step === "review" ? (
                 <dl className={styles.summary}>
                   {reviewRows(journey).map((row) => (

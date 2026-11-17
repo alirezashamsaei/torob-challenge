@@ -5,6 +5,22 @@ import type { Offer } from "./offers";
 
 export type EligibilityDecision = { offer: StoredOffer; reasons: ExclusionReason[] };
 
+/** Offers worth asking about before condition tolerance is known. */
+export function defectCandidates(offers: readonly StoredOffer[], journey: Journey): StoredOffer[] {
+  if (!journey.useCase || journey.budget === undefined) return [];
+  const useCaseWords: Record<NonNullable<Journey["useCase"]>, string[]> = {
+    everyday: ["everyday", "study"],
+    office: ["office"],
+    gaming: ["gaming"],
+    graphics: ["graphics"],
+  };
+  return offers.filter((offer) =>
+    useCaseWords[journey.useCase!].some((word) => offer.primary_use_case.toLowerCase().includes(word)) &&
+    Number.isSafeInteger(offer.price_toman_as_listed) && offer.price_toman_as_listed <= journey.budget! &&
+    /scratch|scratches|خراش/i.test(offer.disclosed_defects || ""),
+  );
+}
+
 /** Retain a decision for every input row, including all applicable exclusion reasons. */
 export function evaluateStoredOffers(offers: readonly StoredOffer[], journey: Journey): EligibilityDecision[] {
   return offers.map((offer) => ({ offer, reasons: evaluateStoredOffer(offer, journey) }));

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import GuideView from "../../guide-view";
 import { canVisitStep, firstIncompleteStep, readJourney, stepFromSegment, stepPath } from "../../journey";
 import { toSearchParams } from "../../search-params";
+import { defectCandidates, readStoredOffers } from "../../stored-offers";
 
 type PageProps = {
   params: Promise<{ step: string }>;
@@ -18,5 +19,6 @@ export default async function GuideStepPage({ params, searchParams }: PageProps)
     redirect(stepPath(incomplete, journey));
   }
 
-  return <GuideView step={step} journey={journey} />;
+  const candidates = step === "defects" ? defectCandidates(readStoredOffers(), journey) : [];
+  return <GuideView step={step} journey={journey} defectCandidateCount={candidates.length} />;
 }
