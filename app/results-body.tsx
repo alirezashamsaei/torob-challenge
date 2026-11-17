@@ -22,11 +22,13 @@ export default function ResultsBody({
   actions,
   renderAction,
   classNames,
+  refineForm,
 }: {
   summary: ResultsSummary;
   actions: readonly RefineAction[];
   renderAction: (action: RefineAction) => ReactNode;
   classNames: ResultsBodyClassNames;
+  refineForm?: ReactNode;
 }) {
   return (
     <section className={classNames.root} aria-labelledby="results-count">
@@ -55,6 +57,7 @@ export default function ResultsBody({
         {summary.state === "few" && summary.refineHint && (
           <p className={classNames.hint}>{summary.refineHint}</p>
         )}
+        {refineForm}
         <div className={classNames.refineLinks}>{actions.map(renderAction)}</div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styles from "./guide.module.css";
 import { Assistant, SiteHeader } from "./chrome";
-import { type Journey, questionStepsFor } from "./journey";
-import { answerText } from "./labels";
+import { type Journey, defectParam, defects, journeyParams, priorities, questionStepsFor, severities, severityParam, tolerances } from "./journey";
+import { answerText, defectLabels, priorityLabels, severityLabels, toleranceLabels } from "./labels";
 import ResultsBody, { type ResultsBodyClassNames } from "./results-body";
 import { refineActions, type ResultsSummary } from "./results";
 
@@ -68,6 +68,36 @@ export default function ResultsView({ journey, summary }: { journey: Journey; su
           summary={summary}
           actions={actions}
           classNames={resultsClassNames}
+          refineForm={
+            <form action="/results" method="get" className={styles.refineForm}>
+              {[...journeyParams(journey)].filter(([key]) =>
+                key !== "budget" && key !== "priority" && !key.startsWith("defect.") && !key.startsWith("severity.")
+              ).map(([key, value]) => <input key={key} type="hidden" name={key} value={value} />)}
+              <label>حداکثر بودجه (تومان)
+                <input name="budget" type="number" min="1" max={Number.MAX_SAFE_INTEGER} step="1" required defaultValue={journey.budget} />
+              </label>
+              <label>اولویت
+                <select name="priority" defaultValue={journey.priority}>
+                  {priorities.map((value) => <option key={value} value={value}>{priorityLabels[value]}</option>)}
+                </select>
+              </label>
+              {defects.map((id) => (
+                <div key={id} className={styles.refineDefect}>
+                  <label>{defectLabels[id]}
+                    <select name={defectParam(id)} defaultValue={journey.defects[id]?.tolerance}>
+                      {tolerances.map((value) => <option key={value} value={value}>{toleranceLabels[value]}</option>)}
+                    </select>
+                  </label>
+                  <label>حداکثر شدت قابل قبول (در صورت وابستگی به شدت)
+                    <select name={severityParam(id)} defaultValue={journey.defects[id]?.severity ?? "minor"}>
+                      {severities.map((value) => <option key={value} value={value}>{severityLabels[value]}</option>)}
+                    </select>
+                  </label>
+                </div>
+              ))}
+              <button className={styles.button} type="submit">به‌روزرسانی پیشنهادها</button>
+            </form>
+          }
           renderAction={(action) => (
             <Link
               key={action.step}
