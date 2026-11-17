@@ -1,68 +1,68 @@
-# ترب لپ‌تاپ استوک — شرح اولیه محصول
+# Torob Stock Laptop Guide — Initial Product Brief
 
-## مسئله
+## Problem
 
-خریدار لپ‌تاپ استوک باید میان دستگاه‌هایی تصمیم بگیرد که حتی با نام مدل یکسان، وضعیت فیزیکی و فنی متفاوتی دارند. قیمت به‌تنهایی برای مقایسه کافی نیست. محصول باید نیاز و بودجهٔ خریدار را به گزینه‌های قابل بررسی تبدیل کند.
+Used-laptop buyers must choose among devices that can differ physically and technically even when they share a model name. A price alone provides too little information to compare them. The guide should turn a buyer's needs and budget into options they can evaluate.
 
-## تجربهٔ تأییدشده تا این مرحله
+## Experience agreed so far
 
-1. کاربر در یک راهنمای مرحله‌ای، کاربرد لپ‌تاپ و حداکثر بودجه را با کنترل‌های مشخص انتخاب می‌کند. نسخهٔ اولیه باید برای استفادهٔ روزمره و تحصیل، کار اداری، بازی و کار گرافیکی پاسخ داشته باشد.
-2. سیستم می‌پرسد کدام‌یک از قیمت، عملکرد و وضعیت سلامت برای کاربر مهم‌تر است.
-3. سیستم می‌پرسد «چه ایرادهایی برات قابل تحمله؟» و در صورت نیاز، ابهام‌های مهم درخواست را روشن می‌کند. اگر پاسخ کاربر به ایرادی «بستگی به شدت آن دارد» باشد، یک سؤال کوتاه دربارهٔ شدت قابل قبول می‌پرسد.
-4. سیستم پنج پیشنهاد فروش مشخص از فروشگاه‌ها را به ترتیب اولویت نمایش می‌دهد و دلیل ترتیب آن‌ها و نکتهٔ منفی هرکدام را برای کاربر توضیح می‌دهد. دو دستگاه هم‌مدل با وضعیت متفاوت، پیشنهادهای متفاوت‌اند و هر دو می‌توانند در پنج نتیجه باشند.
-5. کاربر از پیشنهاد انتخابی به صفحه یا مسیر فروشنده می‌رود و خرید نزد فروشنده انجام می‌شود.
-6. کاربر از صفحهٔ نتایج می‌تواند بودجه، اولویت اصلی و ایرادهای قابل تحمل را تغییر دهد و ترتیب تازه را ببیند.
+1. The user selects a use case and maximum budget through a wizard with structured controls. The first version covers everyday use and study, office work, gaming, and graphics work.
+2. The guide asks which matters most to the user: price, performance, or device condition.
+3. The guide asks, “Which defects can you live with?” and clarifies important ambiguities as needed. If the user says it depends on severity, a short follow-up asks what severity they can accept.
+4. The guide displays five specific offers from sellers in ranked order, explaining the order and one drawback for each offer. Two devices of the same model in different condition are separate offers and can both appear in the top five.
+5. The user follows the selected offer to the seller's page or purchase flow and buys from the seller.
+6. From the results page, the user can change the budget, main priority, and defect tolerance and see the updated order.
 
-## داده
+## Data
 
-دادهٔ پیشنهادها از چند سایت فروش لپ‌تاپ استوک گردآوری می‌شود. قیمت، موجودی، مشخصات و وضعیت هر پیشنهاد باید به صفحهٔ منبع قابل ارجاع باشد. فروشگاه‌ها، روش گردآوری و دورهٔ به‌روزرسانی هنوز تعیین نشده‌اند.
+Offer data comes from several websites that sell stock laptops. Each offer's price, availability, specifications, and condition must be traceable to its source page. The shops, collection method, and update schedule were still open at the time of this brief.
 
-دامنهٔ اولیه شامل دستگاه‌های کارکرده و استوکِ فروشگاه‌های تخصصی است. وضعیت «بازسازی‌شده» یا «جعبه‌باز» تنها وقتی به دستگاه نسبت داده می‌شود که فروشنده صریحاً آن را اعلام کرده باشد. برچسب «استوک» به‌تنهایی وضعیت واقعی دستگاه را تعیین نمی‌کند.
+The initial scope covers used and stock laptops from specialist sellers. A device is marked refurbished or open-box only when the seller explicitly says so. The stock label alone leaves the device's condition undetermined.
 
-## قواعد تأییدشدهٔ تطبیق
+## Agreed matching rules
 
-- بودجهٔ حداکثری حد قطعی است. پیشنهاد گران‌تر وارد نتایج مناسب نمی‌شود.
-- کاربر دربارهٔ هر ایراد مرتبط می‌تواند «قابل تحمل»، «غیرقابل تحمل» یا «بستگی به شدت آن دارد» را انتخاب کند. نمونهٔ ایرادها خط‌وخش بدنه، فرورفتگی جزئی، باتری ضعیف‌تر، پیکسل معیوب و خرابی یک پورت هستند.
-- سؤال‌های مربوط به ایرادها بر تفاوت‌های موجود در پیشنهادهای مرتبط تمرکز دارند.
-- ویژگی اعلام‌نشده با برچسب «اعلام نشده» نمایش داده می‌شود و در رتبه‌بندی اثر منفی دارد. اگر آن ویژگی شرط قطعی کاربر باشد، پیشنهاد بدون اطلاعات کافی واجد شرایط نیست.
-- اگر کمتر از پنج پیشنهاد مناسب پیدا شود، همان تعداد نمایش داده می‌شود و از کاربر پرسیده می‌شود کدام شرط را مایل است تغییر دهد.
-- برای هر نوع استفاده، حداقل‌های فنی ساده و قابل بررسی تعریف می‌شود، مشروط به آنکه پیچیدگی اجرای نسخهٔ اولیه را زیاد نکند. پیشنهادهایی که حداقل قطعی را ندارند حذف می‌شوند و توان بالاتر در رتبه‌بندی اثر می‌گذارد.
-- رتبه‌بندی بعد از اعمال شروط قطعی، تناسب با کاربرد، وضعیت دستگاه، اطمینان از اطلاعات فروشنده و قیمت را در نظر می‌گیرد. اولویت اصلی اعلام‌شدهٔ کاربر میان قیمت، عملکرد و وضعیت سلامت بر ترتیب نتایج اثر می‌گذارد.
-- کاربر فقط مهم‌ترین مورد را میان قیمت، عملکرد و سلامت انتخاب می‌کند. دو مورد دیگر به‌شکل متعادل در رتبه‌بندی لحاظ می‌شوند.
-- سلامت به وضعیت باتری، نمایشگر، بدنه، کیبورد و پورت‌ها، و شرایط مهلت تست تفکیک می‌شود. ظاهر تمیز معادل سلامت فنی فرض نمی‌شود.
-- صفحه‌ای که تنها نام مدل، مشخصات کلی و قیمت دارد و هیچ اطلاعاتی دربارهٔ وضعیت همان پیشنهاد یا شرایط مشخص تست و بازگشت ارائه نمی‌کند، وارد پنج نتیجه نمی‌شود.
-- زمان آخرین بررسی هر پیشنهاد نمایش داده می‌شود. قیمت و موجودی پنج پیشنهاد منتخب پیش از ضبط ویدیوی دمو دوباره بررسی می‌شود.
-- برای درخواست‌های مبهمِ بازی یا کار گرافیکی، سیستم نام بازی یا نرم‌افزار و سطح انتظار را می‌پرسد. بدون دادهٔ آزمون معتبر، FPS یا معیار عملکرد عددی ادعا نمی‌شود.
-- گرید کلی فروشنده فقط وضعیت ظاهری اعلام‌شده را توصیف می‌کند. سلامت باتری، نمایشگر و دیگر بخش‌ها بدون شواهد همان پیشنهاد «اعلام نشده» می‌ماند.
-- سقف بودجه بر اساس قیمت خود دستگاه اعمال می‌شود. هزینهٔ ارسال جدا نمایش داده می‌شود و اگر معلوم نباشد نامشخص می‌ماند.
-- پاسخ کاربر از گزینه‌های راهنمای مرحله‌ای به دست می‌آید. AI فقط برای استخراج اطلاعات از متن فروشگاه ارزیابی می‌شود. حذف پیشنهادهای ناسازگار و محاسبهٔ رتبه با قواعد قابل بررسی انجام می‌شود.
-- کاربر در هر جست‌وجو یک کاربرد اصلی از میان چهار کاربرد انتخاب می‌کند.
-- ایراد عملکردیِ صریحاً اعلام‌شده می‌تواند در نتایج باشد، اگر کاربر آن را قابل تحمل انتخاب کرده باشد. ایراد باید روی کارت نتیجه واضح دیده شود.
-- هدف دادهٔ دمو حداقل ۴۰ پیشنهاد واجد شرایط از دست‌کم سه فروشگاه است و باید برای هر چهار کاربرد چند گزینه در بازه‌های بودجه‌ای متفاوت داشته باشد. پس از بررسی منابع، این هدف در صورت نیاز بازبینی می‌شود.
+- The maximum budget is a hard limit. Offers above it are excluded from suitable results.
+- For each relevant defect, the user can select Acceptable, Unacceptable, or Depends on severity. Examples include chassis scratches, small dents, a weakened battery, a defective pixel, and a broken port.
+- Defect questions focus on differences among relevant offers.
+- An undisclosed feature is displayed as “Not disclosed” and lowers the offer's rank. If the feature is mandatory for the user, an offer with insufficient information is ineligible.
+- If fewer than five suitable offers are available, show the actual number and ask which requirement the user would consider changing.
+- Define simple, inspectable technical minimums for each use case as long as they keep the first version manageable. Exclude offers that fail a hard minimum and account for higher performance in ranking.
+- After applying mandatory filters, rank by fit for the use case, device condition, confidence in the seller's information, and price. The user's main priority influences the order.
+- The user chooses one main priority among price, performance, and condition. The ranking keeps the other two in balance.
+- Break device condition down into the battery, display, chassis, keyboard, ports, and test-period terms. A clean exterior provides evidence about cosmetic condition only.
+- A page giving only the model, general specifications, and price qualifies for the top five only if it also provides information about the specific device's condition or clearly states applicable test and return terms.
+- Display when each offer was last checked. Recheck the price and availability of the five selected offers before recording the demo.
+- For ambiguous gaming or graphics requests, ask for the game or software and the expected level of performance. Make numerical performance claims, such as FPS, only with reliable test data.
+- A seller's overall grade describes the advertised cosmetic condition only. The battery, display, and other components remain “Not disclosed” without evidence for the specific offer.
+- Apply the budget cap to the device price. Show shipping separately and mark it unknown when the seller provides no amount.
+- Collect user answers through the wizard. Evaluate AI for extracting information from seller text. Filter incompatible offers and calculate rank using inspectable rules.
+- The user chooses one primary use case per search.
+- An explicitly disclosed functional defect can appear in the results if the user accepts it. Show the defect clearly on the result card.
+- The demo target is at least 40 eligible offers from at least three shops, with several options across budget ranges for each of the four use cases. Revisit the target after the source audit if needed.
 
-## پیوند با چالش ترب
+## Relationship to the Torob challenge
 
-خروجی باید تجربه‌ای شبیه موتور جست‌وجو و مقایسهٔ ترب، با نگاه محصولی مستقل باشد. برای دموی اپلای، مسئلهٔ کاربر، محصول و تصمیم‌های مهم باید در ویدیویی حداکثر پنج‌دقیقه‌ای دیده شوند. نمونهٔ مسیر فنی در صفحهٔ چالش شامل جمع‌آوری پیشنهادها، یکسان‌سازی دادهٔ نامنظم، رتبه‌بندی بر اساس نیاز کاربر و توضیح بهترین انتخاب است.
+The result should feel like a search and comparison experience inspired by Torob, with its own product direction. The application demo must present the user problem, the product, and its key decisions in a video of no more than five minutes. The example technical workflow on the challenge page covers gathering offers, normalizing inconsistent data, ranking against user needs, and explaining the best choice.
 
-## مواردی که با بررسی دادهٔ واقعی تعیین می‌شوند
+## Questions to resolve with real data
 
-- انتخاب فروشگاه‌های نهایی و تعداد پیشنهادهای واجد شرایط در هرکدام
-- تعیین آستانهٔ شدت ایرادها از روی شیوهٔ توصیف فروشندگان و نمونه‌های واقعی
-- تعیین حداقل‌های فنی ساده برای چهار کاربرد و امکان‌سنجی آن‌ها با دادهٔ واقعی
-- تنظیم وزن‌های رتبه‌بندی و ارزیابی آن‌ها با سناریوهای واقعی
+- Select the final shops and count eligible offers from each.
+- Set defect severity thresholds based on sellers' wording and real examples.
+- Define simple technical minimums for the four use cases and check whether real data supports them.
+- Tune ranking weights and evaluate them on real scenarios.
 
-## رابط نسخهٔ اول
+## First-version interface
 
-نسخهٔ اول فقط راهنمای مرحله‌ای است و کادر گفت‌وگوی زبان طبیعی ندارد. کاربرد، بودجه، اولویت اصلی و ایرادهای قابل تحمل با کنترل‌های مشخص پرسیده می‌شوند. سؤال شدت ایراد فقط برای پاسخ «بستگی دارد» ظاهر می‌شود. کاربر پیش از نتایج خلاصهٔ انتخاب‌هایش را می‌بیند و می‌تواند آن‌ها را ویرایش کند. از صفحهٔ نتایج نیز بودجه، اولویت و تحمل ایراد قابل تغییر است.
+The first version uses a wizard with structured controls for use case, budget, main priority, and defect tolerance. A natural-language chat field is outside this version's scope. The severity question appears only after the user selects Depends on severity. Users can review and edit a summary before seeing results. Budget, priority, and defect tolerance also remain editable on the results page.
 
-## ارزیابی مدل تصمیم SubQ
+## Evaluating the SubQ decision model
 
-SubQ Snap 1.2 پاسخ‌های ساختاریافتهٔ بله/خیر، انتخاب و امتیاز می‌دهد. ابتدا روی مجموعه‌ای از توضیحات واقعی فروشنده برای تشخیص ایراد و ویژگی آزمایش می‌شود. تنها در صورت بهبود قابل سنجش نسبت به روش پایه وارد مسیر اصلی دمو خواهد شد. شرط بودجه، شروط قطعی و رتبهٔ نهایی همچنان با قواعد قابل بررسی محاسبه می‌شوند.
+SubQ Snap 1.2 returns structured yes/no decisions, selections, and scores. The initial evaluation uses real seller descriptions to test detection of defects and features. SubQ enters the main demo flow only if it measurably improves on the baseline. Under the original decision recorded in this brief, budget, other mandatory requirements, and final ranking all use inspectable rules.
 
-منبع: https://docs.subq.ai/endpoints/decisions-api/
+[SubQ Decisions API documentation](https://docs.subq.ai/endpoints/decisions-api/)
 
-## منابع
+## Sources
 
-- https://jobs.torob.com/ai-product-engineer#role
-- https://torob.com/pages/about-us/
-- https://torob.com/pages/safe-shopping-guide/
+- [Torob AI Product Engineer challenge](https://jobs.torob.com/ai-product-engineer#role)
+- [About Torob](https://torob.com/pages/about-us/)
+- [Torob safe shopping guide](https://torob.com/pages/safe-shopping-guide/)

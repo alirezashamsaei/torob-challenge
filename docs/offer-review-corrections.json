@@ -1,0 +1,963 @@
+[
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "MacBook Air 2014 A1465",
+      "offer_url": "https://stockland.ir/products/apple-macbook-air-2014-a1465",
+      "evidence_url": "https://stockland.ir/products/apple-macbook-air-2014-a1465",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 46900000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "4 GB RAM and SSD for light use, available for purchase and covered by the return policy",
+      "image_url": "https://stockland.ir/_next/image?dpl=6d0e3d269896&q=75&url=%2Fuploads%2FApple-MacBook-Air-2014-A1465-1790679796585-846ecb7d-281e-4dd6-9bcf-98dcceb3247f.webp&w=3840"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "4 GB RAM and SSD for light use, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Raitop",
+      "model": "Lenovo IdeaPad 2-in-1 81CW",
+      "offer_url": "https://raitop.ir/product/lenovo-ideapad-2-in-1-14-81cw/",
+      "evidence_url": "https://raitop.ir/product/lenovo-ideapad-2-in-1-14-81cw/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 47900000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "Pentium 4415U and 4 GB RAM for light use, in stock and covered by the return policy",
+      "image_url": "https://raitop.ir/wp-content/uploads/2026/11/لپ-تاپ-14-اینچی-2-در-1-Lenovo-مدل-IdeaPad-81CW-مقابل.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "Pentium 4415U and 4 GB RAM for light use, in stock and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "Dell Latitude 5580",
+      "offer_url": "https://stockland.ir/products/لپ-تاپ-dell-latitude-5580",
+      "evidence_url": "https://stockland.ir/products/لپ-تاپ-dell-latitude-5580",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 54500000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i5-7200U, available for purchase and covered by the return policy",
+      "image_url": "https://stockland.ir/_next/image?dpl=7468ab37b749&q=75&url=%2Fuploads%2F1790522463802-a584f55c-2cd2-4161-9a86-f16b900020ed.webp&w=3840"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i5-7200U, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stock Iran",
+      "model": "HP ZBook 14 G2",
+      "offer_url": "https://stockirshop.com/product/لپ-تاپ-استوک-hp-zbook-14-g2/",
+      "evidence_url": "https://stockirshop.com/product/لپ-تاپ-استوک-hp-zbook-14-g2/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 55790000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-5600U and FirePro M4150, available for purchase and covered by hardware testing terms",
+      "image_url": "https://stockirshop.com/wp-content/uploads/2022/10/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%DA%86-%D9%BE%DB%8C-zbook-14-g2-%D9%81%D8%B1%D9%88%D8%B4%DA%A9%D8%A7%D9%87-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-64x64.jpg"
+    },
+    "changes": {
+      "configuration_evidence": "i7-5600U / 8 GB / 256 GB SSD / AMD FirePro M4150 1 GB",
+      "notes": "i7-5600U and FirePro M4150, available for purchase and covered by hardware testing terms Review: configuration was previously recorded as See source page. Cached seller purchase section lists i7-5600U / 8 GB / 256 GB SSD / AMD FirePro M4150 1 GB. Confirm current configuration, stock and price before demo."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stock Iran",
+      "model": "Dell Latitude 5580",
+      "offer_url": "https://stockirshop.com/product/لپ-تاپ-استوک-dell-latitude-5580/",
+      "evidence_url": "https://stockirshop.com/product/لپ-تاپ-استوک-dell-latitude-5580/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 57970000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-7600U and 930MX, available for purchase and covered by hardware testing terms",
+      "image_url": "https://stockirshop.com/wp-content/uploads/2022/03/dell-latitude-5580.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i7-7600U and 930MX, available for purchase and covered by hardware testing terms Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Methoder System",
+      "model": "HP ZBook G2 17w",
+      "offer_url": "https://methoder.ir/product/stock-laptop-hp-zbook-g2-17w-i7/",
+      "evidence_url": "https://methoder.ir/product/stock-laptop-hp-zbook-g2-17w-i7/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 60000000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "A",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day test",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-4700MQ and Quadro K1100M, available for purchase with Grade A and a seven-day test period",
+      "image_url": "https://methoder.ir/wp-content/uploads/2026/02/HP-ZBook-G2-17w-methoder.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i7-4700MQ and Quadro K1100M, available for purchase with Grade A and a seven-day test period Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "Dell Latitude 5410",
+      "offer_url": "https://stockland.ir/products/dell-latitude-5410",
+      "evidence_url": "https://stockland.ir/products/dell-latitude-5410",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 74000000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-10610U, available for purchase and covered by the return policy",
+      "image_url": "https://stockland.ir/uploads/1794734172928-7426924d-7fae-4ae6-a64e-4ac0e26e9a47.webp"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i7-10610U, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "HP 255 G8",
+      "offer_url": "https://stockland.ir/products/hp-255-g8-ryzen-5-5500u",
+      "evidence_url": "https://stockland.ir/products/hp-255-g8-ryzen-5-5500u",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 79300000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "Ryzen 5 5500U, available for purchase and covered by the return policy",
+      "image_url": ""
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "Ryzen 5 5500U, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Methoder System",
+      "model": "HP ProBook 450 G7",
+      "offer_url": "https://methoder.ir/product/stock-laptop-hp-probook-450-g7-i5/",
+      "evidence_url": "https://methoder.ir/product/stock-laptop-hp-probook-450-g7-i5/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 84051000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "A",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day test",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i5-10210U and 16 GB RAM, available for purchase with Grade A and a seven-day test period",
+      "image_url": "https://methoder.ir/wp-content/uploads/2026/02/HP-ProBook-450-G7-methoder.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i5-10210U and 16 GB RAM, available for purchase with Grade A and a seven-day test period Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "Dell Latitude 5511",
+      "offer_url": "https://stockland.ir/products/dell-latitude-5511",
+      "evidence_url": "https://stockland.ir/products/dell-latitude-5511",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 86400000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i5-10400H, available for purchase and covered by the return policy",
+      "image_url": ""
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i5-10400H, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stock Iran",
+      "model": "Dell Latitude 5410",
+      "offer_url": "https://stockirshop.com/product/لپ-تاپ-dell-latitude-5410/",
+      "evidence_url": "https://stockirshop.com/product/لپ-تاپ-dell-latitude-5410/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 87770000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-10810U, available for purchase and covered by hardware testing terms",
+      "image_url": "https://stockirshop.com/wp-content/uploads/2025/11/Dell-Latitude-5410-laptop.jpg"
+    },
+    "changes": {
+      "configuration_evidence": "i7-10810U / 16 GB / 256 GB SSD / Intel UHD Graphics",
+      "notes": "i7-10810U, available for purchase and covered by hardware testing terms Review: configuration was previously recorded as See source page. Cached seller purchase section lists i7-10810U / 16 GB / 256 GB SSD / Intel UHD Graphics. Confirm current configuration, stock and price before demo."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "Dell Latitude 7320",
+      "offer_url": "https://stockland.ir/products/dell-latitude-7320",
+      "evidence_url": "https://stockland.ir/products/dell-latitude-7320",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 94000000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i5-1135G7 and 16 GB RAM, available for purchase and covered by the return policy",
+      "image_url": ""
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i5-1135G7 and 16 GB RAM, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stockland",
+      "model": "HP EliteBook 630 G9",
+      "offer_url": "https://stockland.ir/products/hp-elitebook-630-g9",
+      "evidence_url": "https://stockland.ir/products/hp-elitebook-630-g9",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 108000000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-1255U, available for purchase and covered by the return policy",
+      "image_url": ""
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i7-1255U, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Zero and One Digital via Technolife",
+      "model": "Microsoft Surface Laptop 3",
+      "offer_url": "https://www.technolife.com/product-579366/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%85%D8%A7%DB%8C%DA%A9%D8%B1%D9%88%D8%B3%D8%A7%D9%81%D8%AA-13.3-%D8%A7%DB%8C%D9%86%DA%86-%D9%85%D8%AF%D9%84-surface-laptop-3-i5-1035g7-8gb-256gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "evidence_url": "https://www.technolife.com/product-579366/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%85%D8%A7%DB%8C%DA%A9%D8%B1%D9%88%D8%B3%D8%A7%D9%81%D8%AA-13.3-%D8%A7%DB%8C%D9%86%DA%86-%D9%85%D8%AF%D9%84-surface-laptop-3-i5-1035g7-8gb-256gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 118095600,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used",
+      "cosmetic_grade": "Acceptable",
+      "battery_evidence": "Above 80%",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day marketplace return guarantee",
+      "availability_evidence": "Seller lists two in stock",
+      "configuration_evidence": "i5-1035G7 / 8 GB / 256 GB SSD / Intel Iris Plus Graphics (Microsoft model specification)",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Expanded offer-page review",
+      "notes": "Marketplace page gives a threshold without a unit-specific reading.",
+      "image_url": "https://www.technolife.com/image/gallery-0-TLP-579366_b3cdf9ea-f3c7-4095-b49e-bb92db91c5ff.png"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Marketplace page gives a threshold without a unit-specific reading. Review: previously provisionally eligible; offer details say 14-day return while marketplace badge says seven days; confirm terms for this seller."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stock Iran",
+      "model": "HP EliteBook x360 1040 G8",
+      "offer_url": "https://stockirshop.com/product/لپ-تاپ-hp-elitebook-x360-1040-g8/",
+      "evidence_url": "https://stockirshop.com/product/لپ-تاپ-hp-elitebook-x360-1040-g8/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 126790000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-1185G7 and 16 GB RAM, available for purchase and covered by hardware testing terms",
+      "image_url": "https://stockirshop.com/wp-content/uploads/2024/12/HP-EliteBook-x360-1040-G8-Laptop-64x64.jpg"
+    },
+    "changes": {
+      "configuration_evidence": "i7-1185G7 / 16 GB / 256 GB SSD / Intel Iris Xe",
+      "notes": "i7-1185G7 and 16 GB RAM, available for purchase and covered by hardware testing terms Review: configuration was previously recorded as See source page. Cached seller purchase section lists i7-1185G7 / 16 GB / 256 GB SSD / Intel Iris Xe. Confirm current configuration, stock and price before demo."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Stock Iran",
+      "model": "Dell Precision 3551",
+      "offer_url": "https://stockirshop.com/product/dell-precision-3551/",
+      "evidence_url": "https://stockirshop.com/product/dell-precision-3551/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 147770000,
+      "primary_use_case": "Graphics work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i9-10885H and Quadro P620, available for purchase and covered by hardware testing terms",
+      "image_url": "https://stockirshop.com/wp-content/uploads/2025/12/dell-precision-3551-buy.jpg"
+    },
+    "changes": {
+      "configuration_evidence": "i9-10885H / 16 GB / 512 GB SSD / NVIDIA Quadro P620 4 GB",
+      "notes": "i9-10885H and Quadro P620, available for purchase and covered by hardware testing terms Review: configuration was previously recorded as See source page. Cached seller purchase section lists i9-10885H, 16 GB RAM, 512 GB SSD and Quadro P620 4 GB. Cache age about two weeks; confirm current configuration, stock and price before demo."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Methoder System",
+      "model": "HP ZBook G6 17w",
+      "offer_url": "https://methoder.ir/product/stock-laptop-hp-zbook-g6-17w-i7/",
+      "evidence_url": "https://methoder.ir/product/stock-laptop-hp-zbook-g6-17w-i7/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 176800000,
+      "primary_use_case": "Graphics work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "A",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day test",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "i7-9750H and RTX 3000, available for purchase with Grade A and a seven-day test period",
+      "image_url": "https://methoder.ir/wp-content/uploads/2026/02/HP-ZBook-G6-17w-methoder.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "i7-9750H and RTX 3000, available for purchase with Grade A and a seven-day test period Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Fars Pardazesh on Qeshmoff",
+      "model": "HP Victus 15-fa1128TX",
+      "offer_url": "https://qeshmoff.com/shop/hp-victus-15-fa1128tx-i5-13420h-16gb-512gb",
+      "evidence_url": "https://qeshmoff.com/shop/hp-victus-15-fa1128tx-i5-13420h-16gb-512gb",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 210000000,
+      "primary_use_case": "Gaming",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Like new",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "Not disclosed",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "RTX 2050, one in stock, and seller-reported like-new cosmetic condition. Battery health is undisclosed.",
+      "image_url": "https://cdn.qeshmoff.com/products/farspardazesh-44-01-1280.webp"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "RTX 2050, one in stock, and seller-reported like-new cosmetic condition. Battery health is undisclosed. Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Radin Computer",
+      "model": "HP OmniBook 5",
+      "offer_url": "https://radincomputer.com/product/hp-omnibook-5-core-ultra-7-255u-32gb-1tb-open-box/",
+      "evidence_url": "https://radincomputer.com/product/hp-omnibook-5-core-ultra-7-255u-32gb-1tb-open-box/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 244270000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "open-box",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day test",
+      "availability_evidence": "Active purchase option",
+      "configuration_evidence": "Core Ultra 7 255U / 32 GB / 1 TB SSD / Intel Arc per seller",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Expanded offer-page review",
+      "notes": "Seller grade refers to appearance.",
+      "image_url": "https://radincomputer.com/wp-content/uploads/2026/11/radin-hp-omnibook5-1.jpg"
+    },
+    "changes": {
+      "notes": "Review correction: the prior note said seller grade refers to appearance, but no cosmetic grade was recorded. The seller identifies this offer as open-box and advertises a one-week test."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Ptech Plus",
+      "model": "Dell Precision 5690",
+      "offer_url": "https://ptechplus.ir/product/dell-precision-5690-ultra7-165h-64gb-512gb-nvidia-rtx-1000-ada-6gb/",
+      "evidence_url": "https://ptechplus.ir/product/dell-precision-5690-ultra7-165h-64gb-512gb-nvidia-rtx-1000-ada-6gb/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 385000000,
+      "primary_use_case": "Graphics work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day test and exchange",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "RTX 1000 Ada, one in stock, with seven days to test and exchange",
+      "image_url": "https://ptechplus.ir/wp-content/uploads/2026/10/DELL-PRECISION-5690-ULTRA7-165H-64GB-512GB-RTX1000-ADA-6GB-02.avif"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "RTX 1000 Ada, one in stock, with seven days to test and exchange Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Raitop",
+      "model": "ASUS ROG Strix Scar 18 G834",
+      "offer_url": "https://raitop.ir/product/asus-rog-strix-scar-18-2024-g834/",
+      "evidence_url": "https://raitop.ir/product/asus-rog-strix-scar-18-2024-g834/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 810079000,
+      "primary_use_case": "Gaming",
+      "seller_condition_type": "open-box",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "Original source audit",
+      "notes": "Listed as open-box, RTX 4090, in stock and covered by the return policy",
+      "image_url": "https://raitop.ir/wp-content/uploads/2026/10/لپ-تاپ-18-اینچی-ASUS-مدل-ROG-Strix-SCAR-18-2024-G834-مقابل.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs exact configuration confirmation",
+      "notes": "Listed as open-box, RTX 4090, in stock and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "HP ProBook 645 G1",
+      "offer_url": "https://digistores.ir/products/hp-probook-645-g1/",
+      "evidence_url": "https://digistores.ir/products/hp-probook-645-g1/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 20389850,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "1 in stock on offer page",
+      "configuration_evidence": "AMD A8-5550M / 4 GB / 128 GB SSD / AMD Radeon HD 8550G",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/%D8%B3%DB%8C%DB%8C.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "HP EliteBook 640 G1",
+      "offer_url": "https://digistores.ir/products/hp-elitebook-640-g1/",
+      "evidence_url": "https://digistores.ir/products/hp-elitebook-640-g1/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 21234400,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "1 in stock on offer page",
+      "configuration_evidence": "i5-4210M / 4 GB / 128 GB SSD / Intel HD 4600",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/%D8%B2%DB%8C%D8%B3%DB%8C.webp"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "Dell Latitude 7350 2-in-1",
+      "offer_url": "https://digistores.ir/products/dell-latitude-7350-2-in-1-intel-core-m-5y71/",
+      "evidence_url": "https://digistores.ir/products/dell-latitude-7350-2-in-1-intel-core-m-5y71/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 27227000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "Listed in stock on offer page",
+      "configuration_evidence": "Core M-5Y71 / 8 GB / 256 GB SSD / Intel HD 5300",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/619yVfFP6ML.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "HP Pavilion x360",
+      "offer_url": "https://digistores.ir/products/hp-pavilion-x360/",
+      "evidence_url": "https://digistores.ir/products/hp-pavilion-x360/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 33482000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "1 in stock on offer page",
+      "configuration_evidence": "i3-6100U / 4 GB / 128 GB SSD / Intel HD 520",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/cfec.webp"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "HP ProBook 440 G5",
+      "offer_url": "https://digistores.ir/products/hp-probook-440-g5/",
+      "evidence_url": "https://digistores.ir/products/hp-probook-440-g5/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 42235100,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "3 in stock on offer page",
+      "configuration_evidence": "i5-8250U / 8 GB / 256 GB SSD / Intel UHD 620",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/7786982.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "Dell Latitude 5490",
+      "offer_url": "https://digistores.ir/products/dell-latitude-5490-intel-core-i5-8250u/",
+      "evidence_url": "https://digistores.ir/products/dell-latitude-5490-intel-core-i5-8250u/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 45440000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "1 in stock on offer page",
+      "configuration_evidence": "i5-8250U / 8 GB / 256 GB SSD / Intel UHD 620",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/dell-latitude-14-5490-8th-gen-intel-core-i5-8250u-11598354677.webp"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "HP ProBook 445 G9",
+      "offer_url": "https://digistores.ir/products/hp-probook-445-g9/",
+      "evidence_url": "https://digistores.ir/products/hp-probook-445-g9/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 57397000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "2 in stock on offer page",
+      "configuration_evidence": "Ryzen 3 5425U / 8 GB / 256 GB SSD / integrated AMD Radeon Graphics",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/seo/og/fsdf.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "HP ProBook 470 G5",
+      "offer_url": "https://digistores.ir/products/hp-probook-470-g5/",
+      "evidence_url": "https://digistores.ir/products/hp-probook-470-g5/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 57949000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "2 in stock on offer page",
+      "configuration_evidence": "i5-8250U / 8 GB / 256 GB SSD / NVIDIA GeForce 930MX 2 GB",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/b0fb285b-2b85-416e-87cb-50a8ca3e5cb1.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "Lenovo IdeaPad 3 14IIL05",
+      "offer_url": "https://digistores.ir/products/ideapad-3-14iil05/",
+      "evidence_url": "https://digistores.ir/products/ideapad-3-14iil05/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 68558000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "2 in stock on offer page",
+      "configuration_evidence": "i5-10210U / 8 GB / 256 GB SSD / integrated Intel UHD Graphics",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/products/ideapad-3-03-500x500__92819.webp"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Digi Store",
+      "model": "Lenovo ThinkPad E15 Gen 3",
+      "offer_url": "https://digistores.ir/products/thinkpad-e15-gen-3-amd/",
+      "evidence_url": "https://digistores.ir/products/thinkpad-e15-gen-3-amd/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 84992000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "Stock / refurbished per seller",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns",
+      "availability_evidence": "Listed in stock on offer page",
+      "configuration_evidence": "Ryzen 5 5500U / 16 GB / 256 GB NVMe SSD / integrated AMD Radeon Graphics",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed.",
+      "image_url": "https://digistores.ir/media/seo/og/%D8%A8%D9%84.jpg"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Seller uses a combined stock/refurbished label. Device-specific condition remains undisclosed. Review: previously provisionally eligible; return badge lacks recorded applicable terms and device-specific condition evidence."
+    }
+  },
+  {
+    "previous": {
+      "seller": "General via Technolife",
+      "model": "Lenovo ThinkPad T14s Gen 2 (i5)",
+      "offer_url": "https://www.technolife.com/product-625473/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%84%D9%86%D9%88%D9%88-14-%D8%A7%DB%8C%D9%86%DA%86-%D9%85%D8%AF%D9%84-thinkpad-t14s-gen-2-i5-1145g7-16gb-256gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "evidence_url": "https://www.technolife.com/product-625473/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%84%D9%86%D9%88%D9%88-14-%D8%A7%DB%8C%D9%86%DA%86-%D9%85%D8%AF%D9%84-thinkpad-t14s-gen-2-i5-1145g7-16gb-256gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 107000000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Good",
+      "battery_evidence": "89%",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "14-day returns in offer details",
+      "availability_evidence": "Listed in stock with active purchase option on offer page",
+      "configuration_evidence": "i5-1145G7 / 16 GB / 256 GB M.2 SSD / Intel Iris Xe (Lenovo model specification)",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Condition claims come from marketplace listing fields. Storage type and GPU cross-checked against the manufacturer's published model specifications.",
+      "image_url": "https://www.technolife.com/image/color_image_TLP-625473_75081c3f_827264b4-08dd-44fa-b788-f97a62dc6d76.png"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Condition claims come from marketplace listing fields. Storage type and GPU cross-checked against the manufacturer's published model specifications. Review: previously provisionally eligible; confirm the recorded 14-day offer terms for this seller against the marketplace seven-day policy."
+    }
+  },
+  {
+    "previous": {
+      "seller": "General via Technolife",
+      "model": "Lenovo ThinkPad T14s Gen 2 (i7)",
+      "offer_url": "https://www.technolife.com/product-625427/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%84%D9%86%D9%88%D9%88-14-%D8%A7%DB%8C%D9%86%DA%86-%D9%85%D8%AF%D9%84-thinkpad-t14s-gen-2-i7-1165g7-16gb-512gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "evidence_url": "https://www.technolife.com/product-625427/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%84%D9%86%D9%88%D9%88-14-%D8%A7%DB%8C%D9%86%DA%86-%D9%85%D8%AF%D9%84-thinkpad-t14s-gen-2-i7-1165g7-16gb-512gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 126000000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Good",
+      "battery_evidence": "81%",
+      "disclosed_defects": "Left hinge issue; deformation; surface and deep scratches; paint wear",
+      "test_or_return_terms": "14-day returns in offer details",
+      "availability_evidence": "Listed in stock with active purchase option on offer page",
+      "configuration_evidence": "i7-1165G7 / 16 GB / 512 GB M.2 SSD / Intel Iris Xe (Lenovo model specification)",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Condition claims come from marketplace listing fields. Storage type and GPU cross-checked against the manufacturer's published model specifications.",
+      "image_url": "https://www.technolife.com/image/color_image_TLP-625427_75081c3f_437d0a29-12d2-423f-ac99-bf8aa4b24bd6.png"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Condition claims come from marketplace listing fields. Storage type and GPU cross-checked against the manufacturer's published model specifications. Review: previously provisionally eligible; confirm the recorded 14-day offer terms for this seller against the marketplace seven-day policy."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Next Life via Technolife",
+      "model": "Microsoft Surface Laptop 5",
+      "offer_url": "https://www.technolife.com/product-626367/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%85%D8%A7%DB%8C%DA%A9%D8%B1%D9%88%D8%B3%D8%A7%D9%81%D8%AA-13.5-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D9%85%D8%AF%D9%84-surface-laptop-5-i5-%DB%B1%DB%B245u-16gb-256gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "evidence_url": "https://www.technolife.com/product-626367/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%85%D8%A7%DB%8C%DA%A9%D8%B1%D9%88%D8%B3%D8%A7%D9%81%D8%AA-13.5-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D9%85%D8%AF%D9%84-surface-laptop-5-i5-%DB%B1%DB%B245u-16gb-256gb---%D9%85%D8%B4%DA%A9%DB%8C",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 220000000,
+      "primary_use_case": "Office work",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Good",
+      "battery_evidence": "80%",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "14-day returns in offer details",
+      "availability_evidence": "Listed in stock with active purchase option on offer page",
+      "configuration_evidence": "i5-1245U / 16 GB / 256 GB SSD / Intel Iris Xe (Microsoft model specification)",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Condition claims come from marketplace listing fields. Storage type and GPU cross-checked against the manufacturer's published model specifications.",
+      "image_url": "https://www.technolife.com/image/color_image_TLP-626367_75081c3f_895105bb-4979-49ae-92df-c12066d61dfd.png"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": "Condition claims come from marketplace listing fields. Storage type and GPU cross-checked against the manufacturer's published model specifications. Review: previously provisionally eligible; confirm the recorded 14-day offer terms for this seller against the marketplace seven-day policy."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Ebadigi",
+      "model": "ASUS TUF Gaming F15 FX507ZC4-HN009",
+      "offer_url": "https://ebadigi.ir/product/%D8%AF%D8%B1-%D8%AD%D8%AF-%D9%86%D9%88-%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-15-6-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D8%A7%DB%8C%D8%B3%D9%88%D8%B3-%D9%85%D8%AF%D9%84-tuf-gaming-f15-fx507zc4-hn009-c/",
+      "evidence_url": "https://ebadigi.ir/product/%D8%AF%D8%B1-%D8%AD%D8%AF-%D9%86%D9%88-%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-15-6-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D8%A7%DB%8C%D8%B3%D9%88%D8%B3-%D9%85%D8%AF%D9%84-tuf-gaming-f15-fx507zc4-hn009-c/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 250000000,
+      "primary_use_case": "Gaming",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Like new",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "Test period and warranty advertised; duration undisclosed",
+      "availability_evidence": "Active purchase option in observed page",
+      "configuration_evidence": "i5-12500H / 16 GB DDR4 / 512 GB SSD / RTX 3050 4 GB",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "",
+      "image_url": "https://ebadigi.ir/wp-content/uploads/2026/08/b0fa584e30fdb41f6751f2294dc5a9364cc0b575_1754245231-1.webp"
+    },
+    "changes": {
+      "screening_status": "Needs device condition or applicable terms",
+      "notes": " Review: previously provisionally eligible; the offer page did not establish the recorded test-period claim."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Ebadigi",
+      "model": "ASUS TUF Gaming F16 FX607VU",
+      "offer_url": "https://ebadigi.ir/product/%D8%AF%D8%B1-%D8%AF-%D9%86%D9%88-%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%DB%8C%D8%B3%D9%88%D8%B3-tuf-gaming-f16-fx607vu-core-5-210h-16gb-512gb%D8%AD-ssd-16-fhd-144h/",
+      "evidence_url": "https://ebadigi.ir/product/%D8%AF%D8%B1-%D8%AF-%D9%86%D9%88-%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%DB%8C%D8%B3%D9%88%D8%B3-tuf-gaming-f16-fx607vu-core-5-210h-16gb-512gb%D8%AD-ssd-16-fhd-144h/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 270000000,
+      "primary_use_case": "Gaming",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Like new",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "Test period and warranty advertised; duration undisclosed",
+      "availability_evidence": "Active purchase option in observed page",
+      "configuration_evidence": "Core 5 210H / 16 GB / 512 GB SSD / RTX 4050 6 GB",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "",
+      "image_url": "https://ebadigi.ir/wp-content/uploads/2026/07/5bfb50ff57e3b76dc23fce94ee0a2f47cd700252_1754394055-150x150.webp"
+    },
+    "changes": {
+      "screening_status": "Needs offer-page verification",
+      "notes": "Review: previously provisionally eligible; recorded offer URL was inaccessible; similar listings show different prices and cannot be assumed to be this offer."
+    }
+  },
+  {
+    "previous": {
+      "seller": "Martday",
+      "model": "ASUS TUF Gaming F15 FX507VI",
+      "offer_url": "https://martday.ir/store/products/asus-tuf-gaming-f15-fx507vi-i7-13620h-rtx4070-16gb-1tb",
+      "evidence_url": "https://martday.ir/store/products/asus-tuf-gaming-f15-fx507vi-i7-13620h-rtx4070-16gb-1tb",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 350000000,
+      "primary_use_case": "Gaming",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns; customer pays return shipping",
+      "availability_evidence": "Listed in stock with active purchase option on offer page",
+      "configuration_evidence": "i7-13620H / 16 GB / 1 TB SSD / RTX 4070 8 GB",
+      "screening_status": "Provisionally eligible",
+      "observation_batch": "120-offer expansion",
+      "notes": "Seller asks buyers to confirm cosmetic condition.",
+      "image_url": "https://martday.ir/storage/product-uploads/asus-fx507vi-asuspress-front.png"
+    },
+    "changes": {
+      "screening_status": "Needs valid price confirmation",
+      "notes": "Seller asks buyers to confirm cosmetic condition. Review: previously provisionally eligible; offer description requests a price quote despite the displayed price."
+    }
+  }
+]

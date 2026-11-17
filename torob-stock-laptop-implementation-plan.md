@@ -1,54 +1,54 @@
-# برنامهٔ اجرای نمونهٔ اولیهٔ ترب لپ‌تاپ استوک
+# Torob Stock Laptop Guide — Prototype Implementation Plan
 
-این برنامه [مشخصات اجرایی](torob-stock-laptop-spec.md) را به کارهای قابل تحویل تبدیل می‌کند. داده و آستانه‌هایی که هنوز از فروشگاه‌ها بررسی نشده‌اند، در این سند فرض قطعی محسوب نمی‌شوند.
+This plan turns the [implementation specification](torob-stock-laptop-spec.md) into deliverable tasks. Seller data and thresholds that still need checking remain provisional.
 
-## ۱. ممیزی منابع و انتخاب فروشگاه‌ها
+## 1. Audit and select sources
 
-1. از [فهرست اولیهٔ منابع](torob-stock-laptop-source-audit.md) شروع و چند فروشگاه دیگر را نیز بررسی کن. برای هر فروشگاه، فهرست و چند صفحهٔ پیشنهاد را از نظر قیمت، موجودی، مشخصات، وضعیت همان دستگاه، مهلت تست و امکان گردآوری پایدار نمونه‌برداری کن.
-2. برای هر منبع، شمار پیشنهادهای بالقوه، درصد صفحات دارای شواهد وضعیت یا شرایط مشخص تست، و کاربردهای قابل پوشش را ثبت کن.
-3. دست‌کم سه منبعی را انتخاب کن که مجموعاً امکان رسیدن به هدف ۴۰ پیشنهاد واجد شرایط را دارند. اگر هدف دست‌یافتنی نبود، دلیل و شمار واقعی را ثبت و دامنهٔ دمو را بر اساس دادهٔ موجود بازبینی کن.
+1. Start with the [initial source list](torob-stock-laptop-source-audit.md) and review several additional shops. Sample the listing and several offer pages for each shop. Check price, availability, specifications, the specific device's condition, test-period terms, and whether data can be collected reliably.
+2. For each source, record the number of potential offers, the percentage of pages with condition evidence or specific test terms, and the use cases the offers can cover.
+3. Select at least three sources that can collectively support the target of 40 eligible offers. If the target is out of reach, record the reasons and the actual count, then revisit the demo scope using the available data.
 
-**خروجی:** جدول منابع منتخب، نمونهٔ صفحه و معیار ورود/رد هر منبع.
+**Deliverable** — A table of selected sources, sample pages, and criteria for including or excluding each source.
 
-## ۲. گردآوری و یکسان‌سازی پیشنهادها
+## 2. Collect and normalize offers
 
-1. اطلاعات هر پیشنهاد را از صفحهٔ خودش، همراه با نشانی منبع و زمان مشاهده، گردآوری کن. قیمت، موجودی، مشخصات فنی، وضعیت دستگاه، ایرادها و شرایط تست را جدا نگه دار.
-2. نام‌های متفاوت یک مشخصه را یکسان‌سازی کن، اما متن اصلی و شاهد هر مقدار را حفظ کن. دادهٔ غایب را «اعلام نشده» بگذار؛ گرید ظاهری را به سلامت فنی تعمیم نده.
-3. برای هر پیشنهاد، اعتبار قیمت و موجودی، امکان مراجعه به فروشنده و حداقل شواهد وضعیت/تست را بررسی کن. پیشنهاد مردود و دلیل ردش نیز ثبت شود.
-4. پوشش چهار کاربرد و چند بازهٔ بودجه را روی پیشنهادهای واجد شرایط اندازه بگیر.
+1. Collect each offer from its own page and record the source URL and observation time. Keep price, availability, technical specifications, device condition, defects, and test terms in separate fields.
+2. Normalize equivalent names while retaining the original text and evidence for each value. Mark absent data as “Not disclosed.” Keep cosmetic grades separate from technical condition.
+3. For each offer, verify price and availability, confirm that the user can reach the seller, and check for minimum condition or test evidence. Record rejected offers and the reasons for rejection.
+4. Measure coverage across all four use cases and several budget ranges using eligible offers.
 
-**خروجی:** مجموعه‌دادهٔ پیشنهادها با شناسهٔ مستقل برای هر پیشنهاد فروش، شاهد منبع، زمان مشاهده و گزارش پوشش/رد.
+**Deliverable** — An offer dataset with a unique ID for each offer, source evidence, observation timestamps, and a report on coverage and exclusions.
 
-## ۳. استخراج متن و آزمایش SubQ
+## 3. Extract seller text and evaluate SubQ
 
-1. نمونه‌ای از متن‌های واقعی فارسی فروشندگان را انتخاب و نوع ایراد، شدت بیان‌شده، وضعیت قطعات و «اعلام نشده» را دستی برچسب‌گذاری کن.
-2. یک روش سادهٔ پایه برای استخراج بساز و همان نمونه‌ها را با SubQ Snap ارزیابی کن. خطاهای مثبت کاذب، ایرادهای جامانده، هزینه و پایداری اجرا را مقایسه کن.
-3. SubQ را فقط اگر نسبت به روش پایه بهبود قابل سنجش داشته باشد و ادعای بی‌شاهد یا از دست رفتن ایراد مهم ایجاد نکند در مسیر اصلی دمو به کار ببر. نتیجهٔ آزمایش، حتی اگر منفی باشد، ثبت شود.
+1. Sample real Persian seller descriptions. Label defect type, stated severity, component condition, and undisclosed fields by hand.
+2. Build a simple extraction baseline and evaluate SubQ Snap on the same samples. Compare false positives, missed defects, cost, and operational reliability.
+3. Use SubQ in the main demo flow only if it measurably improves on the baseline without introducing unsupported claims or missing important defects. Record the outcome even if it is negative.
 
-**خروجی:** مجموعهٔ برچسب‌خورده، گزارش مقایسه و تصمیم مستند دربارهٔ ابزار استخراج. امتیاز نهایی پیشنهادها مستقل از مدل تصمیم محاسبه می‌شود.
+**Deliverable** — A labeled dataset, comparison report, and documented choice of extraction tool. This plan originally calculated final offer scores independently of the decision model.
 
-## ۴. قواعد واجد شرایط بودن و رتبه‌بندی
+## 4. Define eligibility and ranking rules
 
-1. برای چهار کاربرد، حداقل‌های فنی ساده را با توجه به فیلدهای واقعاً موجود تعریف کن. برای بازی و گرافیک، فهرست قابل انتخاب بازی/نرم‌افزار و سطح انتظار بساز؛ ادعای عددی عملکرد فقط با شاهد معتبر مجاز است.
-2. ابتدا شروط قطعی را اعمال کن: موجودی، قیمت دستگاه زیر سقف، شواهد حداقلی، ایراد غیرقابل تحمل و مشخصهٔ لازمِ نامعلوم.
-3. برای باقی پیشنهادها امتیاز عملکرد، سلامت، اطمینان از داده و قیمت را محاسبه کن. سه حالت اولویت اصلی باید وزن‌ها را به‌طور مشخص تغییر دهند. علت امتیاز و حذف را قابل مشاهده نگه دار.
-4. روی چند سناریوی واقعی، پنج نتیجهٔ اول را دستی مرور کن: آیا ترتیب قابل دفاع است، آیا ایراد مهم پنهان مانده، و آیا تغییر اولویت نتیجه را در موارد دارای مبادله تغییر می‌دهد؟ وزن‌ها را با ثبت دلیل تنظیم کن.
+1. Define simple technical minimums for all four use cases using fields that actually exist. For gaming and graphics work, provide selectable games or applications and expected performance levels. Make numerical performance claims only when reliable evidence supports them.
+2. Apply mandatory filters first. Exclude unavailable offers, device prices above the cap, offers with insufficient evidence, intolerable defects, and offers with unknown values for mandatory features.
+3. Score eligible offers on performance, condition, confidence in the data, and price. Each of the three main priorities should produce a clear change in weights. Make scoring and exclusion reasons visible.
+4. Review the top five results by hand for several real scenarios. Check whether the order is defensible, whether the results disclose important defects, and whether switching the priority changes the outcome where genuine trade-offs exist. Record the reasons for tuning weights.
 
-**خروجی:** قواعد و وزن‌های نسخه‌دار، نمونهٔ رتبه‌بندی برای هر کاربرد و فهرست خطاهای برطرف‌شده.
+**Deliverable** — Versioned rules and weights, ranking examples for each use case, and a list of issues fixed.
 
-## ۵. ویزارد و صفحهٔ نتایج
+## 5. Build the wizard and results page
 
-1. مراحل کاربرد، بودجه، اولویت اصلی و ایرادهای قابل تحمل را با کنترل‌های انتخابی بساز. سؤال شدت فقط پس از انتخاب «بستگی دارد» ظاهر شود. برای بازی/گرافیک، نام بازی/نرم‌افزار از فهرست جست‌وجوپذیر و سطح انتظار از گزینه‌های مشخص انتخاب شود.
-2. پیش از نمایش نتایج، خلاصهٔ پاسخ‌ها و امکان ویرایش آن‌ها را نشان بده.
-3. تا پنج کارت پیشنهاد را با دلیل انتخاب، نکتهٔ منفی، ایراد صریح، دادهٔ نامعلوم، قیمت دستگاه، هزینهٔ ارسالِ جدا، فروشنده، لینک و زمان آخرین بررسی نمایش بده.
-4. تغییر بودجه، اولویت و تحمل ایراد از صفحهٔ نتایج باید همان‌جا رتبه‌بندی را تازه کند. برای صفر تا چهار نتیجه، تعداد واقعی و مسیر تغییر شرط نشان داده شود.
+1. Build structured controls for use case, budget, main priority, and defect tolerance. Show the severity question only when the user selects Depends on severity. For gaming and graphics work, use a searchable game or software list and fixed choices for expected performance.
+2. Show a summary and let the user edit their answers before displaying results.
+3. Show up to five offer cards with the reason for selection, a drawback, explicitly disclosed defects, undisclosed data, device price, separate shipping cost, seller, source link, and last-checked time.
+4. Update the ranking in place when the user changes their budget, priority, or defect tolerance from the results page. For zero to four results, show the actual count and let the user change a requirement.
 
-**خروجی:** مسیر کامل قابل نمایش برای چهار کاربرد، شامل یک سناریوی کمبود نتیجه و یک سناریوی تغییر رتبه.
+**Deliverable** — A complete demonstrable flow for all four use cases, including one scenario with too few results and one where the ranking changes.
 
-## ۶. ارزیابی نهایی و دموی اپلای
+## 6. Evaluate and record the application demo
 
-1. معیارهای پذیرش [مشخصات اجرایی](torob-stock-laptop-spec.md) را با پیشنهادهای واقعی بررسی کن؛ به‌خصوص سقف بودجه، ایراد غیرقابل تحمل، نامعلوم‌بودن وضعیت و صحت لینک‌ها.
-2. پنج پیشنهاد سناریوی ضبط را درست پیش از ضبط از نظر قیمت و موجودی دوباره بررسی و زمان آن را ثبت کن.
-3. ویدیوی حداکثر پنج‌دقیقه‌ای بساز: مسئلهٔ خرید استوک، انتخاب‌های ویزارد، پنج نتیجه و دلیل ترتیب، یک مبادلهٔ واقعی، روش گردآوری و محدودیت داده. از رتبه یا ادعای عملکردی که شواهد کافی ندارد استفاده نکن.
+1. Check the [specification's acceptance criteria](torob-stock-laptop-spec.md#acceptance-criteria) with real offers. Pay particular attention to the budget cap, intolerable defects, undisclosed condition, and link accuracy.
+2. Recheck price and availability for the five offers in the recording scenario immediately before recording. Record the time of the check.
+3. Make a video of no more than five minutes. Show the buyer's problem, wizard choices, five results and the reasons for their order, a real trade-off, the collection method, and the data limitations. Include only ranking and performance claims supported by evidence.
 
-**خروجی:** نمونهٔ قابل استفاده، گزارش کوتاه ارزیابی، دادهٔ دمو و ویدیو.
+**Deliverable** — A usable prototype, a short evaluation report, the demo data, and the video.
