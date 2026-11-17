@@ -44,7 +44,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   try {
     const result = applyOfferReview(db, corrections);
     console.log(JSON.stringify(result, null, 2));
-    if (result.conflicts.length || result.missing) process.exitCode = 1;
+    if ((result.conflicts.length || result.missing) && !process.argv.includes("--allow-conflicts")) process.exitCode = 1;
   } finally {
     db.close();
   }
