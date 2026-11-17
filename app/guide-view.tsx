@@ -47,7 +47,6 @@ import {
   useCaseLabels,
 } from "./labels";
 
-const presetBudgets = [18_000_000, 25_000_000, 40_000_000];
 const defect = defects[0];
 
 function AnimatedText({ text }: { text: string }) {
@@ -74,7 +73,7 @@ function AnimatedText({ text }: { text: string }) {
 
 type Choice = { label: string; hint?: string; params: Record<string, string> };
 
-function choicesFor(step: QuestionStep): Choice[] {
+function choicesFor(step: QuestionStep, budgetPresets: readonly number[]): Choice[] {
   switch (step) {
     case "usecase":
       return useCases.map((value) => ({ label: useCaseLabels[value], params: { usecase: value } }));
@@ -87,7 +86,7 @@ function choicesFor(step: QuestionStep): Choice[] {
         params: { expectation: value },
       }));
     case "budget":
-      return presetBudgets.map((value) => ({
+      return budgetPresets.map((value) => ({
         label: `${numberFormat.format(value)} تومان`,
         params: { budget: String(value) },
       }));
@@ -108,7 +107,7 @@ function severityChoices(): Choice[] {
   }));
 }
 
-export default function GuideView({ step, journey, defectCandidateCount = 0, summary }: { step: Step; journey: Journey; defectCandidateCount?: number; summary?: ResultsSummary }) {
+export default function GuideView({ step, journey, defectCandidateCount = 0, budgetPresets = [], summary }: { step: Step; journey: Journey; defectCandidateCount?: number; budgetPresets?: readonly number[]; summary?: ResultsSummary }) {
   const router = useRouter();
   const [draft, setDraft] = useState("");
   const [error, setError] = useState("");
@@ -123,7 +122,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, sum
   const progressLabels = progressLabelsFor(journey.useCase);
   const phase = Math.min(phaseOfStep(step, journey.useCase), progressLabels.length - 1);
   const catalog = catalogFor(journey.useCase) ?? [];
-  const choices = step === "review" ? [] : askingSeverity ? severityChoices() : choicesFor(step);
+  const choices = step === "review" ? [] : askingSeverity ? severityChoices() : choicesFor(step, budgetPresets);
   const current = journeyParams(journey);
   const back = previousStep(step, journey);
 
