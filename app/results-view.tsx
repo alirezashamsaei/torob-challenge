@@ -4,7 +4,7 @@ import { Assistant, SiteHeader } from "./chrome";
 import { type Journey, questionStepsFor } from "./journey";
 import { answerText } from "./labels";
 import ResultsBody, { type ResultsBodyClassNames } from "./results-body";
-import { refineActions, summarizeResults, type ResultsSummary } from "./results";
+import { refineActions, type ResultsSummary } from "./results";
 
 const resultsClassNames: ResultsBodyClassNames = {
   root: styles.resultsBody,
@@ -35,7 +35,7 @@ const resultsClassNames: ResultsBodyClassNames = {
   },
 };
 
-export default function ResultsView({ journey, summary = summarizeResults(journey) }: { journey: Journey; summary?: ResultsSummary }) {
+export default function ResultsView({ journey, summary }: { journey: Journey; summary: ResultsSummary }) {
   const actions = refineActions(journey);
 
   return (

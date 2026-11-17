@@ -1,5 +1,5 @@
 import { findRequirement } from "./requirements";
-import type { Journey, UseCase } from "./journey";
+import type { Journey } from "./journey";
 
 /** Source fields are kept verbatim in SQLite; unknowns must not become facts. */
 export type StoredOffer = {
@@ -13,15 +13,17 @@ export type StoredOffer = {
 
 export type ExclusionReason =
   | "availability_unknown" | "unavailable" | "invalid_price" | "budget_unknown" | "over_budget"
-  | "insufficient_evidence" | "use_case_mismatch" | "technical_unknown" | "technical_minimum"
+  | "insufficient_evidence" | "technical_unknown" | "technical_minimum"
   | "defect_unknown" | "intolerable_defect";
-
-const useCaseNames: Record<UseCase, string> = {
-  everyday: "Everyday use and study", office: "Office work", gaming: "Gaming", graphics: "Graphics work",
-};
 
 function disclosed(value: string): boolean {
   return !!value?.trim() && !/^(not disclosed|unknown|unconfirmed|none|n\/?a)$/i.test(value.trim());
+}
+
+function hasConditionEvidence(offer: StoredOffer): boolean {
+  const terms = offer.test_or_return_terms || "";
+  const specificTerms = /\b\d+\s*[- ]\s*(?:day|month|year)/i.test(terms) && /test|return|exchange|replacement/i.test(terms);
+  return disclosed(offer.battery_evidence) || disclosed(offer.disclosed_defects) || specificTerms;
 }
 
 function availability(value: string): boolean | null {
@@ -38,7 +40,7 @@ function technicalFit(offer: StoredOffer, journey: Journey): boolean | null {
   const text = offer.configuration_evidence || "";
   // The audit uses CPU / RAM / storage; the first GB after the CPU is RAM.
   const ramField = text.split("/")[1] ?? "";
-  const ramMatch = ramField.match(/\b(\d+)\s*GB\b/i) ?? text.match(/\b(\d+)\s*GB\s*(?:DDR\d\s*)?RAM\b/i);
+  const ramMatch = (!/\b(?:VRAM|SSD|HDD|storage|NVMe)\b/i.test(ramField) ? ramField.match(/\b(\d+)\s*GB\b/i) : null) ?? text.match(/\b(\d+)\s*GB\s*(?:DDR\d\s*)?RAM\b/i);
   if (!ramMatch) return null;
   const ram = Number(ramMatch[1]);
   const minimumRam = journey.useCase === "everyday" ? 4 : 8;
@@ -71,10 +73,9 @@ export function evaluateStoredOffer(offer: StoredOffer, journey: Journey): Exclu
   else if (offer.price_toman_as_listed > journey.budget!) reasons.push("over_budget");
 
   if (offer.screening_status !== "Provisionally eligible" || offer.evidence_url !== offer.offer_url ||
-      ![offer.battery_evidence, offer.disclosed_defects, offer.test_or_return_terms].some(disclosed)) {
+      !hasConditionEvidence(offer)) {
     reasons.push("insufficient_evidence");
   }
-  if (!journey.useCase || offer.primary_use_case !== useCaseNames[journey.useCase]) reasons.push("use_case_mismatch");
   const technical = technicalFit(offer, journey);
   if (technical === null) reasons.push("technical_unknown");
   else if (!technical) reasons.push("technical_minimum");
@@ -85,12 +86,20 @@ export function evaluateStoredOffer(offer: StoredOffer, journey: Journey): Exclu
   else if (answer.tolerance !== "acceptable") {
     const condition = offer.disclosed_defects || "";
     if (!disclosed(condition)) reasons.push("defect_unknown");
-    else if (/scratch|breakage|deformation|impact damage|paint wear/i.test(condition)) {
-      // Only explicitly minor scratches can satisfy a minor-only tolerance.
-      if (answer.tolerance === "unacceptable" || (answer.severity !== "major" && !/^small case scratches$/i.test(condition.trim()))) reasons.push("intolerable_defect");
-    } else {
-      // An unrelated disclosed defect is not evidence that the chassis is sound.
-      reasons.push("defect_unknown");
+    else {
+      const negatedChassis = /\bno (?:(?:chassis|case|body) scratches|scratches on (?:the )?(?:chassis|case|body))\b/ig;
+      const noScratches = negatedChassis.test(condition);
+      const remaining = condition
+        .replace(negatedChassis, "")
+        .replace(/\b(?:no )?(?:display scratches|scratches on (?:the )?display)\b/ig, "")
+        .replace(/\bno scratches\b/ig, "");
+      if (/scratch|breakage|deformation|impact damage|paint wear/i.test(remaining)) {
+        // Only explicitly minor scratches can satisfy a minor-only tolerance.
+        if (answer.tolerance === "unacceptable" || (answer.severity !== "major" && !/^small case scratches$/i.test(remaining.trim()))) reasons.push("intolerable_defect");
+      } else if (!noScratches) {
+        // An unrelated disclosed defect is not evidence that the chassis is sound.
+        reasons.push("defect_unknown");
+      }
     }
   }
   return reasons;

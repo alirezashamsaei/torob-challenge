@@ -1,5 +1,4 @@
 import { DatabaseSync } from "node:sqlite";
-import { resolve } from "node:path";
 import { evaluateStoredOffer, type ExclusionReason, type StoredOffer } from "./eligibility";
 import type { Journey } from "./journey";
 import type { Offer } from "./offers";
@@ -13,7 +12,7 @@ export function evaluateStoredOffers(offers: readonly StoredOffer[], journey: Jo
 
 /** Open the configured staging store read-only; missing or broken stores are errors. */
 export function readStoredOffers(path = process.env.OFFERS_DB_PATH || "data/offers.sqlite"): StoredOffer[] {
-  const db = new DatabaseSync(resolve(path), { readOnly: true });
+  const db = new DatabaseSync(path, { readOnly: true });
   try {
     return db.prepare("SELECT * FROM offers ORDER BY rowid").all() as StoredOffer[];
   } finally {

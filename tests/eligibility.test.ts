@@ -53,3 +53,25 @@ test("graphics checks explicitly disclosed workstation GPUs and light applicatio
   assert.deepEqual(evaluateStoredOffer(integrated, { ...graphics, requirement: "figma" }), []);
   assert.ok(evaluateStoredOffer(integrated, graphics).includes("technical_minimum"));
 });
+
+test("audit category does not prevent another use and unrelated scratches are not chassis defects", () => {
+  const strict = { ...journey, defects: { chassisScratch: { tolerance: "unacceptable" as const } } };
+  assert.deepEqual(evaluateStoredOffer({ ...offer, primary_use_case: "Gaming", disclosed_defects: "No scratches on chassis" }, strict), []);
+  const displayOnly = evaluateStoredOffer({ ...offer, disclosed_defects: "display scratches" }, strict);
+  assert.ok(displayOnly.includes("defect_unknown"));
+  assert.ok(!displayOnly.includes("intolerable_defect"));
+  assert.ok(evaluateStoredOffer({ ...offer, configuration_evidence: "i5-8250U / 8 GB VRAM" }, journey).includes("technical_unknown"));
+});
+
+test("generic warranty or unspecified terms do not establish minimum evidence", () => {
+  const noCondition = { ...offer, cosmetic_grade: "A", battery_evidence: "Not disclosed", disclosed_defects: "Not disclosed" };
+  assert.ok(evaluateStoredOffer({ ...noCondition, test_or_return_terms: "Test period and warranty advertised; duration undisclosed" }, journey).includes("insufficient_evidence"));
+  assert.ok(evaluateStoredOffer({ ...noCondition, test_or_return_terms: "45-day bronze warranty advertised" }, journey).includes("insufficient_evidence"));
+});
+
+test("display-only or unspecified condition and storage do not supply required facts", () => {
+  const strict = { ...journey, defects: { chassisScratch: { tolerance: "unacceptable" as const } } };
+  assert.ok(evaluateStoredOffer({ ...offer, disclosed_defects: "No scratches on display" }, strict).includes("defect_unknown"));
+  assert.ok(evaluateStoredOffer({ ...offer, disclosed_defects: "No scratches" }, strict).includes("defect_unknown"));
+  assert.ok(evaluateStoredOffer({ ...offer, configuration_evidence: "i5-8250U / 256 GB SSD" }, journey).includes("technical_unknown"));
+});

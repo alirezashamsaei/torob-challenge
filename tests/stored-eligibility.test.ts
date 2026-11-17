@@ -19,7 +19,7 @@ test("reads the seeded store and retains a decision for every offer", () => {
     const decisions = evaluateStoredOffers(offers, journey);
     assert.equal(decisions.length, 120);
     const eligible = decisions.find((decision) => decision.reasons.length === 0);
-    const excluded = decisions.find((decision) => decision.reasons.includes("use_case_mismatch"));
+    const excluded = decisions.find((decision) => decision.reasons.length > 0);
     assert.ok(eligible);
     assert.ok(excluded);
     const card = storedOfferForDisplay(eligible.offer, journey);
