@@ -81,3 +81,18 @@ Listed prices span 20 million to 810.079 million toman. The provisionally eligib
 This is a snapshot of public seller and marketplace evidence, including indexed copies. Recheck price and availability before seeding the demo. Confirm the remaining configuration, condition, and availability gaps before promoting those rows. Crawl stability from the demo host remains unverified.
 
 A follow-up matched two Surface Laptop offers and two Intel ThinkPad T14s Gen 2 offers to manufacturer storage and graphics specifications. It also normalized the Precision 3591 seller's GPU label to the 6 GB RTX 1000 Ada listed by Dell. [Surface Laptop 3](https://support.microsoft.com/en-us/surface/models/surface-laptop-3-specs-and-features) · [Surface Laptop 5 for Business](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/mcaps-federal-surface-RW10kfI.pdf) · [ThinkPad T14s Gen 2](https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_2_Intel/ThinkPad_T14s_Gen_2_Intel_Spec.pdf) · [Precision 3591](https://www.dell.com/support/manuals/en-us/precision-15-3591-laptop/precision-3591-owners-manual/gpudiscrete?guid=guid-037d4256-cab6-4135-bb2a-fce9ed20f9f9&lang=en-us)
+
+## Demo source selection
+
+Use Radin Computer, Stock Iran, Digi Store, and Ebadigi as the initial sources. Together they account for 50 provisionally eligible offers in the sample, covering all four use cases from 20.39 million to 383.88 million toman. Raitop is a reserve source, including for gaming.
+
+| Selected shop | Provisional offers | Sample checked |
+| --- | ---: | --- |
+| Radin Computer | 24 | [Inspiron 5482 2-in-1](https://radincomputer.com/product/dell-inspiron-5482-2-in-1-core-i7-8565u-8gb-256gb-stock/) |
+| Stock Iran | 10 | [Precision 3551](https://stockirshop.com/product/dell-precision-3551/) |
+| Digi Store | 10 | [ProBook 645 G1](https://digistores.ir/products/hp-probook-645-g1/) |
+| Ebadigi | 6 | [TUF Gaming F15](https://ebadigi.ir/product/asus-tuf-gaming-f15/) |
+
+On November 17, 2026, this workspace retrieved public crawler rules and received HTTP 200 on two requests to each selected sample and the Raitop reserve sample. Digi Store and Ebadigi's first crawler-rule requests reset before succeeding on retry. These were same-day reachability checks. Runflare reported that this checkout was not linked to a deployment, so crawl stability from the demo host remains unverified. Recheck access, price, and availability on the deployment path before using the data in the demo.
+
+The CSV now includes 106 seller image URLs, covering 70 of the 74 provisionally eligible offers. Blank fields indicate that a matching seller image could not be verified.
