@@ -366,6 +366,7 @@ const SpecularButton = ({
     };
 
     const onPointerMove = event => {
+      if (!settingsRef.current.followMouse) return;
       pointer.x = event.clientX;
       pointer.y = event.clientY;
       pointer.known = true;

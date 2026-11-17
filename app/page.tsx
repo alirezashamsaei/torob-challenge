@@ -28,7 +28,7 @@ export default function HomePage() {
       <TorobMark intro />
       <h1 data-intro-title>ترب لپ‌تاپ <span className={styles.introQualifier}>(استوک)</span></h1>
       <p className={styles.introDescription} data-intro-description>لپ‌تاپ استوک مناسب خودتان را با چند انتخاب پیدا کنید.</p>
-      <SpecularButton className={styles.start} data-intro-action href="/guide/usecase" radius={10} tint="#263441" tintOpacity={1} shineSize={23} shineFade={34} thickness={1.6} glow={0.8} autoAnimate followMouse proximity={310} onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+      <SpecularButton className={styles.start} data-intro-action href="/guide/usecase" radius={8} tint="#263441" tintOpacity={1} shineSize={23} shineFade={34} thickness={1.6} glow={0.8} autoAnimate followMouse={false} onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const logo = intro.current?.querySelector("[data-torob-mark]");
         if (!logo) return;

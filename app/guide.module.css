@@ -67,14 +67,15 @@
   isolation: isolate;
   display: grid;
   place-items: center;
-  inline-size: min(100%, 16.375rem);
-  min-block-size: 3.125rem;
+  inline-size: min(100%, 13.1rem);
+  min-block-size: 2.5rem;
+  padding: 0.9rem 1.9rem;
   margin-block-start: clamp(2rem, 9svh, 4rem);
   border: 1px solid #525252;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #263441;
   color: #fff;
-  font: 700 1.125rem/1.5 var(--font-body);
+  font: 700 0.9rem/1.5 var(--font-body);
   text-decoration: none;
   cursor: pointer;
 }
