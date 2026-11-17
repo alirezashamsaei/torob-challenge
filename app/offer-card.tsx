@@ -37,9 +37,9 @@ export default function OfferCard({
   classNames: OfferCardClassNames;
   artVariant: string;
 }) {
-  const defects = offer.defects.length
+  const defects = offer.conditionDisclosure ?? (offer.defects.length
     ? offer.defects.map((defect) => defect.label).join("، ")
-    : "هیچ ایرادی اعلام نشده";
+    : "هیچ ایرادی اعلام نشده");
 
   return (
     <li className={classNames.card}>

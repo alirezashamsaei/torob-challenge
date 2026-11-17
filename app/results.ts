@@ -76,7 +76,11 @@ export function summarizeResults(
   journey: Journey,
   offers: readonly Offer[] = representativeOffers,
 ): ResultsSummary {
-  const suitable = selectSuitableOffers(journey, offers);
+  return summarizeEligibleOffers(selectSuitableOffers(journey, offers));
+}
+
+/** Summarize offers that have already passed the stored-offer eligibility checks. */
+export function summarizeEligibleOffers(suitable: readonly Offer[]): ResultsSummary {
   const state = stateFor(suitable.length);
 
   return {

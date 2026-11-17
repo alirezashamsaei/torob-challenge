@@ -6,6 +6,7 @@ Use Node.js 22.13 or newer and npm.
 
 ```sh
 npm ci
+npm run seed:offers
 npm run dev
 ```
 
@@ -18,15 +19,17 @@ To run the production build locally, use `npm run build` followed by `npm start`
 - `/` — start screen.
 - `/guide/usecase`, `/guide/budget`, `/guide/priority`, `/guide/defects`, `/guide/review` — wizard steps.
 - `/guide/requirement`, `/guide/expectation` — extra questions asked only for the gaming and graphics use cases: a searchable game or application and the expected performance level.
-- `/results` — up to five representative offer cards for the completed journey, with the actual match count and links to change the constraints.
+- `/results` — up to five eligible stored offers for the completed journey, with the actual match count and links to change the constraints.
 
 Answers travel in the query string, for example `/results?usecase=office&budget=18000000&priority=price&defect.chassisScratch=acceptable` or `/guide/review?usecase=gaming&requirement=cs2&expectation=balanced&budget=25000000&priority=performance&defect.chassisScratch=acceptable`. That keeps the browser's back and forward buttons working and lets the step routes restore earlier choices. A step route redirects to the first unanswered question when its prerequisites are missing, `/results` redirects to the first unanswered question while the journey is incomplete, and values that fail validation are dropped. The game or application must belong to the selected use case, so switching to a use case without these questions drops both answers. The rules live in `app/journey.ts`; the searchable catalogs and search rules live in `app/requirements.ts`.
 
 ## Results screen
 
-`app/results.ts` selects the offers shown on `/results` from the representative offers in `app/offers.ts`: the offer must serve the chosen use case, sit at or below the budget cap, and not disclose a defect the buyer rejected. The screen shows the actual count, up to five cards, and links back to the budget, priority, defect or game/software questions so a buyer with too few results can change them. Each card shows the seller's page link, the device price, shipping separately (or `مبلغ اعلام نشده` when the seller stated none), the last-checked time, disclosed defects, unknown fields, the trade-off and a grounded reason.
+`/results` reads the SQLite store and uses `app/eligibility.ts` to apply hard filters before showing offers. `evaluateStoredOffers` in `app/stored-offers.ts` returns a decision with all exclusion reason codes for every stored row. Decisions are specific to the journey and are not written over the source evidence. The screen shows the actual count, up to five cards, and links back to the questions. Each card shows the seller's page link, device price, shipping separately, date observed, disclosed defects and unknown fields.
 
-Representative offers are copied from the audited rows in `docs/stock-laptop-offer-sample.csv`; the audit recorded no shipping amounts, so those cards show `مبلغ اعلام نشده` while the card still renders a stated amount when an offer carries one. The order is representative, not the final priority-weighted ranking, and two offers of the same model stay separate cards. Availability and technical-minimum filters (ADR-0002), priority weighting, real explanations and in-place refinement arrive with the stored-offer and ranking work.
+The order is database insertion order, not priority-weighted ranking. The audit recorded no shipping amounts; shipping is unknown and is never added to the device budget. Two offers of the same model remain separate. Priority weighting and richer explanations remain future work.
+
+The eligibility rules are deliberately conservative. Availability must be affirmative and not a catalog-only, old, unconfirmed or preorder observation; price must be a positive safe integer at or below the budget. A row must be provisionally reviewed, have offer-page evidence and specific-device condition evidence or applicable test/return terms. A cosmetic grade alone is insufficient. Everyday and office require at least 4 GB and 8 GB RAM respectively. Gaming and graphics require a recognized GPU and 8 GB RAM (16 GB above basic), with explicit GPU tiers in `app/eligibility.ts`; the selected game or application and expected level determine the tier. These are provisional screening floors, not FPS or render-time promises. Unrecognized configurations are excluded, not guessed. If chassis condition or severity is required by the buyer's answer, undisclosed information is excluded. Inspect the source before purchase.
 
 ## Tests
 
@@ -56,6 +59,6 @@ Set any server-side credentials in the hosting platform's runtime environment. F
 
 ## Offer storage
 
-Run `npm run seed:offers` to create `data/offers.sqlite` and insert the audited CSV rows. Set `OFFERS_DB_PATH` to choose a persistent database path; pass another CSV path after `--` to use the same column format. The offer URL identifies an offer. Seeding inserts new URLs only and never updates existing records, so reviewed changes survive repeat deployments. All source columns, including evidence URLs, observation dates, explicit unknowns and empty values, are retained as recorded. The database is a staging store; the results screen still uses representative offers until ranking is integrated.
+Run `npm run seed:offers` to create `data/offers.sqlite` and insert the audited CSV rows. Set `OFFERS_DB_PATH` to choose a persistent database path; pass another CSV path after `--` to use the same column format. The offer URL identifies an offer. Seeding inserts new URLs only and never updates existing records, so reviewed changes survive repeat deployments. All source columns, including evidence URLs, observation dates, explicit unknowns and empty values, are retained as recorded. The results page reads this store; a missing or unreadable database is an error, not an empty result set.
 
 The Docker image seeds on startup. Mount durable storage at `/app/data` (or set `OFFERS_DB_PATH` to a path on a writable persistent volume); without a volume, container replacement loses the database and any reviews. For example: `docker run --rm -p 127.0.0.1:3000:3000 -v torob-data:/app/data torob-challenge`. Ensure the volume is writable by the image's `node` user. Back up the SQLite database before replacing or migrating the volume.

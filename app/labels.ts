@@ -28,7 +28,10 @@ const lastCheckedFormat = new Intl.DateTimeFormat("fa-IR", {
 /** The last-checked time in Tehran, as the buyer should read it. */
 export function lastCheckedLabel(lastCheckedAt: string): string {
   const date = new Date(lastCheckedAt);
-  return Number.isNaN(date.getTime()) ? "زمان بررسی نامشخص" : lastCheckedFormat.format(date);
+  if (Number.isNaN(date.getTime())) return "زمان بررسی نامشخص";
+  return /^\d{4}-\d{2}-\d{2}$/.test(lastCheckedAt)
+    ? new Intl.DateTimeFormat("fa-IR", { dateStyle: "medium", timeZone: "Asia/Tehran" }).format(date)
+    : lastCheckedFormat.format(date);
 }
 
 export const useCaseLabels: Record<UseCase, string> = {

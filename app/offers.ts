@@ -32,6 +32,8 @@ export type Offer = {
   useCases: readonly UseCase[];
   configuration: OfferConfiguration;
   defects: readonly OfferDefect[];
+  /** Verbatim condition disclosure, including defects outside the current questionnaire. */
+  conditionDisclosure?: string;
   /** Fields the seller left unknown for this device. */
   undisclosedFeatures: readonly string[];
   /** Test period or return terms, when the seller states them. */
