@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState, useTransition } from "react";
 import styles from "./guide.module.css";
 import { Assistant, SiteHeader } from "./chrome";
 import {
@@ -29,6 +29,8 @@ import {
 } from "./journey";
 import { catalogFor } from "./requirements";
 import SoftwarePicker from "./software-picker";
+import ResultsView from "./results-view";
+import type { ResultsSummary } from "./results";
 import {
   answerText,
   defectLabels,
@@ -47,6 +49,28 @@ import {
 
 const presetBudgets = [18_000_000, 25_000_000, 40_000_000];
 const defect = defects[0];
+
+function AnimatedText({ text }: { text: string }) {
+  const [length, setLength] = useState(text.length);
+  useEffect(() => {
+    const characters = Array.from(text);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setLength(characters.length);
+      return;
+    }
+    setLength(0);
+    const start = performance.now();
+    let frame = 0;
+    const reveal = (now: number) => {
+      const next = Math.min(characters.length, Math.ceil((now - start) / 600 * characters.length));
+      setLength(next);
+      if (next < characters.length) frame = requestAnimationFrame(reveal);
+    };
+    frame = requestAnimationFrame(reveal);
+    return () => cancelAnimationFrame(frame);
+  }, [text]);
+  return <span className={styles.animatedText} aria-hidden="true"><span>{text}</span><span>{Array.from(text).slice(0, length).join("")}</span></span>;
+}
 
 type Choice = { label: string; hint?: string; params: Record<string, string> };
 
@@ -84,15 +108,17 @@ function severityChoices(): Choice[] {
   }));
 }
 
-export default function GuideView({ step, journey, defectCandidateCount = 0 }: { step: Step; journey: Journey; defectCandidateCount?: number }) {
+export default function GuideView({ step, journey, defectCandidateCount = 0, summary }: { step: Step; journey: Journey; defectCandidateCount?: number; summary?: ResultsSummary }) {
   const router = useRouter();
   const [draft, setDraft] = useState("");
   const [error, setError] = useState("");
   const heading = useRef<HTMLHeadingElement>(null);
+  const transcript = useRef<HTMLOListElement>(null);
+  const [isPending, startTransition] = useTransition();
   const order = questionStepsFor(journey.useCase);
   const defectAnswer = journey.defects[defect];
   const askingSeverity = step === "defects" && defectAnswer?.tolerance === "depends";
-  const questionKey = askingSeverity ? "defects:severity" : step;
+  const questionKey = summary ? "verdict" : askingSeverity ? "defects:severity" : step;
   const answered = askingSeverity || step === "review" ? order.length : order.indexOf(step);
   const progressLabels = progressLabelsFor(journey.useCase);
   const phase = Math.min(phaseOfStep(step, journey.useCase), progressLabels.length - 1);
@@ -106,13 +132,24 @@ export default function GuideView({ step, journey, defectCandidateCount = 0 }: {
   }
 
   useEffect(() => {
-    heading.current?.focus();
-  }, [questionKey]);
+    heading.current?.focus({ preventScroll: true });
+    if (transcript.current) {
+      if (summary && heading.current) {
+        transcript.current.scrollTop += heading.current.getBoundingClientRect().top - transcript.current.getBoundingClientRect().top - 24;
+      } else {
+        transcript.current.scrollTop = transcript.current.scrollHeight;
+      }
+    }
+  }, [questionKey, summary]);
+
+  useEffect(() => {
+    if (isPending && transcript.current) transcript.current.scrollTop = transcript.current.scrollHeight;
+  }, [isPending]);
 
   function go(nextStep: Step, nextJourney: Journey) {
     setDraft("");
     setError("");
-    router.push(stepPath(nextStep, nextJourney));
+    startTransition(() => router.push(stepPath(nextStep, nextJourney)));
   }
 
   function answer(params: Record<string, string>) {
@@ -148,7 +185,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0 }: {
     setError("یکی از گزینه‌های نمایش‌داده‌شده را انتخاب کنید.");
   }
 
-  const title = askingSeverity
+  const title = summary ? "پیشنهاد من برای شما" : askingSeverity
     ? `${defectLabels[defect]}: چه شدتی برای شما قابل قبول است؟`
     : step === "review"
       ? "انتخاب‌هایتان را مرور کنید."
@@ -164,27 +201,27 @@ export default function GuideView({ step, journey, defectCandidateCount = 0 }: {
           <ol className={styles.progress} aria-label="مراحل گفت‌وگو">
             {progressLabels.map((label, index) => (
               <li key={label} aria-current={index === phase ? "step" : undefined}>
-                <span className={index < phase ? styles.done : undefined} aria-hidden="true">
+                <span key={`${index}-${index === phase ? "current" : index < phase ? "done" : "upcoming"}`} className={index < phase ? styles.done : undefined} aria-hidden="true">
                   {index < phase ? "✓" : numberFormat.format(index + 1)}
                 </span>{label}
               </li>
             ))}
           </ol>
         </div>
-        <ol className={styles.transcript} aria-label="پیام‌ها">
+        <ol ref={transcript} className={styles.transcript} aria-label="پیام‌ها" aria-busy={isPending}>
           {order.slice(0, answered).map((answeredStep, index) => (
             <li key={answeredStep} className={styles.exchange}>
               <Assistant>
                 {index === 0 && <p>سلام! بیایید لپ‌تاپ استوک مناسبتان را پیدا کنیم.</p>}
                 <p>{stepTitle(answeredStep, journey)}</p>
               </Assistant>
-              <div className={styles.reply}><span className={styles.speaker}>شما</span><p>{answerText(answeredStep, journey)}</p></div>
+              <div className={`${styles.reply} ${index === answered - 1 ? styles.newMessage : ""}`}><span className={styles.speaker}>شما</span><p>{answerText(answeredStep, journey)}</p></div>
             </li>
           ))}
-          <li>
+          <li key={questionKey} className={styles.newMessage}>
             <Assistant>
               {answered === 0 && <p>سلام! بیایید لپ‌تاپ استوک مناسبتان را پیدا کنیم.</p>}
-              <h1 id="guide-title" ref={heading} tabIndex={-1}>{title}</h1>
+              <h1 id="guide-title" ref={heading} tabIndex={-1} aria-label={title}><AnimatedText key={questionKey} text={title} /></h1>
               {step === "defects" && (
                 <p className={styles.brief}>
                   {defectCandidateCount > 0
@@ -192,7 +229,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0 }: {
                     : "در پیشنهادهای فعلیِ این کاربرد و بودجه، خط‌وخش بدنه اعلام نشده است؛ برای بررسی اطلاعاتی که ممکن است ناقص باشد، میزان پذیرش خود را مشخص کنید."}
                 </p>
               )}
-              {step === "review" ? (
+              {summary ? <ResultsView journey={journey} summary={summary} /> : step === "review" ? (
                 <dl className={styles.summary}>
                   {reviewRows(journey).map((row) => (
                     <div key={row.step}>
@@ -245,6 +282,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0 }: {
               )}
             </Assistant>
           </li>
+          {isPending && <li className={styles.thinking} role="status" aria-label="دستیار در حال فکر کردن است"><span /><span /><span /></li>}
         </ol>
         {step !== "review" && step !== "requirement" && (
           <form className={styles.composer} onSubmit={submitReply}>
@@ -262,7 +300,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0 }: {
         )}
         {error && <p id="reply-error" className={styles.error} role="alert">{error}</p>}
         <div className={styles.actions}>
-          {step === "review" && (
+          {step === "review" && !summary && (
             <Link className={`${styles.button} ${styles.link}`} href={resultsPath(journey)}>دیدن پیشنهادها</Link>
           )}
           {askingSeverity && (

@@ -56,3 +56,26 @@ export function storedOfferForDisplay(row: StoredOffer, journey: Journey): Offer
     tradeOff: "برای جزئیات وضعیت و شرایط، اطلاعات فروشنده را بررسی کنید.",
   };
 }
+
+/** Suggest reviewed, available offers with explicit, limited compromises. */
+export function nearbyAlternatives(decisions: readonly EligibilityDecision[], journey: Journey, limit: number): Offer[] {
+  const allowed = new Set<ExclusionReason>(["over_budget", "defect_unknown", "intolerable_defect", "technical_minimum"]);
+  return decisions
+    .filter(({ reasons }) => reasons.length > 0 && reasons.every((reason) => allowed.has(reason)))
+    .sort((a, b) => {
+      const difference = Number(a.reasons.includes("technical_minimum")) - Number(b.reasons.includes("technical_minimum")) || a.reasons.length - b.reasons.length;
+      if (difference) return difference;
+      return a.offer.price_toman_as_listed - b.offer.price_toman_as_listed;
+    })
+    .slice(0, Math.max(0, limit))
+    .map(({ offer, reasons }) => {
+      const compromises: string[] = [];
+      if (reasons.includes("over_budget")) compromises.push("قیمت بالاتر از بودجهٔ شماست");
+      if (reasons.includes("defect_unknown")) compromises.push("وضعیت خط‌وخش بدنه مشخص نیست");
+      if (reasons.includes("intolerable_defect")) compromises.push("ایراد بدنه با انتخاب شما سازگار نیست");
+      if (reasons.includes("technical_minimum")) compromises.push("سخت‌افزار حداقل سطح انتخابی شما را ندارد");
+      return { ...storedOfferForDisplay(offer, journey),
+        explanation: "این گزینه با همهٔ شرایط شما سازگار نیست؛ جزئیات زیر را بررسی کنید.",
+        tradeOff: compromises.join("? ") + "." };
+    });
+}

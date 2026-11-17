@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import styles from "./guide.module.css";
 
 export function Mark() {
-  return <span className={styles.mark} aria-hidden="true">t</span>;
+  return <img className={styles.mark} src="/torob.svg" alt="" aria-hidden="true" />;
 }
 
 export function Assistant({ children }: { children: ReactNode }) {

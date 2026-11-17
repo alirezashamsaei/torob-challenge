@@ -2,7 +2,9 @@ import { redirect } from "next/navigation";
 import GuideView from "../../guide-view";
 import { canVisitStep, firstIncompleteStep, readJourney, stepFromSegment, stepPath } from "../../journey";
 import { toSearchParams } from "../../search-params";
-import { defectCandidates, readStoredOffers } from "../../stored-offers";
+import { defectCandidates, evaluateStoredOffers, nearbyAlternatives, readStoredOffers, storedOfferForDisplay } from "../../stored-offers";
+
+import { maxResults, summarizeEligibleOffers } from "../../results";
 
 type PageProps = {
   params: Promise<{ step: string }>;
@@ -20,5 +22,14 @@ export default async function GuideStepPage({ params, searchParams }: PageProps)
   }
 
   const candidates = step === "defects" ? defectCandidates(readStoredOffers(), journey) : [];
-  return <GuideView step={step} journey={journey} defectCandidateCount={candidates.length} />;
+  const verdict = step === "review" && search.verdict === "1";
+  let summary;
+  if (verdict) {
+    const decisions = evaluateStoredOffers(readStoredOffers(), journey);
+    const eligible = decisions.filter((decision) => decision.reasons.length === 0)
+      .map((decision) => storedOfferForDisplay(decision.offer, journey));
+    summary = { ...summarizeEligibleOffers(eligible, journey),
+      alternatives: nearbyAlternatives(decisions, journey, maxResults - eligible.length) };
+  }
+  return <GuideView step={step} journey={journey} defectCandidateCount={candidates.length} summary={summary} />;
 }

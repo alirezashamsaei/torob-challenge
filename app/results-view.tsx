@@ -1,8 +1,7 @@
 import Link from "next/link";
 import styles from "./guide.module.css";
-import { Assistant, SiteHeader } from "./chrome";
-import { type Journey, defectParam, defects, journeyParams, priorities, questionStepsFor, severities, severityParam, tolerances } from "./journey";
-import { answerText, defectLabels, priorityLabels, severityLabels, toleranceLabels } from "./labels";
+import { type Journey, defectParam, defects, journeyParams, priorities, severities, severityParam, tolerances } from "./journey";
+import { defectLabels, priorityLabels, severityLabels, toleranceLabels } from "./labels";
 import ResultsBody, { type ResultsBodyClassNames } from "./results-body";
 import { refineActions, type ResultsSummary } from "./results";
 
@@ -39,31 +38,13 @@ export default function ResultsView({ journey, summary }: { journey: Journey; su
   const actions = refineActions(journey);
 
   return (
-    <div className={styles.guide}>
-      <SiteHeader />
-      <main className={styles.results}>
-        <div className={styles.sectionTitle}>
-          <div>
-            <p>فهرست پیشنهادی</p>
-            <h1>لپ‌تاپ استوک مناسب شما</h1>
-          </div>
-          <span className={styles.complete}>✓ مراحل کامل شد</span>
-        </div>
-        <Assistant>
-          <p>
-            برای هر پیشنهاد، دلیل انتخاب و هزینهٔ واقعی آن آمده است؛ قیمت دستگاه و هزینهٔ
-            ارسال جدا نمایش داده می‌شوند.
-          </p>
-          <p className={styles.brief}>
-            {questionStepsFor(journey.useCase)
-              .map((step) => answerText(step, journey))
-              .join(" / ")}
-          </p>
-          <p className={styles.brief}>
-            اگر فروشنده مبلغ ارسال را اعلام نکرده باشد، «مبلغ اعلام نشده» می‌بینید و آن مبلغ در
-            بودجهٔ دستگاه حساب نشده است.
-          </p>
-        </Assistant>
+    <div className={styles.verdict}>
+      <p className={styles.verdictLead}>
+        {summary.shown[0]
+          ? <>پیشنهاد اول من <bdi>{summary.shown[0].model}</bdi> است. {summary.shown[0].explanation}</>
+          : "با شرایط فعلی پیشنهادی پیدا نکردم. می‌توانید شرایط را تغییر دهید و دوباره بررسی کنید."}
+      </p>
+      <p className={styles.brief}>قیمت دستگاه و هزینهٔ ارسال جدا نمایش داده می‌شوند.</p>
         <ResultsBody
           summary={summary}
           actions={actions}
@@ -108,7 +89,6 @@ export default function ResultsView({ journey, summary }: { journey: Journey; su
             </Link>
           )}
         />
-      </main>
     </div>
   );
 }

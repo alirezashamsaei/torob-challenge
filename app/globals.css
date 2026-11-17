@@ -1,3 +1,12 @@
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-thin.ttf") format("truetype"); font-style: normal; font-weight: 100; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-light.ttf") format("truetype"); font-style: normal; font-weight: 300; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-regular.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-medium.ttf") format("truetype"); font-style: normal; font-weight: 500; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-bold.ttf") format("truetype"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-extrabold.ttf") format("truetype"); font-style: normal; font-weight: 800; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-black.ttf") format("truetype"); font-style: normal; font-weight: 900; font-display: swap; }
+@font-face { font-family: IranYekan; src: url("/fonts/iranyekan-extrablack.ttf") format("truetype"); font-style: normal; font-weight: 950; font-display: swap; }
+
 :root {
   --color-text: #211f20;
   --color-secondary: #625b5d;
@@ -6,7 +15,7 @@
   --color-border: #ddd3d5;
   --color-accent: #a8172c;
   --color-accent-subtle: #f6e9eb;
-  --font-body: Tahoma, "Segoe UI", sans-serif;
+  --font-body: IranYekan, Tahoma, "Segoe UI", sans-serif;
   --radius: 0.625rem;
   --space-1: 0.5rem;
   --space-2: 1rem;

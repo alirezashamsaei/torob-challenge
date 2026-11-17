@@ -192,7 +192,9 @@ export function stepPath(step: Step, journey: Journey): string {
 }
 
 export function resultsPath(journey: Journey): string {
-  return pathWithQuery("/results", journey);
+  const params = journeyParams(journey);
+  params.set("verdict", "1");
+  return `/guide/review?${params}`;
 }
 
 export function withoutDefectAnswer(journey: Journey, id: DefectId): Journey {

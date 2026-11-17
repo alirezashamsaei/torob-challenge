@@ -21,6 +21,8 @@ export type ResultsSummary = {
   suitable: number;
   /** The offers the results screen displays, in representative order. */
   shown: readonly Offer[];
+  /** Clearly identified offers that need a budget or condition compromise. */
+  alternatives?: readonly Offer[];
   state: ResultsState;
   headline: string;
   /** Set when fewer than five offers are suitable and the buyer can widen the search. */

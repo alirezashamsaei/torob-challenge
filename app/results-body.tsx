@@ -52,6 +52,18 @@ export default function ResultsBody({
           ))}
         </ol>
       )}
+      {!!summary.alternatives?.length && (
+        <section aria-labelledby="alternatives-title">
+          <h3 id="alternatives-title">گزینه‌های جایگزین با شرایط متفاوت</h3>
+          <p className={classNames.hint}>این گزینه‌ها همهٔ شرایط شما را ندارند؛ تفاوت هر گزینه در بخش «در عوض» آمده است.</p>
+          <ol className={classNames.list}>
+            {summary.alternatives.map((offer, index) => (
+              <OfferCard key={offer.id} offer={offer} rank={index + 1}
+                artVariant={classNames.artVariants[index % classNames.artVariants.length]} classNames={classNames.card} />
+            ))}
+          </ol>
+        </section>
+      )}
       <div className={classNames.refine}>
         <h3 className={classNames.refineTitle}>شرایط را تغییر دهید</h3>
         {summary.state === "few" && summary.refineHint && (

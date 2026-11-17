@@ -167,7 +167,7 @@ test("every step has a route that carries the answers collected so far", () => {
 
   assert.equal(stepPath("priority", journey), "/guide/priority?usecase=office&budget=18000000");
   assert.equal(stepPath("review", journey), "/guide/review?usecase=office&budget=18000000");
-  assert.equal(resultsPath(journey), "/results?usecase=office&budget=18000000");
+  assert.equal(resultsPath(journey), "/guide/review?usecase=office&budget=18000000&verdict=1");
   assert.equal(
     stepPath("expectation", gaming),
     "/guide/expectation?usecase=gaming&requirement=cs2&expectation=balanced",

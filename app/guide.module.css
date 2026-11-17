@@ -37,46 +37,10 @@
 }
 
 .introMark {
-  position: relative;
-  display: grid;
-  place-items: center;
+  display: block;
   inline-size: clamp(6rem, 15vw, 8.125rem);
   aspect-ratio: 1;
-  border-radius: 17%;
-  background: #d7d8da;
-  color: var(--canvas);
-}
-
-.introMark > span {
-  position: relative;
-  inline-size: 92%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1.05rem solid currentColor;
-}
-
-.introMark > span::before,
-.introMark > span::after {
-  content: "";
-  position: absolute;
-  background: currentColor;
-}
-
-.introMark > span::before {
-  inset: -1.15rem -0.2rem auto auto;
-  inline-size: 1.4rem;
-  block-size: 2rem;
-  border: 2px solid #d7d8da;
-  border-radius: 90% 10% 80% 20%;
-  transform: rotate(-34deg);
-}
-
-.introMark > span::after {
-  inset: auto auto -0.6rem -0.55rem;
-  inline-size: 1.45rem;
-  block-size: 0.9rem;
-  border-radius: 75% 20% 0 0;
-  transform: rotate(-27deg);
+  object-fit: contain;
 }
 
 .intro h1 {
@@ -131,15 +95,12 @@
 }
 
 .mark {
-  display: inline-grid;
-  place-items: center;
+  display: inline-block;
   flex: none;
   inline-size: 2rem;
   block-size: 2rem;
-  background: var(--red);
-  color: #fff;
-  border-radius: 0.625rem;
-  font: 700 1.6rem/1 var(--font-body);
+  background: url("/torob.svg") center / contain no-repeat;
+  filter: invert(1);
 }
 
 .brand .mark {
@@ -155,6 +116,10 @@
 
 .chat {
   inline-size: min(calc(100% - 6rem), 57.5rem);
+  block-size: calc(100dvh - 5rem);
+  min-block-size: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .results {
@@ -243,6 +208,29 @@
   gap: 1.25rem;
 }
 
+.transcript {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  align-content: start;
+  padding: 0.25rem 3rem 0.5rem 0.25rem;
+  margin-inline: -3rem -0.25rem;
+  scrollbar-color: var(--line) transparent;
+}
+
+.newMessage { animation: message-enter 200ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+.thinking { display: flex; gap: 0.3rem; padding: 0.75rem 1rem; width: fit-content; border-radius: 1rem; background: var(--panel); }
+.thinking span { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--muted); animation: thinking 1s ease-in-out infinite alternate; }
+.thinking span:nth-child(2) { animation-delay: 150ms; }
+.thinking span:nth-child(3) { animation-delay: 300ms; }
+@keyframes message-enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes thinking { from { opacity: 0.35; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .newMessage { animation: none; }
+  .thinking span { animation: none; }
+}
+
 .assistant {
   position: relative;
 }
@@ -279,6 +267,9 @@
 .bubble h1 {
   font-size: clamp(1rem, 2.5vw, 1.15rem);
 }
+.animatedText { display: inline-grid; }
+.animatedText > span { grid-area: 1 / 1; }
+.animatedText > span:first-child { visibility: hidden; }
 
 .reply {
   justify-self: end;
@@ -629,7 +620,8 @@
   .tagline { display: none; }
   .brand { font-size: 1rem; }
   .header > .button { padding-inline: 0.5rem; }
-  .chat { inline-size: calc(100% - 2rem); }
+  .chat { inline-size: calc(100% - 2rem); block-size: calc(100dvh - 4rem); padding-block: 1rem; }
+  .transcript { margin-inline: 0; padding-inline: 0; }
   .assistant > .mark { position: static; inline-size: 1.625rem; block-size: 1.625rem; font-size: 1.125rem; }
   .chat .assistant { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 0.5rem; }
   .chat .bubble, .reply p { padding: 0.625rem 0.75rem; }
@@ -637,4 +629,39 @@
   .softwareList { max-block-size: 13rem; }
   .offerFacts > div { grid-template-columns: 1fr; gap: 0.125rem; }
   .refine { padding-inline: 0.875rem; }
+}
+
+/* The verdict stays inside the conversation, with room for offer comparisons. */
+.verdict .resultsBody { margin-block-start: 1rem; }
+.verdictLead { margin-block-start: 0.5rem !important; }
+.verdict .brief { margin-block-start: 0.5rem; color: var(--muted); font-size: 0.8125rem; }
+.verdict .offerList { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.verdict .offerCard { background: var(--raised); }
+.verdict .offerCard:first-child { border-color: var(--red); }
+.verdict .refine { background: var(--raised); }
+.verdict .refineForm input, .verdict .refineForm select { color: #211f20; }
+
+/* Motion keeps controls responsive and content available while it appears. */
+.button, .textButton, .send, .start {
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (pointer: fine), (pointer: coarse) {
+  .button:active, .textButton:active, .send:not(:disabled):active, .start:active { transform: scale(0.97); }
+}
+.progress li[aria-current] span, .progress .done { animation: progress-arrive 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+.softwareList > li { animation: search-arrive 150ms cubic-bezier(0.23, 1, 0.32, 1); }
+.error, .softwareEmpty { animation: fade-arrive 150ms cubic-bezier(0.23, 1, 0.32, 1); }
+.verdict .offerCard { animation: fade-arrive 200ms cubic-bezier(0.23, 1, 0.32, 1) backwards; }
+.verdict .offerCard:nth-child(2) { animation-delay: 30ms; }
+.verdict .offerCard:nth-child(3) { animation-delay: 60ms; }
+.verdict .offerCard:nth-child(4) { animation-delay: 90ms; }
+.verdict .offerCard:nth-child(5) { animation-delay: 120ms; }
+@keyframes progress-arrive { from { opacity: 0.6; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes search-arrive { from { opacity: 0.6; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-arrive { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .button, .textButton, .send, .start { transition: none; }
+  .button:active, .textButton:active, .send:not(:disabled):active, .start:active { transform: none; }
+  .progress li[aria-current] span, .progress .done, .softwareList > li { animation: fade-arrive 150ms; }
+  .verdict .offerCard { animation-delay: 0s; }
 }

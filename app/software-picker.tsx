@@ -42,7 +42,7 @@ export default function SoftwarePicker({ catalog, label, selectedId, classNames 
       {results.length === 0 && (
         <p className={classNames.empty} role="status">نتیجه‌ای پیدا نشد. املای دیگری را امتحان کنید.</p>
       )}
-      <ul className={classNames.list} id={listId}>
+      <ul key={query} className={classNames.list} id={listId}>
         {results.map((item) => (
           <li key={item.id}>
             <button
