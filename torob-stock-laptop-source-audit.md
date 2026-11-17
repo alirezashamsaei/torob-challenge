@@ -57,3 +57,27 @@ Nineteen sampled offers from six sellers passed the offer-page criteria. Assigni
 The sample is 21 offers short of the 40-offer target. Gaming and graphics work have the fewest offers, and the cheapest gaming offer costs 210 million toman. Most samples rely on test or return terms. Demonstrating a trade-off between price and condition requires devices with a specific defect, grade, or evidence of battery condition.
 
 Two of the three priority sources were reachable on repeated direct checks on the same day. Zero sources have verified crawl stability from the demo host. If the next review fails to confirm at least three stable sources and 40 offers, the product owner must decide whether to expand the seller list or accept reduced coverage. Replacing crawling with manual collection would require a scope change approved by the product owner.
+
+## Expanded offer sample
+
+The [offer sample CSV](docs/stock-laptop-offer-sample.csv) contains 120 distinct offer URLs across 25 reported sellers, including merchants identified on marketplaces. It includes 74 provisionally eligible offers from 16 sellers. The CSV retains listed price, condition and availability evidence, observation date, provenance, and screening status.
+
+| Primary use case | Provisionally eligible | Needs further checks |
+| --- | ---: | ---: |
+| Everyday use and study | 23 | 27 |
+| Office work | 28 | 13 |
+| Gaming | 11 | 2 |
+| Graphics work | 12 | 4 |
+| **Total** | **74** | **46** |
+
+Listed prices span 20 million to 810.079 million toman. The provisionally eligible range starts at 20,389,850 toman. Fourteen eligible offers fall below 60 million, 24 from 60 million to under 100 million, 14 from 100 million to under 150 million, and 22 at or above 150 million. Gaming has 11 provisionally eligible offers from five sellers. That group includes used RTX 3050 through RTX 4070 configurations and open-box RTX 4070 and RTX 4090 configurations, as well as the previously sampled RTX 2050.
+
+### Device condition coverage
+
+- Twenty-six entries have some seller-reported battery evidence and 18 have disclosed defects. Numeric battery readings range from 44% to 100%. Other entries report a threshold, a charge-cycle count, or a failed battery. These are seller claims from listing snapshots.
+- Technolife marketplace listings include an Inspiron 7375 at 44% battery health, an Inspiron 7373 at 57% with impact damage, and an HP 15-ef2xxx with 10 dead pixels. These listings still need configuration confirmation. A provisionally eligible ThinkPad T14s has a disclosed left-hinge issue. ITjonoob also lists two laptops with failed batteries and a separate laptop with a failed keyboard. Those faults were visible on the catalog, while the offer pages returned HTTP 403.
+- Cosmetic labels include Acceptable, Good, A, A+, A++, and Like new. Their scales vary by seller. Open-box and seller-labeled refurbished offers appear in the sample. Some Dubai Stock listings have a 25-day preorder lead time and require seller confirmation.
+
+This is a snapshot of public seller and marketplace evidence, including indexed copies. Recheck price and availability before seeding the demo. Confirm the remaining configuration, condition, and availability gaps before promoting those rows. Crawl stability from the demo host remains unverified.
+
+A follow-up matched two Surface Laptop offers and two Intel ThinkPad T14s Gen 2 offers to manufacturer storage and graphics specifications. It also normalized the Precision 3591 seller's GPU label to the 6 GB RTX 1000 Ada listed by Dell. [Surface Laptop 3](https://support.microsoft.com/en-us/surface/models/surface-laptop-3-specs-and-features) · [Surface Laptop 5 for Business](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/final/en-us/microsoft-brand/documents/mcaps-federal-surface-RW10kfI.pdf) · [ThinkPad T14s Gen 2](https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_2_Intel/ThinkPad_T14s_Gen_2_Intel_Spec.pdf) · [Precision 3591](https://www.dell.com/support/manuals/en-us/precision-15-3591-laptop/precision-3591-owners-manual/gpudiscrete?guid=guid-037d4256-cab6-4135-bb2a-fce9ed20f9f9&lang=en-us)
