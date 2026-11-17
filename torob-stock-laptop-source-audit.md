@@ -60,7 +60,7 @@ Two of the three priority sources were reachable on repeated direct checks on th
 
 ## Expanded offer sample
 
-The [offer sample CSV](docs/stock-laptop-offer-sample.csv) contains 120 distinct offer URLs across 25 reported sellers, including merchants identified on marketplaces. It includes 74 provisionally eligible offers from 16 sellers. The CSV retains listed price, condition and availability evidence, observation date, provenance, and screening status.
+The following figures record the initial review, before the corrections in the later coverage section. The [offer sample CSV](docs/stock-laptop-offer-sample.csv) contains 120 distinct offer URLs across 25 reported sellers, including merchants identified on marketplaces. It includes 74 provisionally eligible offers from 16 sellers. The CSV retains listed price, condition and availability evidence, observation date, provenance, and screening status.
 
 | Primary use case | Provisionally eligible | Needs further checks |
 | --- | ---: | ---: |
@@ -84,7 +84,7 @@ A follow-up matched two Surface Laptop offers and two Intel ThinkPad T14s Gen 2 
 
 ## Demo source selection
 
-Use Radin Computer, Stock Iran, Digi Store, and Ebadigi as the initial sources. Together they account for 50 provisionally eligible offers in the sample, covering all four use cases from 20.39 million to 383.88 million toman. Raitop is a reserve source, including for gaming.
+This initial selection and its counts predate the later review below. Use Radin Computer, Stock Iran, Digi Store, and Ebadigi as the initial sources. Together they account for 50 provisionally eligible offers in the sample, covering all four use cases from 20.39 million to 383.88 million toman. Raitop is a reserve source, including for gaming.
 
 | Selected shop | Provisional offers | Sample checked |
 | --- | ---: | --- |
@@ -95,4 +95,46 @@ Use Radin Computer, Stock Iran, Digi Store, and Ebadigi as the initial sources. 
 
 On November 17, 2026, this workspace retrieved public crawler rules and received HTTP 200 on two requests to each selected sample and the Raitop reserve sample. Digi Store and Ebadigi's first crawler-rule requests reset before succeeding on retry. These were same-day reachability checks. Runflare reported that this checkout was not linked to a deployment, so crawl stability from the demo host remains unverified. Recheck access, price, and availability on the deployment path before using the data in the demo.
 
-The CSV now includes 106 seller image URLs, covering 70 of the 74 provisionally eligible offers. Blank fields indicate that a matching seller image could not be verified.
+At the initial review, the CSV included 106 seller image URLs, covering 70 of the then 74 provisionally eligible offers. Blank fields indicate that a matching seller image could not be verified.
+
+### Review corrections and coverage
+
+Review on November 17, 2026 used the recorded snapshot and accessible indexed source pages, some cached. The CSV is the source-evidence record. The review changed screening statuses and added the previous decision and reason to affected rows' notes. It also filled four configurations from the seller page, recording their original values and cached sources in the notes. Original listed prices, source URLs, observation dates, condition and policy claims remain intact. These decisions apply to the recorded snapshot and do not establish present availability.
+
+- Fifteen offers previously marked provisionally eligible have `See source page` in place of complete configuration evidence. They now need exact configuration confirmation. The earlier notes contain some, but not all, required CPU, RAM, storage and GPU details.
+- The [Stock Iran Precision 3551](https://stockirshop.com/product/dell-precision-3551/) was completed from its cached purchase section. It lists i9-10885H, 16 GB RAM, 512 GB SSD and Quadro P620 4 GB, with the same recorded price. Its original configuration field was `See source page`. The cached copy was about two weeks old when reviewed, so this remains provisional.
+- Three other Stock Iran offers were completed from their cached purchase sections, which list the recorded prices and full configurations. These are the [ZBook 14 G2](https://stockirshop.com/product/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-hp-zbook-14-g2/), [Latitude 5410](https://stockirshop.com/product/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-dell-latitude-5410/), and [EliteBook x360 1040 G8](https://stockirshop.com/product/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-hp-elitebook-x360-1040-g8/). Their original configuration fields said `See source page`.
+- Ten Digi Store offers previously marked provisionally eligible now need device condition or applicable terms. The recorded evidence gives a seven-day return claim but no policy conditions or specific device condition. For example, the [ProBook 645 G1 offer](https://digistores.ir/products/hp-probook-645-g1/) displays a seven-day return badge without terms in its purchase section. One offer page timed out during this review. The original claim is retained in each row for follow-up.
+- The recorded Ebadigi TUF F16 FX607VU offer URL was inaccessible. Similar listings show different prices, so the row is held until the original offer is verified.
+- The [Ebadigi TUF F15 FX507ZC4-HN009](https://ebadigi.ir/product/%D8%AF%D8%B1-%D8%AD%D8%AF-%D9%86%D9%88-%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-15-6-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D8%A7%DB%8C%D8%B3%D9%88%D8%B3-%D9%85%D8%AF%D9%84-tuf-gaming-f15-fx507zc4-hn009-c/) has a seller-reported cosmetic condition, but the reviewed page did not establish the recorded test-period claim. It is held until those terms are confirmed.
+- The [Martday TUF F15](https://martday.ir/store/products/asus-tuf-gaming-f15-fx507vi-i7-13620h-rtx4070-16gb-1tb) asks buyers to confirm the price despite displaying one, so it is held for price confirmation. Its page states the seven-day return conditions for all goods.
+- The [Surface Laptop 3 on Technolife](https://www.technolife.com/product-579366/) shows a seven-day marketplace badge and 14 days in product details. It is held until the terms for the listed seller are confirmed.
+- Three more Technolife offers with 14-day terms are held until those terms are reconciled with the marketplace [seven-day return policy](https://www.technolife.com/staticpage/page-11/%D8%B1%D9%88%DB%8C%D9%87). Their offer pages were inaccessible during this review.
+- The other 46 offers already carried a specific reason for further checks. Their original screening reasons remain in the CSV. A request for confirmation is a hold, not a finding that the device is defective.
+
+For policy evidence, Stock Iran's [sales terms](https://stockirshop.com/%D8%B4%D8%B1%D8%A7%DB%8C%D8%B7-%D9%81%D8%B1%D9%88%D8%B4-%D9%88-%D9%85%D9%87%D9%84%D8%AA-%D8%AA%D8%B3%D8%AA/) expressly cover all laptops, with a seven-day hardware test and a 24-hour window for cosmetic issues. Raitop's [return policy](https://raitop.ir/return-policy-2/) covers stock and open-box laptops and asks that technical issues be reported within 48 hours. Radin's [policy](https://radincomputer.com/shipping-and-returns/) covers stock goods for one week, while its [HP listing](https://radincomputer.com/product-category/stock-products/stock-laptop/stock-laptop-hp/) expressly advertises a one-week test for the open-box OmniBook 5. Offer-specific terms and grades remain seller claims. These policies do not establish the health of an individual device. The Martday offer itself says its seven-day return applies to all goods, with return shipping paid by the customer. Other seller claims remain as recorded and need offer-level verification before being used as applicable policy terms.
+
+Counts below use the CSV's primary use-case assignment and `Provisionally eligible` status after these corrections. Budget bands are in millions of toman and are lower-inclusive, upper-exclusive. Counts describe initial screening, and do not establish fit for a particular game, application, or defect preference. A provisional status also does not verify every seller's policy, current stock, or current price.
+
+| Primary use case | Under 60 | 60 to <100 | 100 to <150 | 150 and above | Total |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Everyday use and study | 2 | 9 | 1 | 0 | 12 |
+| Office work | 0 | 6 | 6 | 2 | 14 |
+| Gaming | 0 | 0 | 0 | 6 | 6 |
+| Graphics work | 0 | 1 | 3 | 6 | 10 |
+| **Total** | **2** | **16** | **10** | **14** | **42** |
+
+The application eligibility rules also allow an offer to serve a use case other than its primary audit category. The following counts were evaluated on a freshly seeded in-memory store using a one-billion-toman cap, acceptable chassis scratches, balanced expectations, Counter-Strike 2 for gaming, and Photoshop for graphics. Columns are disjoint offer-price bands, not maximum-budget totals. The same offer can appear in more than one use case. These are scenario-specific results under the current rules, not forecasts of game or application performance.
+
+| Journey | Under 60 | 60 to <100 | 100 to <150 | 150 and above | Total |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Everyday use and study | 1 | 16 | 10 | 8 | 35 |
+| Office work | 1 | 16 | 10 | 8 | 35 |
+| Gaming, Counter-Strike 2 | 0 | 0 | 0 | 6 | 6 |
+| Graphics, Photoshop | 0 | 0 | 0 | 6 | 6 |
+
+The everyday and office scenarios each admit 35 offers, five short of the 40-offer target. The 42 provisionally screened offers do not establish that 40 pass the application filters.
+
+The remaining 78 offers are held for review. The selected-source counts and seller totals above are historical. Refresh the source selection and verify applicable terms before using these offers in the demo.
+
+Existing SQLite stores retain their previous rows when seeding is repeated. Run `node scripts/apply-offer-review.mjs` against an existing store to apply these corrections. Set `OFFERS_DB_PATH` to choose the store. The script checks the full previous row before updating, reports missing or changed rows as conflicts, and leaves manual edits intact. A repeat run recognizes already applied corrections. Review any reported conflicts individually. A newly seeded store already contains the reviewed CSV values.

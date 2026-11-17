@@ -22,6 +22,7 @@ COPY --from=build --chown=node:node /app/.next/static ./.next/static
 COPY --from=build --chown=node:node /app/public ./public
 COPY --from=build --chown=node:node /app/scripts ./scripts
 COPY --from=build --chown=node:node /app/docs/stock-laptop-offer-sample.csv ./docs/stock-laptop-offer-sample.csv
+COPY --from=build --chown=node:node /app/docs/offer-review-corrections.json ./docs/offer-review-corrections.json
 RUN mkdir -p /app/data && chown node:node /app/data
 
 USER node
