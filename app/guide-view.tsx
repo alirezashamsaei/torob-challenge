@@ -11,11 +11,12 @@ import {
   type Step,
   defects,
   defectParam,
+  expectations,
   firstIncompleteStep,
   journeyParams,
   previousStep,
   priorities,
-  questionSteps,
+  questionStepsFor,
   readJourney,
   resultsPath,
   severities,
@@ -25,16 +26,20 @@ import {
   useCases,
   withoutDefectAnswer,
 } from "./journey";
+import { catalogFor } from "./requirements";
+import SoftwarePicker from "./software-picker";
 import {
   answerText,
   defectLabels,
+  expectationHints,
+  expectationLabels,
   numberFormat,
   phaseOfStep,
   priorityLabels,
-  progressLabels,
+  progressLabelsFor,
+  reviewRows,
   severityLabels,
-  stepNames,
-  stepTitles,
+  stepTitle,
   toleranceLabels,
   useCaseLabels,
 } from "./labels";
@@ -42,12 +47,20 @@ import {
 const presetBudgets = [18_000_000, 25_000_000, 40_000_000];
 const defect = defects[0];
 
-type Choice = { label: string; params: Record<string, string> };
+type Choice = { label: string; hint?: string; params: Record<string, string> };
 
 function choicesFor(step: QuestionStep): Choice[] {
   switch (step) {
     case "usecase":
       return useCases.map((value) => ({ label: useCaseLabels[value], params: { usecase: value } }));
+    case "requirement":
+      return [];
+    case "expectation":
+      return expectations.map((value) => ({
+        label: expectationLabels[value],
+        hint: expectationHints[value],
+        params: { expectation: value },
+      }));
     case "budget":
       return presetBudgets.map((value) => ({
         label: `${numberFormat.format(value)} تومان`,
@@ -75,13 +88,17 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
   const [draft, setDraft] = useState("");
   const [error, setError] = useState("");
   const heading = useRef<HTMLHeadingElement>(null);
+  const order = questionStepsFor(journey.useCase);
   const defectAnswer = journey.defects[defect];
   const askingSeverity = step === "defects" && defectAnswer?.tolerance === "depends";
   const questionKey = askingSeverity ? "defects:severity" : step;
-  const answered = askingSeverity || step === "review" ? questionSteps.length : questionSteps.indexOf(step);
-  const phase = Math.min(phaseOfStep(step), progressLabels.length - 1);
+  const answered = askingSeverity || step === "review" ? order.length : order.indexOf(step);
+  const progressLabels = progressLabelsFor(journey.useCase);
+  const phase = Math.min(phaseOfStep(step, journey.useCase), progressLabels.length - 1);
+  const catalog = catalogFor(journey.useCase) ?? [];
   const choices = step === "review" ? [] : askingSeverity ? severityChoices() : choicesFor(step);
   const current = journeyParams(journey);
+  const back = previousStep(step, journey);
 
   function selected(params: Record<string, string>) {
     return Object.entries(params).every(([key, value]) => current.get(key) === value);
@@ -134,8 +151,8 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
     ? `${defectLabels[defect]}: چه شدتی برای شما قابل قبول است؟`
     : step === "review"
       ? "انتخاب‌هایتان را مرور کنید."
-      : stepTitles[step];
-  const back = previousStep(step);
+      : stepTitle(step, journey);
+  const requirementLabel = journey.useCase === "graphics" ? "جست‌وجوی نرم‌افزار" : "جست‌وجوی بازی";
 
   return (
     <div className={styles.guide}>
@@ -154,11 +171,11 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
           </ol>
         </div>
         <ol className={styles.transcript} aria-label="پیام‌ها">
-          {questionSteps.slice(0, answered).map((answeredStep, index) => (
+          {order.slice(0, answered).map((answeredStep, index) => (
             <li key={answeredStep} className={styles.exchange}>
               <Assistant>
                 {index === 0 && <p>سلام! بیایید لپ‌تاپ استوک مناسبتان را پیدا کنیم.</p>}
-                <p>{stepTitles[answeredStep]}</p>
+                <p>{stepTitle(answeredStep, journey)}</p>
               </Assistant>
               <div className={styles.reply}><span className={styles.speaker}>شما</span><p>{answerText(answeredStep, journey)}</p></div>
             </li>
@@ -169,14 +186,14 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
               <h1 id="guide-title" ref={heading} tabIndex={-1}>{title}</h1>
               {step === "review" ? (
                 <dl className={styles.summary}>
-                  {questionSteps.map((summaryStep) => (
-                    <div key={summaryStep}>
-                      <dt>{stepNames[summaryStep]}</dt><dd>{answerText(summaryStep, journey)}</dd>
+                  {reviewRows(journey).map((row) => (
+                    <div key={row.step}>
+                      <dt>{row.name}</dt><dd>{row.answer}</dd>
                       <dd>
                         <Link
                           className={`${styles.button} ${styles.link}`}
-                          aria-label={`ویرایش ${summaryStep}`}
-                          href={stepPath(summaryStep, journey)}
+                          aria-label={`ویرایش ${row.name}`}
+                          href={row.href}
                         >
                           ویرایش
                         </Link>
@@ -184,6 +201,21 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
                     </div>
                   ))}
                 </dl>
+              ) : step === "requirement" ? (
+                <SoftwarePicker
+                  catalog={catalog}
+                  classNames={{
+                    root: styles.softwarePicker,
+                    search: styles.softwareSearch,
+                    list: styles.softwareList,
+                    option: styles.softwareOption,
+                    latin: styles.softwareLatin,
+                    empty: styles.softwareEmpty,
+                  }}
+                  label={requirementLabel}
+                  selectedId={journey.requirement}
+                  onPick={(id) => answer({ requirement: id })}
+                />
               ) : (
                 <div className={styles.options} aria-labelledby="guide-title" role="group">
                   {choices.map((choice) => (
@@ -194,7 +226,8 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
                       aria-pressed={selected(choice.params)}
                       onClick={() => answer(choice.params)}
                     >
-                      {choice.label}
+                      <span>{choice.label}</span>
+                      {choice.hint && <small className={styles.optionHint}>{choice.hint}</small>}
                     </button>
                   ))}
                 </div>
@@ -202,7 +235,7 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
             </Assistant>
           </li>
         </ol>
-        {step !== "review" && (
+        {step !== "review" && step !== "requirement" && (
           <form className={styles.composer} onSubmit={submitReply}>
             <input
               aria-label={step === "budget" && !askingSeverity ? "بودجه به تومان" : "پاسخ"}

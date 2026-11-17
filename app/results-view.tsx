@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./guide.module.css";
 import { Assistant, SiteHeader } from "./chrome";
-import { type Journey, questionSteps, stepPath } from "./journey";
+import { type Journey, questionStepsFor, stepPath } from "./journey";
 import { answerText, numberFormat } from "./labels";
 
 const groups = [
@@ -34,7 +34,7 @@ export default function ResultsView({ journey }: { journey: Journey }) {
         </div>
         <Assistant>
           <p>اگر عملکرد برایتان مهم‌تر است، از گروه اول شروع کنید. برای رفت‌وآمد، مدل‌های سبک‌تر گروه دوم را بررسی کنید.</p>
-          <p className={styles.brief}>{questionSteps.map((step) => answerText(step, journey)).join(" / ")}</p>
+          <p className={styles.brief}>{questionStepsFor(journey.useCase).map((step) => answerText(step, journey)).join(" / ")}</p>
         </Assistant>
         <p className={styles.caption}>۴ مدل نمونه · ۲ گروه · قیمت‌ها و تصاویر تقریبی‌اند</p>
         <div className={styles.groups}>

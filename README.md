@@ -17,9 +17,10 @@ To run the production build locally, use `npm run build` followed by `npm start`
 
 - `/` — start screen.
 - `/guide/usecase`, `/guide/budget`, `/guide/priority`, `/guide/defects`, `/guide/review` — wizard steps.
+- `/guide/requirement`, `/guide/expectation` — extra questions asked only for the gaming and graphics use cases: a searchable game or application and the expected performance level.
 - `/results` — sample ranked offers for the completed journey.
 
-Answers travel in the query string, for example `/results?usecase=office&budget=18000000&priority=price&defect.chassisScratch=acceptable`. That keeps the browser's back and forward buttons working and lets the step routes restore earlier choices. A step route redirects to the first unanswered question when its prerequisites are missing, `/results` redirects to the first unanswered question while the journey is incomplete, and values that fail validation are dropped. The rules live in `app/journey.ts`.
+Answers travel in the query string, for example `/results?usecase=office&budget=18000000&priority=price&defect.chassisScratch=acceptable` or `/guide/review?usecase=gaming&requirement=cs2&expectation=balanced&budget=25000000&priority=performance&defect.chassisScratch=acceptable`. That keeps the browser's back and forward buttons working and lets the step routes restore earlier choices. A step route redirects to the first unanswered question when its prerequisites are missing, `/results` redirects to the first unanswered question while the journey is incomplete, and values that fail validation are dropped. The game or application must belong to the selected use case, so switching to a use case without these questions drops both answers. The rules live in `app/journey.ts`; the searchable catalogs and search rules live in `app/requirements.ts`.
 
 ## Tests
 
@@ -28,7 +29,7 @@ npm test
 npm run typecheck
 ```
 
-`app/journey.ts` holds the journey model and its route helpers; `tests/journey.test.ts` covers parsing, validation, step order and route building.
+`app/journey.ts` holds the journey model and its route helpers; `tests/journey.test.ts` covers parsing, validation, step order and route building. `tests/requirements.test.ts` covers the game/application catalogs and Persian-aware search, `tests/labels.test.ts` covers the review summary, and `tests/software-picker.test.tsx` renders the searchable picker in jsdom with Testing Library. The test command loads `tsx` for the TSX tests and `tests/setup-dom.ts` installs the jsdom globals.
 
 ## Runtime configuration
 

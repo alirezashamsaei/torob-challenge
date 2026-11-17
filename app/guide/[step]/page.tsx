@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import GuideView from "../../guide-view";
-import { firstIncompleteStep, readJourney, stepFromSegment, stepPath, steps } from "../../journey";
+import { canVisitStep, firstIncompleteStep, readJourney, stepFromSegment, stepPath } from "../../journey";
 import { toSearchParams } from "../../search-params";
 
 type PageProps = {
@@ -14,7 +14,7 @@ export default async function GuideStepPage({ params, searchParams }: PageProps)
   const incomplete = firstIncompleteStep(journey);
   const step = stepFromSegment(segment.step);
 
-  if (!step || steps.indexOf(step) > steps.indexOf(incomplete)) {
+  if (!step || !canVisitStep(step, journey)) {
     redirect(stepPath(incomplete, journey));
   }
 

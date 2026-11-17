@@ -1,5 +1,16 @@
-import { defects } from "./journey";
-import type { DefectId, Journey, Priority, QuestionStep, Severity, Step, Tolerance, UseCase } from "./journey";
+import { defects, needsRequirement, questionStepsFor, stepPath } from "./journey";
+import type {
+  DefectId,
+  Expectation,
+  Journey,
+  Priority,
+  QuestionStep,
+  Severity,
+  Step,
+  Tolerance,
+  UseCase,
+} from "./journey";
+import { findRequirement } from "./requirements";
 
 export const numberFormat = new Intl.NumberFormat("fa-IR");
 
@@ -27,42 +38,83 @@ export const severityLabels: Record<Severity, string> = {
   major: "شدید",
 };
 
+export const expectationLabels: Record<Expectation, string> = {
+  basic: "قابل اجرا",
+  balanced: "روان",
+  high: "بالاترین کیفیت",
+};
+
+export const expectationHints: Record<Expectation, string> = {
+  basic: "با تنظیمات پایین و بدون انتظار جزئیات زیاد",
+  balanced: "ترکیب خوبی از روانی و جزئیات",
+  high: "بالاترین تنظیمات گرافیکی برای بیشترین جزئیات",
+};
+
 export const defectLabels: Record<DefectId, string> = {
   chassisScratch: "خط‌وخش روی بدنه",
 };
 
 export const stepNames: Record<QuestionStep, string> = {
   usecase: "کاربری",
+  requirement: "بازی یا نرم‌افزار",
+  expectation: "سطح انتظار",
   budget: "بودجه",
   priority: "اولویت",
   defects: "ایرادها",
 };
 
-export const stepTitles: Record<QuestionStep, string> = {
-  usecase: "لپ‌تاپ را بیشتر برای چه کاری می‌خواهید؟",
-  budget: "چه بودجه‌ای برای لپ‌تاپ در نظر دارید؟",
-  priority: "کدام ویژگی برای شما مهم‌تر است؟",
-  defects: "خط‌وخش روی بدنه برای شما قابل قبول است؟",
-};
+export function stepTitle(step: QuestionStep, journey: Journey): string {
+  switch (step) {
+    case "usecase":
+      return "لپ‌تاپ را بیشتر برای چه کاری می‌خواهید؟";
+    case "requirement":
+      return journey.useCase === "graphics"
+        ? "بیشتر با چه نرم‌افزاری کار می‌کنید؟"
+        : "بیشتر چه بازی‌ای را بازی می‌کنید؟";
+    case "expectation":
+      return "چه سطحی از عملکرد برایتان کافی است؟";
+    case "budget":
+      return "چه بودجه‌ای برای لپ‌تاپ در نظر دارید؟";
+    case "priority":
+      return "کدام ویژگی برای شما مهم‌تر است؟";
+    case "defects":
+      return "خط‌وخش روی بدنه برای شما قابل قبول است؟";
+  }
+}
 
-export const progressLabels = ["کاربری", "بودجه", "جزئیات"] as const;
+export function progressLabelsFor(useCase: UseCase | undefined): readonly string[] {
+  return needsRequirement(useCase)
+    ? ["کاربری", "بازی یا نرم‌افزار", "بودجه", "جزئیات"]
+    : ["کاربری", "بودجه", "جزئیات"];
+}
 
-const phaseOf: Record<Step, number> = {
-  usecase: 0,
-  budget: 1,
-  priority: 2,
-  defects: 2,
-  review: 3,
-};
-
-export function phaseOfStep(step: Step): number {
-  return phaseOf[step];
+export function phaseOfStep(step: Step, useCase: UseCase | undefined): number {
+  const offset = needsRequirement(useCase) ? 1 : 0;
+  switch (step) {
+    case "usecase":
+      return 0;
+    case "requirement":
+    case "expectation":
+      return 1;
+    case "budget":
+      return 1 + offset;
+    case "priority":
+    case "defects":
+    case "review":
+      return 2 + offset;
+  }
 }
 
 export function answerText(step: QuestionStep, journey: Journey): string {
   switch (step) {
     case "usecase":
       return journey.useCase ? useCaseLabels[journey.useCase] : "";
+    case "requirement": {
+      const item = journey.requirement ? findRequirement(journey.useCase, journey.requirement) : undefined;
+      return item ? item.label : "";
+    }
+    case "expectation":
+      return journey.expectation ? expectationLabels[journey.expectation] : "";
     case "budget":
       return journey.budget === undefined ? "" : `${numberFormat.format(journey.budget)} تومان`;
     case "priority":
@@ -80,4 +132,20 @@ export function answerText(step: QuestionStep, journey: Journey): string {
         })
         .join(" / ");
   }
+}
+
+export type ReviewRow = {
+  step: QuestionStep;
+  name: string;
+  answer: string;
+  href: string;
+};
+
+export function reviewRows(journey: Journey): ReviewRow[] {
+  return questionStepsFor(journey.useCase).map((step) => ({
+    step,
+    name: stepNames[step],
+    answer: answerText(step, journey),
+    href: stepPath(step, journey),
+  }));
 }
