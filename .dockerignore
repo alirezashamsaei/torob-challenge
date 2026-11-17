@@ -1,0 +1,12 @@
+**/node_modules
+**/.next
+**/next-env.d.ts
+**/*.tsbuildinfo
+**/.env*
+**/.npmrc
+.git
+.agents
+.codex
+.aws
+docs
+*.md
