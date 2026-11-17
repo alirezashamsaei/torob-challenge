@@ -1,99 +1,98 @@
-# مشخصات اجرایی نسخهٔ اول ترب لپ‌تاپ استوک
+# Torob Stock Laptop Guide — First-Version Specification
 
-## هدف محصول
+## Product goal
 
-خریدار لپ‌تاپ استوک با بودجهٔ مشخص بتواند میان پیشنهادهای فروشگاه‌های مختلف، دستگاهی متناسب با کاربرد و تحمل ایراد خود پیدا کند. تفاوت این تجربه با فهرست قیمت، پرسیدن ایرادهای قابل تحمل، مقایسهٔ وضعیت همان پیشنهاد فروش و توضیح علت ترتیب نتایج است.
+A used-laptop buyer with a fixed budget should be able to find a laptop that fits their use case and defect tolerance across offers from several shops. The guide adds three things to a price list: questions about acceptable defects, comparisons of the specific devices' condition, and explanations of the result order.
 
-## دامنهٔ نسخهٔ اول
+## First-version scope
 
-- چهار کاربرد اصلی شامل روزمره و تحصیل، اداری، بازی و کار گرافیکی پشتیبانی می‌شوند. کاربر در هر جست‌وجو یکی را انتخاب می‌کند.
-- داده از دست‌کم سه فروشگاه گردآوری می‌شود. هدف اولیه ۴۰ پیشنهاد واجد شرایط با پوشش هر چهار کاربرد و چند بازهٔ بودجه است.
-- هر نتیجه یک پیشنهاد فروش مشخص با لینک فروشنده است. خرید در مسیر فروشنده انجام می‌شود.
-- دستگاه‌های استوک و کارکرده وارد دامنه‌اند. «جعبه‌باز» یا «بازسازی‌شده» فقط با اعلام صریح فروشنده ثبت می‌شود.
-- نسخهٔ اول یک wizard با کنترل‌های مشخص است و گفت‌وگوی آزاد ندارد.
+- Support four main use cases: everyday use and study, office work, gaming, and graphics work. The user chooses one per search.
+- Collect data from at least three shops. The initial target is 40 eligible offers covering all four use cases and several budget ranges.
+- Each result is a specific offer with a link to the seller. The buyer completes the purchase through the seller.
+- Stock and used laptops are in scope. Record a laptop as open-box or refurbished only when the seller explicitly identifies it as such.
+- The first version uses a wizard with structured controls. Free-form chat is outside its scope.
 
-## مسیر کاربر
+## User flow
 
-1. انتخاب یکی از چهار کاربرد. برای بازی یا کار گرافیکی، نام بازی یا نرم‌افزار اصلی و سطح انتظار پرسیده می‌شود.
-2. تعیین سقف بودجهٔ خرید دستگاه.
-3. انتخاب مهم‌ترین اولویت از قیمت، عملکرد و سلامت.
-4. پاسخ به ایرادهای مرتبط با سه حالت «قابل تحمل»، «غیرقابل تحمل» و «بستگی به شدت دارد». در حالت سوم، یک سؤال کوتاه دربارهٔ شدت قابل قبول پرسیده می‌شود.
-5. مرور و ویرایش خلاصهٔ انتخاب‌ها.
-6. مشاهدهٔ حداکثر پنج پیشنهاد مرتب‌شده. هر کارت دلیل پیشنهاد، نکتهٔ منفی، ایراد اعلام‌شده، ویژگی نامشخص، قیمت، فروشنده، لینک منبع و زمان آخرین بررسی را نشان می‌دهد.
-7. تغییر بودجه، اولویت یا تحمل ایراد از صفحهٔ نتایج و مشاهدهٔ ترتیب تازه.
+1. Select one of the four use cases. For gaming or graphics work, ask which game or application the user primarily uses and what performance they expect.
+2. Set the maximum device budget.
+3. Choose the main priority among price, performance, and device condition.
+4. For each relevant defect, choose Acceptable, Unacceptable, or Depends on severity. For the last option, ask a short follow-up about acceptable severity.
+5. Review and edit the choice summary.
+6. View up to five ranked offers. Each card shows the reason for the recommendation, a drawback, disclosed defects, undisclosed features, price, seller, source link, and last-checked time.
+7. Change the budget, priority, or defect tolerance on the results page and see the updated order.
 
-اگر کمتر از پنج پیشنهاد مناسب باشد، همان تعداد نمایش داده می‌شود. محصول از کاربر می‌پرسد کدام شرط را می‌خواهد تغییر دهد.
+If fewer than five offers are suitable, display the actual number and ask which requirement the user wants to change.
 
-## قرارداد دادهٔ هر پیشنهاد
+## Offer data contract
 
-| گروه | فیلدهای لازم |
+| Group | Required fields |
 | --- | --- |
-| منبع | نام فروشنده، نشانی صفحهٔ پیشنهاد، زمان مشاهده |
-| فروش | قیمت دستگاه، موجودی اعلام‌شده، هزینهٔ ارسال در صورت اعلام |
-| هویت دستگاه | برند، مدل، پیکربندی قابل استخراج، وضعیت استوک یا کارکرده |
-| عملکرد | مدل پردازنده، مقدار رم، نوع و ظرفیت ذخیره‌سازی، مدل گرافیک، ویژگی‌های نمایشگر در صورت اعلام |
-| وضعیت | ایرادهای اعلام‌شده، وضعیت باتری، نمایشگر، بدنه، کیبورد و پورت‌ها در صورت اعلام، مهلت تست و شرایط بازگشت در صورت اعلام |
-| شواهد | متن یا بخش منبع برای ادعاهای استخراج‌شده و وضعیت «اعلام نشده» برای فیلدهای بی‌اطلاعات |
+| Source | Seller name, offer page URL, time observed |
+| Sale | Device price, listed availability, shipping cost when disclosed |
+| Device identity | Brand, model, extractable configuration, stock or used status |
+| Performance | CPU model, RAM capacity, storage type and capacity, GPU model, display specifications when disclosed |
+| Condition | Disclosed defects. Battery, display, chassis, keyboard, and port condition, test period, and return terms when disclosed |
+| Evidence | Source text or section for extracted claims. Mark fields without evidence as “Not disclosed” |
 
-عنوان و مشخصات عمومی مدل، مدرک وضعیت همان دستگاه نیستند. گرید کلی فقط وضعیت ظاهری اعلام‌شده را نشان می‌دهد. پیشنهاد بدون هیچ توضیحی دربارهٔ وضعیت همان دستگاه یا شرایط مشخص تست و بازگشت، وارد نتایج نمی‌شود.
+A model title and its general specifications provide no evidence of the specific device's condition. An overall grade indicates the advertised cosmetic condition only. Eligibility requires evidence about the specific device's condition or clearly stated test and return terms.
 
-## انتخاب و رتبه‌بندی
+## Eligibility and ranking
 
-1. پیشنهادهای ناموجود، فاقد قیمت معتبر، بالاتر از سقف بودجه یا فاقد حداقل شواهد حذف می‌شوند.
-2. ایرادی که کاربر «غیرقابل تحمل» اعلام کرده، پیشنهاد دارای آن ایراد را حذف می‌کند. ویژگی نامشخص نیز اگر شرط قطعی کاربر باشد، پیشنهاد را حذف می‌کند.
-3. حداقل فنی ساده برای هر کاربرد فقط وقتی اعمال می‌شود که دادهٔ کافی و قاعدهٔ قابل بررسی وجود داشته باشد. برای بازی و گرافیک، نام بازی یا نرم‌افزار به تعیین نیاز کمک می‌کند. بدون آزمون معتبر، FPS یا زمان رندر عددی اعلام نمی‌شود.
-4. پیشنهادهای باقی‌مانده بر اساس تناسب عملکرد، وضعیت سلامت، کامل‌بودن شواهد و قیمت با مبنای قواعد یا SubQ پس از ارزیابی مقایسه‌ای رتبه‌بندی می‌شوند. اولویت اصلی کاربر وزن بیشتری به یکی از قیمت، عملکرد یا سلامت می‌دهد. وزن‌ها و آستانه‌ها باید روی دادهٔ واقعی تنظیم و ثبت شوند.
-5. پنج پیشنهاد برتر نشان داده می‌شوند. چند پیشنهاد هم‌مدل می‌توانند هم‌زمان حضور داشته باشند، زیرا وضعیت و فروشندهٔ آن‌ها متفاوت است.
-6. توضیح هر رتبه از داده‌های ثبت‌شده و قواعدی که واقعاً اعمال شده‌اند ساخته می‌شود.
+1. Exclude unavailable offers, offers without a valid price, offers above the budget cap, and offers without minimum evidence.
+2. Exclude an offer if it has a defect the user marked Unacceptable. Also exclude it if a feature the user requires is undisclosed.
+3. Apply simple technical minimums for a use case only when sufficient data and an inspectable rule exist. For gaming and graphics work, the game or application helps establish the requirements. Publish numerical FPS or render-time claims only with reliable test results.
+4. Rank remaining offers on performance fit, device condition, completeness of evidence, and price. Use rules or SubQ after a comparative evaluation. Give the user's main priority greater weight. Tune weights and thresholds on real data and record them.
+5. Show the five top offers. Multiple offers for the same model can appear because seller and device condition can differ.
+6. Explain each rank using the recorded data and the rules actually applied.
 
-## نقش AI و ارزیابی SubQ
+## AI and SubQ evaluation
 
-AI برای استخراج اطلاعات از متن نامنظم فروشگاه استفاده می‌شود. خروجی استخراج‌شده همراه با شواهد منبع ثبت می‌شود و نباید وضعیت اعلام‌نشده را حدس بزند. شروط قطعی و رتبه‌بندی نهایی با قواعد قابل بررسی اجرا می‌شوند.
+Use AI to extract information from inconsistent seller text. Record source evidence alongside extracted values and leave undisclosed conditions unknown. Mandatory filters and final ranking use inspectable rules under the original approach.
 
-SubQ Snap روی نمونه‌ای از توضیحات واقعی فارسی برای تشخیص ایرادها و ویژگی‌ها آزمایش می‌شود. نمونه‌ها به‌صورت دستی برچسب‌گذاری می‌شوند و خطاهای آن با روش پایه مقایسه می‌شود. تنها در صورت بهبود قابل سنجش و امکان استفادهٔ پایدار، وارد مسیر اصلی دمو می‌شود.
+Test SubQ Snap on a sample of real Persian product descriptions to identify defects and features. Label the samples by hand and compare errors with the baseline. Use SubQ in the main demo flow only if it shows a measurable improvement and can run reliably.
 
-## معیارهای پذیرش
+## Acceptance criteria
 
-- چهار مسیر کاربرد از ابتدا تا صفحهٔ نتایج کار می‌کنند.
-- همهٔ پیشنهادهای نمایشی صفحهٔ منبع و زمان آخرین بررسی دارند.
-- هیچ پیشنهاد بالاتر از بودجه، ناموجود یا دارای ایراد صریحاً غیرقابل تحمل در نتایج مناسب ظاهر نمی‌شود.
-- ویژگی اعلام‌نشده به‌عنوان سالم یا بی‌ایراد نمایش داده نمی‌شود.
-- تغییر اولویت اصلی، در مواردی که پیشنهادها مبادلهٔ واقعی میان قیمت، عملکرد و سلامت دارند، ترتیب یا توضیح رتبه‌ها را متناسب تغییر می‌دهد.
-- هنگام کمبود پیشنهاد، تعداد واقعی و راه تغییر شرط نشان داده می‌شود.
-- قیمت و موجودی پنج پیشنهادِ سناریوی ضبط پیش از ویدیوی دمو دوباره بررسی می‌شوند.
-- ویدیوی حداکثر پنج‌دقیقه‌ای، مسئله، مسیر کاربر، یک مبادلهٔ واقعی میان قیمت و وضعیت دستگاه، روش گردآوری و رتبه‌بندی، و محدودیت داده را نشان می‌دهد.
+- All four use-case flows work from the first step through the results page.
+- Every displayed offer includes its source page and last-checked time.
+- Suitable results exclude offers above budget, out of stock, or with an explicitly intolerable defect.
+- Undisclosed features never appear as healthy or defect-free.
+- When offers involve real trade-offs among price, performance, and condition, changing the main priority changes the order or the corresponding rank explanation.
+- When too few offers qualify, show the actual number and a way to change a requirement.
+- Recheck price and availability for the five offers in the recording scenario before recording the demo.
+- The video lasts no more than five minutes and shows the problem, user flow, one real trade-off between price and device condition, the collection and ranking methods, and the data limitations.
 
-## مواردی که در بررسی منابع تعیین می‌شوند
+## Questions for the source audit
 
-- نام فروشگاه‌های نهایی و تعداد پیشنهاد واجد شرایط از هرکدام
-- قواعد حداقل عملکرد برای چهار کاربرد و آستانه‌های عددی قابل دفاع
-- وزن‌های رتبه‌بندی و نمونه‌های ارزیابی آن
-- نتیجهٔ آزمایش SubQ روی متن فارسی
+- Final shop names and eligible offer counts for each shop
+- Minimum performance rules for all four use cases and defensible numerical thresholds
+- Ranking weights and evaluation examples
+- Results of the SubQ test on Persian text
 
-## منابع زمینه
+## Background sources
 
-- [چالش ترب](https://jobs.torob.com/ai-product-engineer#role)
-- [نحوهٔ گردآوری و ادغام در ترب](https://torob.com/pages/about-us/)
-- [راهنمای خرید امن ترب](https://torob.com/pages/safe-shopping-guide/)
+- [Torob challenge](https://jobs.torob.com/ai-product-engineer#role)
+- [How Torob collects and merges offers](https://torob.com/pages/about-us/)
+- [Torob safe shopping guide](https://torob.com/pages/safe-shopping-guide/)
 
-## تصمیم گردآوری برای دمو
+## Demo data collection decision
 
-پیشنهادهای فروش از فروشگاه‌های منتخب پیش از اجرای دمو به‌صورت دسته‌ای خزش و ذخیره می‌شوند. مسیر خریدار از دادهٔ ذخیره‌شده استفاده می‌کند و زمان آخرین مشاهده را نشان می‌دهد. پیش از ضبط، خزش دوباره اجرا و پیشنهادهای سناریوی دمو از نظر قیمت و موجودی بازبینی می‌شوند. انتخاب نهایی فروشگاه‌ها به بررسی امکان خزش و پوشش داده بستگی دارد.
+Collect and save offers from selected shops in a batch crawl before the demo. The buyer flow uses stored offers and displays when they were last observed. Rerun the crawl before recording and recheck price and availability for offers in the demo scenario. Final shop selection depends on crawlability and data coverage.
 
-فروشگاه‌های نامزد ابتدا از نظر جزئیات قابل استفادهٔ پیشنهادها و قابلیت خزش پایدار ارزیابی می‌شوند؛ هدف انتخاب دست‌کم سه فروشگاه است. اگر کمتر از سه فروشگاه واجد شرایط باشند، شکاف گزارش و دامنه با تصمیم صاحب محصول بازبینی می‌شود.
+Evaluate candidate shops for usable offer details and stable crawling. Aim to select at least three shops. If fewer qualify, report the gap and revisit scope with the product owner.
 
-اگر خزش یک فروشگاه شکست بخورد، آخرین پیشنهادهای موفق آن با زمان مشاهدهٔ اصلی حفظ و خطا گزارش می‌شود. پیشنهادهای کهنه فقط در صورتی در دمو نمایش داده می‌شوند که قیمت و موجودی آن‌ها پیش از ضبط دوباره بررسی شده باشد.
+If a shop crawl fails, retain its last successfully collected offers with their original observation times and report the error. Show stale offers in the demo only after rechecking their price and availability before recording.
 
-برای دمو محدودیت ثابت ۲۴ساعته بر تازگی پیشنهادها اعمال نمی‌شود؛ زمان مشاهده حفظ می‌شود و قیمت و موجودی پیشنهادهای سناریوی ضبط پیش از ضبط بررسی می‌شود. داده‌های خزش‌شده را می‌توان پس از تطبیق با صفحهٔ منبع به‌صورت دستی بازبینی و اصلاح کرد؛ شاهد و منبع مقدار حفظ می‌شود.
+The demo has no fixed 24-hour freshness cutoff. Preserve observation times and recheck price and availability in the recording scenario before recording. Crawled data may be manually reviewed and corrected against the source page. Retain the evidence and source for each value.
 
-## معماری و طراحی دمو
+## Demo architecture and design
 
-- رابط و سرور در یک برنامهٔ Next.js با TypeScript پیاده‌سازی می‌شوند؛ ذخیره‌سازی پیشنهادها SQLite است. برنامه هم محلی و هم به‌صورت عمومی قابل اجرا است؛ نحوهٔ پایدارسازی داده در میزبان عمومی باید با استقرار انتخاب‌شده سازگار باشد.
-- خزش دسته‌ای و بازبینی داده پیش از استفادهٔ خریدار انجام می‌شوند. سرور از پیشنهادهای ذخیره‌شده برای اعمال شروط، رتبه‌بندی و ساخت توضیح استفاده می‌کند. کلیدهای سرویس‌های خارجی فقط در سمت سرور نگهداری می‌شوند.
-- رابط فارسی و راست‌به‌چپ، تمیز و آشنا با الهام از تجربهٔ ترب است و همچنان هویت محصولی مستقل دارد. چهار کاربرد با اهمیت یکسان پشتیبانی می‌شوند. رابط در اندازه‌های موبایل و دسکتاپ قابل استفاده است.
-- سؤال‌های ایراد بر تفاوت‌های مرتبط در پیشنهادها تمرکز می‌کنند. ویژگی اعلام‌نشده اطمینان رتبه‌بندی را کاهش می‌دهد و هرگز سالم فرض نمی‌شود. پس از انتخاب یک اولویت اصلی، دو اولویت دیگر به‌شکل متعادل لحاظ می‌شوند.
-- برای بازی و گرافیک، فهرست بازی یا نرم‌افزار قابل جست‌وجو و سطح انتظار قابل انتخاب است. هزینهٔ ارسال نامعلوم صریحاً نامشخص نمایش داده می‌شود.
-
+- Build the interface and server in a single Next.js application with TypeScript. Store offers in SQLite. The application should run locally and be publicly deployable. Data persistence must work with the chosen public hosting setup.
+- Run batch crawling and data review before the buyer uses the guide. The server uses stored offers to apply filters, rank results, and generate explanations. Keep external service credentials server-side.
+- Build a clean, familiar, right-to-left Persian interface inspired by Torob, with its own product identity. Support the four use cases equally and make the interface usable on mobile and desktop.
+- Focus defect questions on relevant differences between offers. Undisclosed features lower ranking confidence and remain unknown. After the user selects a main priority, keep the other two in balance.
+- For gaming and graphics work, provide a searchable game or software list and selectable performance expectations. Explicitly label shipping cost as unknown when the seller provides no amount.
 
 ## Deployment and ranking decision (supersedes any rules-only ranking wording above)
 

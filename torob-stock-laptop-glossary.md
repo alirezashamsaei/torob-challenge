@@ -1,31 +1,41 @@
-# واژه‌نامهٔ ترب لپ‌تاپ استوک
+# Torob Stock Laptop Glossary
 
-این واژه‌ها مرز مفاهیم مورد استفاده در تجربهٔ جست‌وجو و مقایسهٔ لپ‌تاپ استوک را مشخص می‌کنند.
+These terms define the concepts used to search for and compare stock laptops.
 
-## زبان محصول
+## Product language
 
-**پیشنهاد فروش**:
-عرضهٔ یک لپ‌تاپ با قیمت و شرایط مشخص توسط یک فروشنده. هر پیشنهاد به صفحه یا مسیر همان فروشنده ارجاع دارد.
-_پرهیز از_: محصول، مدل
+**Offer**
 
-**مدل لپ‌تاپ**:
-نام یا خانوادهٔ دستگاه که ممکن است در چند پیشنهاد فروش تکرار شود. یکسان‌بودن مدل به معنی یکسان‌بودن وضعیت دو دستگاه نیست.
+A laptop listed by a seller at a specific price and under specific terms. Each offer links to that seller's page or purchase flow.
 
-**بودجهٔ حداکثری**:
-بیشترین مبلغی که کاربر برای خرید لپ‌تاپ اعلام می‌کند.
+_Avoid as synonyms_ — product, model.
 
-**ایراد قابل تحمل**:
-وضعیتی از دستگاه که کاربر با آگاهی از نوع و شدت آن، حاضر است در پیشنهادهای خرید ببیند.
+**Laptop model**
 
-**ویژگی اعلام‌نشده**:
-مشخصه یا وضعیت دستگاه که فروشنده در پیشنهاد فروش دربارهٔ آن اطلاعات کافی نداده است. این وضعیت به معنی سالم‌بودن یا معیوب‌بودن دستگاه نیست.
-_پرهیز از_: سالم، بدون ایراد
+The device name or family. Several offers can list the same model, and the devices can differ in condition.
 
-**پیشنهاد مناسب**:
-پیشنهاد فروشی که زیر بودجهٔ حداکثری است و با شروط قطعی کاربر تعارض ندارد.
+**Maximum budget**
 
-**وضعیت سلامت**:
-وضعیت اعلام‌شدهٔ باتری، نمایشگر، بدنه، کیبورد و پورت‌های دستگاه همراه با شرایط مهلت تست. وضعیت ظاهری تنها یکی از بخش‌های آن است.
+The highest amount the user says they can spend on the laptop.
 
-**زمان آخرین بررسی**:
-زمانی که اطلاعات یک پیشنهاد فروش از منبع آن دوباره مشاهده شده است.
+**Acceptable defect**
+
+A device condition the user is willing to see in an offer after considering the defect's type and severity.
+
+**Undisclosed feature**
+
+A device specification or condition for which the seller supplies insufficient information in the offer. The device may be sound or defective.
+
+_Avoid as synonyms_ — healthy, defect-free.
+
+**Suitable offer**
+
+An offer that falls below the maximum budget and meets the user's mandatory requirements.
+
+**Device condition**
+
+The disclosed condition of the battery, display, chassis, keyboard, and ports, together with the test-period terms. Cosmetic condition is one part of device condition.
+
+**Last checked**
+
+The time when the offer information was last reviewed at the source.

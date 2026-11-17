@@ -15,3 +15,6 @@ The five default triage labels are used. See `docs/agents/triage-labels.md`.
 ### Domain docs
 
 This repository uses a single-context layout. See `docs/agents/domain.md`.
+
+## Reporting
+when reporting information to me, be extremely concise. Sacrifice grammar for the sake of concision.
