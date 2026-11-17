@@ -35,6 +35,13 @@ test("a disclosed defect never raises condition score as positive health evidenc
   assert.ok(scores.find((item) => item.offer.id === "defect")!.condition < scores.find((item) => item.offer.id === "unknown-condition")!.condition);
 });
 
+test("four-digit Intel model numbers preserve 10th-plus generation prefixes", () => {
+  const newer = makeOffer({ id: "newer", configuration: { cpu: "Core i5-1235U", memory: "8 GB RAM" } });
+  const older = makeOffer({ id: "older", configuration: { cpu: "Core i5-8250U", memory: "8 GB RAM" } });
+  const score = (offer: typeof newer) => rankEligibleOffers([offer], journey("performance"))[0].performance;
+  assert.ok(score(newer) > score(older));
+});
+
 test("equal scores have a stable price and id tie break", () => {
   const offers = [makeOffer({ id: "z" }), makeOffer({ id: "a" })];
   assert.deepEqual(rankEligibleOffers(offers, journey("price")).map((item) => item.offer.id), ["a", "z"]);

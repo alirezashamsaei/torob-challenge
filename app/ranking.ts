@@ -27,7 +27,9 @@ function performanceScore(offer: Offer): number {
   const cpuModel = config.match(/i[3579]-(\d{4,5})|ryzen\s*[3579]\s*(\d{4})/);
   if (cpuModel) {
     const digits = cpuModel[1] ?? cpuModel[2];
-    const generation = Number(digits.slice(0, digits.length === 5 ? 2 : 1));
+    const intelModel = cpuModel[1] !== undefined;
+    const twoDigitGeneration = digits.length === 5 || (intelModel && Number(digits.slice(0, 2)) >= 10 && Number(digits.slice(0, 2)) <= 14);
+    const generation = Number(digits.slice(0, twoDigitGeneration ? 2 : 1));
     score += Math.min(25, generation * 2);
   }
   const ram = config.match(/(?:ram\s*)?(\d+)\s*gb/);
