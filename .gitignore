@@ -4,3 +4,7 @@
 *.tsbuildinfo
 .env*
 !.env.example
+
+/data/
+*.sqlite-wal
+*.sqlite-shm

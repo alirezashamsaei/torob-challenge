@@ -2,7 +2,7 @@
 
 ## Run locally
 
-Use Node.js 22 or newer and npm.
+Use Node.js 22.13 or newer and npm.
 
 ```sh
 npm ci
@@ -53,3 +53,9 @@ docker run --rm -p 127.0.0.1:3000:3000 torob-challenge
 The container listens on port 3000 and checks `/api/health`. If port 3000 is already in use on the host, publish a different host port, such as `-p 127.0.0.1:3001:3000`.
 
 Set any server-side credentials in the hosting platform's runtime environment. For local containers, use `docker run --env-file .env.local` with the other run options.
+
+## Offer storage
+
+Run `npm run seed:offers` to create `data/offers.sqlite` and insert the audited CSV rows. Set `OFFERS_DB_PATH` to choose a persistent database path; pass another CSV path after `--` to use the same column format. The offer URL identifies an offer. Seeding inserts new URLs only and never updates existing records, so reviewed changes survive repeat deployments. All source columns, including evidence URLs, observation dates, explicit unknowns and empty values, are retained as recorded. The database is a staging store; the results screen still uses representative offers until ranking is integrated.
+
+The Docker image seeds on startup. Mount durable storage at `/app/data` (or set `OFFERS_DB_PATH` to a path on a writable persistent volume); without a volume, container replacement loses the database and any reviews. For example: `docker run --rm -p 127.0.0.1:3000:3000 -v torob-data:/app/data torob-challenge`. Ensure the volume is writable by the image's `node` user. Back up the SQLite database before replacing or migrating the volume.
