@@ -1,0 +1,31 @@
+:root {
+  --color-text: #211f20;
+  --color-secondary: #625b5d;
+  --color-background: #f8f5f5;
+  --color-surface: #fff;
+  --color-border: #ddd3d5;
+  --color-accent: #a8172c;
+  --color-accent-subtle: #f6e9eb;
+  --font-body: Tahoma, "Segoe UI", sans-serif;
+  --radius: 0.625rem;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font: 1rem/1.75 var(--font-body);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
