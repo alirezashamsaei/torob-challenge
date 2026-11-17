@@ -13,6 +13,7 @@ import {
   stepFromSegment,
   stepPath,
   withoutDefectAnswer,
+  withRequirement,
 } from "../app/journey.ts";
 
 test("an empty journey starts at the use case step", () => {
@@ -180,6 +181,20 @@ test("only the wizard steps are valid route segments", () => {
   assert.equal(stepFromSegment("review"), "review");
   assert.equal(stepFromSegment("results"), undefined);
   assert.equal(stepFromSegment("..%2Fetc"), undefined);
+});
+
+test("changing the game asks for the expectation level again", () => {
+  const answered = readJourney(
+    new URLSearchParams("usecase=gaming&requirement=cs2&expectation=balanced"),
+  );
+
+  const changed = withRequirement(answered, "valorant");
+  assert.equal(changed.requirement, "valorant");
+  assert.equal(changed.expectation, undefined);
+  assert.equal(firstIncompleteStep(changed), "expectation");
+
+  const unchanged = withRequirement(answered, "cs2");
+  assert.equal(unchanged.expectation, "balanced");
 });
 
 test("dropping a defect answer asks the defect question again", () => {

@@ -14,6 +14,14 @@ _Avoid as synonyms_ — product, model.
 
 The device name or family. Several offers can list the same model, and the devices can differ in condition.
 
+**Primary game or application**
+
+The game or software a buyer names for the gaming or graphics use case. It is collected together with the expected performance level so offers can be checked for technical fit.
+
+**Expected performance level**
+
+The buyer's fixed choice of how well the primary game or application should run. It is not an FPS or render-time claim.
+
 **Maximum budget**
 
 The highest amount the user says they can spend on the laptop.

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import { readJourney } from "../app/journey.ts";
-import { answerText, expectationLabels, reviewRows } from "../app/labels.ts";
+import { answerText, expectationHints, expectationLabels, reviewRows } from "../app/labels.ts";
 
 const gaming = () =>
   readJourney(
@@ -16,6 +16,12 @@ test("the review spells out the game and the expectation level", () => {
 
   assert.equal(answerText("requirement", journey), "کانتر استریک ۲");
   assert.equal(answerText("expectation", journey), expectationLabels.balanced);
+});
+
+test("expectation hints fit games and graphics work equally", () => {
+  for (const hint of Object.values(expectationHints)) {
+    assert.equal(/گرافیک|بازی/.test(hint), false);
+  }
 });
 
 test("review rows follow the questions the buyer actually answered", () => {

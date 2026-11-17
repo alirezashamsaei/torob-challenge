@@ -201,3 +201,11 @@ export function withoutDefectAnswer(journey: Journey, id: DefectId): Journey {
   params.delete(severityParam(id));
   return readJourney(params);
 }
+
+export function withRequirement(journey: Journey, requirement: string): Journey {
+  if (journey.requirement === requirement) return journey;
+  const params = journeyParams(journey);
+  params.set(requirementParam, requirement);
+  params.delete(expectationParam);
+  return readJourney(params);
+}

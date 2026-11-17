@@ -25,6 +25,7 @@ import {
   tolerances,
   useCases,
   withoutDefectAnswer,
+  withRequirement,
 } from "./journey";
 import { catalogFor } from "./requirements";
 import SoftwarePicker from "./software-picker";
@@ -208,13 +209,16 @@ export default function GuideView({ step, journey }: { step: Step; journey: Jour
                     root: styles.softwarePicker,
                     search: styles.softwareSearch,
                     list: styles.softwareList,
-                    option: styles.softwareOption,
+                    option: `${styles.button} ${styles.softwareOption}`,
                     latin: styles.softwareLatin,
                     empty: styles.softwareEmpty,
                   }}
                   label={requirementLabel}
                   selectedId={journey.requirement}
-                  onPick={(id) => answer({ requirement: id })}
+                  onPick={(id) => {
+                    const next = withRequirement(journey, id);
+                    go(firstIncompleteStep(next), next);
+                  }}
                 />
               ) : (
                 <div className={styles.options} aria-labelledby="guide-title" role="group">

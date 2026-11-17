@@ -45,9 +45,9 @@ export const expectationLabels: Record<Expectation, string> = {
 };
 
 export const expectationHints: Record<Expectation, string> = {
-  basic: "با تنظیمات پایین و بدون انتظار جزئیات زیاد",
-  balanced: "ترکیب خوبی از روانی و جزئیات",
-  high: "بالاترین تنظیمات گرافیکی برای بیشترین جزئیات",
+  basic: "کارهای سبک با تنظیمات پایه",
+  balanced: "کارهای رایج با عملکرد روان",
+  high: "کارهای سنگین با بالاترین کیفیت",
 };
 
 export const defectLabels: Record<DefectId, string> = {
@@ -57,7 +57,7 @@ export const defectLabels: Record<DefectId, string> = {
 export const stepNames: Record<QuestionStep, string> = {
   usecase: "کاربری",
   requirement: "بازی یا نرم‌افزار",
-  expectation: "سطح انتظار",
+  expectation: "سطح عملکرد",
   budget: "بودجه",
   priority: "اولویت",
   defects: "ایرادها",
