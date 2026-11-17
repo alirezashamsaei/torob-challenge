@@ -26,7 +26,7 @@ Answers travel in the query string, for example `/results?usecase=office&budget=
 
 `app/results.ts` selects the offers shown on `/results` from the representative offers in `app/offers.ts`: the offer must serve the chosen use case, sit at or below the budget cap, and not disclose a defect the buyer rejected. The screen shows the actual count, up to five cards, and links back to the budget, priority, defect or game/software questions so a buyer with too few results can change them. Each card shows the seller's page link, the device price, shipping separately (or `مبلغ اعلام نشده` when the seller stated none), the last-checked time, disclosed defects, unknown fields, the trade-off and a grounded reason.
 
-Representative offers are copied from the audited rows in `docs/stock-laptop-offer-sample.csv`; the order is representative, not the final priority-weighted ranking, and two offers of the same model stay separate cards. Stored offers, eligibility rules and ranking explanations replace this fixture path in later work.
+Representative offers are copied from the audited rows in `docs/stock-laptop-offer-sample.csv`; the audit recorded no shipping amounts, so those cards show `مبلغ اعلام نشده` while the card still renders a stated amount when an offer carries one. The order is representative, not the final priority-weighted ranking, and two offers of the same model stay separate cards. Availability and technical-minimum filters (ADR-0002), priority weighting, real explanations and in-place refinement arrive with the stored-offer and ranking work.
 
 ## Tests
 

@@ -14,15 +14,20 @@ import { findRequirement } from "./requirements";
 
 export const numberFormat = new Intl.NumberFormat("fa-IR");
 
+/** Money as the buyer reads it, always in tomans. */
+export function tomanLabel(toman: number): string {
+  return `${numberFormat.format(toman)} تومان`;
+}
+
 const lastCheckedFormat = new Intl.DateTimeFormat("fa-IR", {
   dateStyle: "medium",
   timeStyle: "short",
   timeZone: "Asia/Tehran",
 });
 
-/** The observation time in Tehran, as the buyer should read it. */
-export function lastCheckedLabel(observedAt: string): string {
-  const date = new Date(observedAt);
+/** The last-checked time in Tehran, as the buyer should read it. */
+export function lastCheckedLabel(lastCheckedAt: string): string {
+  const date = new Date(lastCheckedAt);
   return Number.isNaN(date.getTime()) ? "زمان بررسی نامشخص" : lastCheckedFormat.format(date);
 }
 
@@ -128,7 +133,7 @@ export function answerText(step: QuestionStep, journey: Journey): string {
     case "expectation":
       return journey.expectation ? expectationLabels[journey.expectation] : "";
     case "budget":
-      return journey.budget === undefined ? "" : `${numberFormat.format(journey.budget)} تومان`;
+      return journey.budget === undefined ? "" : tomanLabel(journey.budget);
     case "priority":
       return journey.priority ? priorityLabels[journey.priority] : "";
     case "defects":

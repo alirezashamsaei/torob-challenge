@@ -15,10 +15,10 @@ const resultsClassNames: ResultsBodyClassNames = {
   refine: styles.refine,
   refineTitle: styles.refineTitle,
   refineLinks: styles.refineLinks,
-  art: [styles.product0, styles.product1, styles.product2, styles.product3],
+  artVariants: [styles.product0, styles.product1, styles.product2, styles.product3],
   card: {
     card: styles.offerCard,
-    art: styles.product,
+    artBase: styles.product,
     head: styles.offerHead,
     rank: styles.offerRank,
     model: styles.offerModel,

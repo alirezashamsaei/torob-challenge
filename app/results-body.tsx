@@ -13,7 +13,7 @@ export type ResultsBodyClassNames = {
   refineTitle: string;
   refineLinks: string;
   /** Decorative laptop art, one class per card position. */
-  art: readonly string[];
+  artVariants: readonly string[];
   card: OfferCardClassNames;
 };
 
@@ -33,7 +33,7 @@ export default function ResultsBody({
       <h2 id="results-count" className={classNames.count}>
         {summary.headline}
       </h2>
-      {summary.suitable === 0 ? (
+      {summary.state === "none" ? (
         <div className={classNames.empty}>
           {summary.refineHint && <p className={classNames.hint}>{summary.refineHint}</p>}
         </div>
@@ -44,7 +44,7 @@ export default function ResultsBody({
               key={offer.id}
               offer={offer}
               rank={index + 1}
-              artClassName={classNames.art[index % classNames.art.length]}
+              artVariant={classNames.artVariants[index % classNames.artVariants.length]}
               classNames={classNames.card}
             />
           ))}
@@ -52,7 +52,7 @@ export default function ResultsBody({
       )}
       <div className={classNames.refine}>
         <h3 className={classNames.refineTitle}>شرایط را تغییر دهید</h3>
-        {summary.suitable > 0 && summary.refineHint && (
+        {summary.state === "few" && summary.refineHint && (
           <p className={classNames.hint}>{summary.refineHint}</p>
         )}
         <div className={classNames.refineLinks}>{actions.map(renderAction)}</div>

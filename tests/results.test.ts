@@ -1,8 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import type { Offer } from "../app/offers.ts";
-import { representativeOffers } from "../app/offers.ts";
 import { readJourney } from "../app/journey.ts";
 import {
   maxResults,
@@ -11,28 +9,10 @@ import {
   selectSuitableOffers,
   summarizeResults,
 } from "../app/results.ts";
+import { makeOffer } from "./offer-fixture.ts";
 
 function journeyFor(query: string) {
   return readJourney(new URLSearchParams(query));
-}
-
-function offer(overrides: Partial<Offer>): Offer {
-  return {
-    id: "synthetic",
-    model: "Synthetic Laptop",
-    seller: "Seller",
-    url: "https://example.com/offer",
-    observedAt: "2026-11-17T12:00:00+03:30",
-    priceToman: 10_000_000,
-    shippingToman: null,
-    useCases: ["everyday"],
-    configuration: { cpu: "CPU", memory: "RAM" },
-    defects: [],
-    undisclosed: ["وضعیت باتری"],
-    explanation: "دلیل",
-    tradeOff: "هزینه",
-    ...overrides,
-  };
 }
 
 test("results only contain offers for the chosen use case", () => {
@@ -47,8 +27,8 @@ test("results only contain offers for the chosen use case", () => {
 });
 
 test("the budget cap is inclusive and above-cap offers are excluded", () => {
-  const atCap = offer({ id: "at-cap", priceToman: 50_000_000 });
-  const aboveCap = offer({ id: "above-cap", priceToman: 50_000_001 });
+  const atCap = makeOffer({ id: "at-cap", priceToman: 50_000_000 });
+  const aboveCap = makeOffer({ id: "above-cap", priceToman: 50_000_001 });
   const journey = journeyFor(
     "usecase=everyday&budget=50000000&priority=price&defect.chassisScratch=acceptable",
   );
@@ -71,6 +51,14 @@ test("an unacceptable defect removes the offer that discloses it", () => {
 
   assert.ok(accepted.some((item) => item.id === "technolife-thinkpad-e14"));
   assert.equal(rejected.some((item) => item.id === "technolife-thinkpad-e14"), false);
+});
+
+test("a disclosed defect needs an answer before the offer qualifies", () => {
+  const offers = selectSuitableOffers(
+    journeyFor("usecase=everyday&budget=100000000&priority=price"),
+  );
+
+  assert.equal(offers.some((item) => item.id === "technolife-thinkpad-e14"), false);
 });
 
 test("a defect without a disclosed severity only survives an accepted major severity", () => {
@@ -98,7 +86,7 @@ test("two offers for the same model stay separate results", () => {
 
 test("the representative order is kept and display stops at five offers", () => {
   const listed = Array.from({ length: maxResults + 2 }, (_, index) =>
-    offer({ id: `offer-${index}`, priceToman: 10_000_000 + index }),
+    makeOffer({ id: `offer-${index}`, priceToman: 10_000_000 + index }),
   );
   const journey = journeyFor(
     "usecase=everyday&budget=100000000&priority=price&defect.chassisScratch=acceptable",
@@ -107,6 +95,7 @@ test("the representative order is kept and display stops at five offers", () => 
   const summary = summarizeResults(journey, listed);
 
   assert.equal(summary.suitable, maxResults + 2);
+  assert.equal(summary.state, "full");
   assert.deepEqual(
     summary.shown.map((item) => item.id),
     ["offer-0", "offer-1", "offer-2", "offer-3", "offer-4"],
@@ -115,11 +104,11 @@ test("the representative order is kept and display stops at five offers", () => 
 });
 
 test("the headline counts the actual number of results", () => {
-  assert.equal(resultsHeadline(0), "هیچ پیشنهادی با این شرایط پیدا نشد");
+  assert.equal(resultsHeadline(0), "۰ پیشنهاد با این شرایط پیدا نشد");
   assert.equal(resultsHeadline(1), "فقط ۱ پیشنهاد با شرایط شما جور است");
   assert.equal(resultsHeadline(3), "فقط ۳ پیشنهاد با شرایط شما جور است");
-  assert.equal(resultsHeadline(5), "۵ پیشنهاد برتر از میان ۵ پیشنهاد مناسب");
-  assert.equal(resultsHeadline(9), "۵ پیشنهاد برتر از میان ۹ پیشنهاد مناسب");
+  assert.equal(resultsHeadline(5), "۵ پیشنهاد از میان ۵ پیشنهاد مناسب");
+  assert.equal(resultsHeadline(9), "۵ پیشنهاد از میان ۹ پیشنهاد مناسب");
 });
 
 test("a scenario with too few offers counts what it has", () => {
@@ -129,6 +118,7 @@ test("a scenario with too few offers counts what it has", () => {
 
   assert.equal(summary.suitable, 3);
   assert.equal(summary.shown.length, 3);
+  assert.equal(summary.state, "few");
   assert.equal(summary.headline, "فقط ۳ پیشنهاد با شرایط شما جور است");
   assert.ok(summary.refineHint);
 });
@@ -140,7 +130,8 @@ test("no offer under the budget produces the empty results state", () => {
 
   assert.equal(summary.suitable, 0);
   assert.deepEqual(summary.shown, []);
-  assert.equal(summary.headline, "هیچ پیشنهادی با این شرایط پیدا نشد");
+  assert.equal(summary.state, "none");
+  assert.equal(summary.headline, "۰ پیشنهاد با این شرایط پیدا نشد");
   assert.ok(summary.refineHint);
 });
 
@@ -150,7 +141,7 @@ test("an offer exactly at the budget is a result", () => {
   );
 
   const summary = summarizeResults(journey, [
-    offer({ id: "exact", priceToman: 20_000_000 }),
+    makeOffer({ id: "exact", priceToman: 20_000_000 }),
   ]);
 
   assert.equal(summary.suitable, 1);

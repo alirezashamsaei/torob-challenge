@@ -12,6 +12,7 @@ import { numberFormat } from "../app/labels.ts";
 import type { ResultsBodyClassNames } from "../app/results-body.tsx";
 import ResultsBody from "../app/results-body.tsx";
 import { refineActions, summarizeResults } from "../app/results.ts";
+import { makeOffer } from "./offer-fixture.ts";
 
 afterEach(cleanup);
 
@@ -24,10 +25,10 @@ const classNames: ResultsBodyClassNames = {
   refine: "refine",
   refineTitle: "refineTitle",
   refineLinks: "refineLinks",
-  art: ["sprite-0", "sprite-1", "sprite-2", "sprite-3"],
+  artVariants: ["sprite-0", "sprite-1", "sprite-2", "sprite-3"],
   card: {
     card: "card",
-    art: "art",
+    artBase: "art",
     head: "head",
     rank: "rank",
     model: "model",
@@ -65,22 +66,7 @@ function renderResults(query: string, offers: readonly Offer[] = representativeO
 }
 
 function offerWith(overrides: Partial<Offer>): Offer {
-  return {
-    id: "synthetic",
-    model: "Synthetic Laptop",
-    seller: "Seller",
-    url: "https://example.com/offer",
-    observedAt: "2026-11-17T12:00:00+03:30",
-    priceToman: 10_000_000,
-    shippingToman: null,
-    useCases: ["everyday"],
-    configuration: { cpu: "CPU", memory: "RAM" },
-    defects: [],
-    undisclosed: ["وضعیت باتری"],
-    explanation: "دلیل پیشنهاد",
-    tradeOff: "هزینهٔ انتخاب",
-    ...overrides,
-  };
+  return makeOffer(overrides);
 }
 
 test("a card shows the seller link, price, shipping, check time, defects, unknowns, trade-off and reason", () => {
@@ -108,17 +94,17 @@ test("a card shows the seller link, price, shipping, check time, defects, unknow
   );
   assert.ok(within(card).getByText(stockland.tradeOff));
   assert.ok(within(card).getByText(/هیچ ایرادی اعلام نشده/));
-  assert.ok(within(card).getByText(stockland.undisclosed.join("، ")));
+  assert.ok(within(card).getByText(stockland.undisclosedFeatures.join("، ")));
 
   const checked = card.querySelector("time");
-  assert.equal(checked?.getAttribute("dateTime"), stockland.observedAt);
+  assert.equal(checked?.getAttribute("dateTime"), stockland.lastCheckedAt);
   assert.match(checked?.textContent ?? "", /۱۴۰۵/);
 });
 
-test("a disclosed shipping amount stays separate from the device price", async () => {
+test("a disclosed shipping amount stays separate from the device price", () => {
   renderResults(
     "usecase=everyday&budget=100000000&priority=price&defect.chassisScratch=acceptable",
-    [offerWith({ shippingToman: 250_000 })],
+    [makeOffer({ shippingToman: 250_000 })],
   );
 
   assert.ok(screen.getByText(`${numberFormat.format(10_000_000)} تومان`));
@@ -126,11 +112,14 @@ test("a disclosed shipping amount stays separate from the device price", async (
 });
 
 test("two offers for the same model render as two separate cards", () => {
+  const sameModel = representativeOffers.filter((offer) => offer.model === "Dell Latitude 5480");
+
   renderResults(
     "usecase=everyday&budget=100000000&priority=condition&defect.chassisScratch=acceptable",
+    sameModel,
   );
 
-  assert.equal(screen.getAllByRole("listitem").length, 5);
+  assert.equal(screen.getAllByRole("listitem").length, 2);
   assert.ok(screen.getByRole("link", { name: /Stock Iran/ }));
   assert.ok(screen.getByRole("link", { name: /Radin Computer/ }));
   assert.equal(screen.getAllByRole("heading", { level: 3, name: "Dell Latitude 5480" }).length, 2);
@@ -142,7 +131,7 @@ test("zero results show the count and a way to change the constraints", () => {
   );
 
   assert.ok(
-    screen.getByRole("heading", { name: "هیچ پیشنهادی با این شرایط پیدا نشد" }),
+    screen.getByRole("heading", { name: "۰ پیشنهاد با این شرایط پیدا نشد" }),
   );
   assert.equal(screen.queryAllByRole("listitem").length, 0);
   assert.ok(screen.getByText(/با افزایش بودجه یا قابل قبول دانستن یکی از ایرادها/));
@@ -169,11 +158,24 @@ test("one to four results show the actual count and how to widen the search", ()
   assert.ok(screen.getByRole("heading", { name: "شرایط را تغییر دهید" }));
 });
 
+test("a card lists the defects the seller disclosed", () => {
+  const pavilion = representativeOffers.find((offer) => offer.id === "technolife-pavilion-17");
+  assert.ok(pavilion);
+
+  renderResults(
+    "usecase=everyday&budget=100000000&priority=price&defect.chassisScratch=acceptable",
+    [pavilion],
+  );
+
+  assert.ok(screen.getByText("خط‌وخش بدنه، پیکسل سوخته و هالهٔ نمایشگر"));
+  assert.ok(screen.getByText(pavilion.tradeOff));
+});
+
 test("five cards can appear while the count reports every suitable offer", () => {
   renderResults(
     "usecase=everyday&budget=100000000&priority=price&defect.chassisScratch=acceptable",
   );
 
-  assert.ok(screen.getByRole("heading", { name: "۵ پیشنهاد برتر از میان ۶ پیشنهاد مناسب" }));
+  assert.ok(screen.getByRole("heading", { name: "۵ پیشنهاد از میان ۷ پیشنهاد مناسب" }));
   assert.equal(screen.getAllByRole("listitem").length, 5);
 });

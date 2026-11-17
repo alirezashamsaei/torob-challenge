@@ -4,8 +4,8 @@ import type { DefectId, Severity, UseCase } from "./journey";
 export type OfferDefect = {
   id: DefectId;
   label: string;
-  /** "undisclosed" means the seller named the defect but not how bad it is. */
-  severity: Severity | "undisclosed";
+  /** Absent when the seller named the defect but not how bad it is. */
+  severity?: Severity;
 };
 
 export type OfferConfiguration = {
@@ -25,7 +25,7 @@ export type Offer = {
   /** The seller's offer page, opened externally by the buyer. */
   url: string;
   /** When the offer was last reviewed at the source (ISO 8601, Tehran time). */
-  observedAt: string;
+  lastCheckedAt: string;
   priceToman: number;
   /** null means the seller disclosed no shipping amount. */
   shippingToman: number | null;
@@ -33,7 +33,7 @@ export type Offer = {
   configuration: OfferConfiguration;
   defects: readonly OfferDefect[];
   /** Fields the seller left unknown for this device. */
-  undisclosed: readonly string[];
+  undisclosedFeatures: readonly string[];
   /** Test period or return terms, when the seller states them. */
   testTerms?: string;
   /** The reason this offer surfaced, grounded in the fields above. */
@@ -55,7 +55,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "HP ProBook 440 G5",
     seller: "Digi Store",
     url: "https://digistores.ir/products/hp-probook-440-g5/",
-    observedAt: "2026-11-17T15:32:00+03:30",
+    lastCheckedAt: "2026-11-17T15:32:00+03:30",
     priceToman: 42_235_100,
     shippingToman: null,
     useCases: ["office"],
@@ -65,10 +65,10 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "Intel UHD 620",
     },
     defects: [],
-    undisclosed: ["وضعیت باتری", "وضعیت نمایشگر", "وضعیت بدنه"],
+    undisclosedFeatures: ["وضعیت باتری", "وضعیت نمایشگر", "وضعیت بدنه"],
     testTerms: "۷ روز مرجوعی",
     explanation:
-      "ارزان‌ترین پیشنهاد اداری فهرست: پردازندهٔ i5 نسل ۸ و ۷ روز مرجوعی، با اختلاف زیاد از گران‌ترین گزینه‌ها.",
+      "ارزان‌ترین پیشنهاد اداری فهرست: پردازندهٔ i5 نسل ۸، ۸ گیگابایت رم و ۷ روز مرجوعی.",
     tradeOff:
       "وضعیت باتری، نمایشگر و بدنه اعلام نشده؛ فروشنده برچسب استوک و ریفربیش را با هم به کار برده است.",
   },
@@ -77,7 +77,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Dell Latitude 5490",
     seller: "Digi Store",
     url: "https://digistores.ir/products/dell-latitude-5490-intel-core-i5-8250u/",
-    observedAt: "2026-11-17T15:34:00+03:30",
+    lastCheckedAt: "2026-11-17T15:34:00+03:30",
     priceToman: 45_440_000,
     shippingToman: null,
     useCases: ["office"],
@@ -87,10 +87,10 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "Intel UHD 620",
     },
     defects: [],
-    undisclosed: ["وضعیت باتری", "وضعیت نمایشگر"],
+    undisclosedFeatures: ["وضعیت باتری", "وضعیت نمایشگر"],
     testTerms: "۷ روز مرجوعی",
     explanation:
-      "حدود ۲۹ میلیون تومان ارزان‌تر از Latitude 5410، با همان رم و حافظه و ۷ روز مرجوعی.",
+      "پردازندهٔ i5 نسل ۸، رم ۸ گیگابایت و ۷ روز مرجوعی؛ قیمتی نزدیک به ارزان‌ترین پیشنهاد اداری.",
     tradeOff:
       "وضعیت باتری و نمایشگر اعلام نشده؛ پردازندهٔ نسل ۸ کندتر از i7 نسل ۱۰ در Latitude 5410 است.",
   },
@@ -99,7 +99,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Dell Latitude 5410",
     seller: "Stockland",
     url: "https://stockland.ir/products/dell-latitude-5410",
-    observedAt: "2026-11-17T15:40:00+03:30",
+    lastCheckedAt: "2026-11-17T15:40:00+03:30",
     priceToman: 74_000_000,
     shippingToman: null,
     useCases: ["office"],
@@ -108,7 +108,7 @@ export const representativeOffers: readonly Offer[] = [
       memory: "رم ۸ گیگابایت، SSD ۲۵۶ گیگابایت",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "وضعیت نمایشگر", "وضعیت بدنه"],
+    undisclosedFeatures: ["سلامت باتری", "وضعیت نمایشگر", "وضعیت بدنه"],
     testTerms: "۷ روز مرجوعی طبق شرایط فروشنده",
     explanation:
       "پردازندهٔ i7 نسل ۱۰، ۸ گیگابایت رم و ۷ روز فرصت مرجوعی؛ حدود ۲۹ میلیون تومان گران‌تر از ارزان‌ترین پیشنهاد اداری.",
@@ -120,7 +120,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "HP ProBook 645 G10",
     seller: "Radin Computer",
     url: "https://radincomputer.com/product/hp-probook-645-g10-ryzen-5-7530u-8gb-256gb-stock/",
-    observedAt: "2026-11-17T15:42:00+03:30",
+    lastCheckedAt: "2026-11-17T15:42:00+03:30",
     priceToman: 83_970_000,
     shippingToman: null,
     useCases: ["office"],
@@ -130,7 +130,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "Radeon مجتمع",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "وضعیت نمایشگر"],
+    undisclosedFeatures: ["سلامت باتری", "وضعیت نمایشگر"],
     testTerms: "۷ روز تست",
     explanation:
       "پردازندهٔ نسل جدید Ryzen 5، گرید ظاهری A+ و ۷ روز تست؛ گران‌ترین پیشنهاد اداری این فهرست است.",
@@ -142,7 +142,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "HP ProBook 645 G1",
     seller: "Digi Store",
     url: "https://digistores.ir/products/hp-probook-645-g1/",
-    observedAt: "2026-11-17T15:44:00+03:30",
+    lastCheckedAt: "2026-11-17T15:44:00+03:30",
     priceToman: 20_389_850,
     shippingToman: null,
     useCases: ["everyday"],
@@ -152,7 +152,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "Radeon HD 8550G",
     },
     defects: [],
-    undisclosed: ["وضعیت باتری", "وضعیت نمایشگر", "وضعیت بدنه"],
+    undisclosedFeatures: ["وضعیت باتری", "وضعیت نمایشگر", "وضعیت بدنه"],
     testTerms: "۷ روز مرجوعی",
     explanation:
       "ارزان‌ترین پیشنهاد فهرست: زیر ۲۱ میلیون تومان با ۷ روز مرجوعی، برای کارهای سبک روزمره.",
@@ -164,7 +164,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "HP EliteBook 8470p",
     seller: "Jey Stock",
     url: "https://jeystock.com/product/لپ-تاپ-استوک-اچ-پی-مدل-hp-elitebook-8470p-با-پردازنده-i5-ن/",
-    observedAt: "2026-11-17T15:46:00+03:30",
+    lastCheckedAt: "2026-11-17T15:46:00+03:30",
     priceToman: 24_500_000,
     shippingToman: null,
     useCases: ["everyday"],
@@ -173,7 +173,7 @@ export const representativeOffers: readonly Offer[] = [
       memory: "رم ۸ گیگابایت",
     },
     defects: [],
-    undisclosed: ["ظرفیت حافظه", "وضعیت باتری", "وضعیت نمایشگر"],
+    undisclosedFeatures: ["ظرفیت حافظه", "وضعیت باتری", "وضعیت نمایشگر"],
     testTerms: "۴۵ روز گارانتی برنزی",
     explanation:
       "زیر ۲۵ میلیون تومان با ۸ گیگابایت رم و ۴۵ روز گارانتی برنزی؛ گزینهٔ کم‌هزینهٔ کارهای سبک.",
@@ -185,7 +185,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Dell Latitude E5450",
     seller: "ITjonoob",
     url: "https://itjonoob.com/product/dell-latitude-e5450/",
-    observedAt: "2026-11-17T15:48:00+03:30",
+    lastCheckedAt: "2026-11-17T15:48:00+03:30",
     priceToman: 38_000_000,
     shippingToman: null,
     useCases: ["everyday"],
@@ -194,7 +194,7 @@ export const representativeOffers: readonly Offer[] = [
       memory: "رم ۸ گیگابایت، SSD ۵۱۲ گیگابایت، نمایشگر Full HD",
     },
     defects: [],
-    undisclosed: ["نسل دقیق پردازنده", "وضعیت باتری", "شرایط تست و مرجوعی"],
+    undisclosedFeatures: ["نسل دقیق پردازنده", "وضعیت باتری", "شرایط تست و مرجوعی"],
     explanation:
       "دقیقاً زیر ۴۰ میلیون تومان با ۸ گیگابایت رم، ۵۱۲ گیگابایت SSD و نمایشگر Full HD.",
     tradeOff:
@@ -205,7 +205,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Dell Latitude 5480",
     seller: "Stock Iran",
     url: "https://stockirshop.com/product/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-dell-latitude-5480/",
-    observedAt: "2026-11-17T15:50:00+03:30",
+    lastCheckedAt: "2026-11-17T15:50:00+03:30",
     priceToman: 63_790_000,
     shippingToman: null,
     useCases: ["everyday"],
@@ -215,7 +215,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "GeForce 930MX",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "وضعیت بدنه"],
+    undisclosedFeatures: ["سلامت باتری", "وضعیت بدنه"],
     testTerms: "۷ روز تست سخت‌افزار یا تعویض؛ گزارش ظاهری تا ۲۴ ساعت",
     explanation:
       "ارزان‌ترین پیشنهاد روزمره با کارت گرافیک مجزا و ۷ روز تست سخت‌افزار.",
@@ -223,11 +223,37 @@ export const representativeOffers: readonly Offer[] = [
       "سلامت باتری و وضعیت بدنه اعلام نشده؛ شرایط تست خوب است اما وضعیت دستگاه نامشخص می‌ماند.",
   },
   {
+    id: "technolife-pavilion-17",
+    model: "HP Pavilion 17",
+    seller: "Sama IT Land در Technolife",
+    url: "https://www.technolife.com/product-621308/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D8%A7%DA%86-%D9%BE%DB%8C-17-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D9%85%D8%AF%D9%84-hp-pavilion-i3-8130u-8gb-256gb---%D9%86%D9%82%D8%B1%D9%87%E2%80%8C%D8%A7%DB%8C",
+    lastCheckedAt: "2026-11-17T15:51:00+03:30",
+    priceToman: 65_000_000,
+    shippingToman: null,
+    useCases: ["everyday"],
+    configuration: {
+      cpu: "Core i3-8130U",
+      memory: "رم ۸ گیگابایت، حافظهٔ ۲۵۶ گیگابایت",
+    },
+    defects: [
+      {
+        id: "chassisScratch",
+        label: "خط‌وخش بدنه، پیکسل سوخته و هالهٔ نمایشگر",
+      },
+    ],
+    undisclosedFeatures: ["شدت و محل خط‌وخش‌ها", "وضعیت باتری"],
+    testTerms: "۱۴ روز مرجوعی",
+    explanation:
+      "قیمت ۶۵ میلیون تومان با ۱۴ روز مرجوعی؛ ایرادهای بدنه و نمایشگر را هم شفاف اعلام کرده است.",
+    tradeOff:
+      "خط‌وخش بدنه، پیکسل سوخته و هالهٔ نمایشگر دارد و شدت و محل آن‌ها اعلام نشده است.",
+  },
+  {
     id: "radin-latitude-5480",
     model: "Dell Latitude 5480",
     seller: "Radin Computer",
     url: "https://radincomputer.com/product/dell-latitude-5480-core-i7-7500u-8gb-512gb-stock/",
-    observedAt: "2026-11-17T15:52:00+03:30",
+    lastCheckedAt: "2026-11-17T15:52:00+03:30",
     priceToman: 67_570_000,
     shippingToman: null,
     useCases: ["everyday"],
@@ -237,7 +263,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "MX130",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "وضعیت نمایشگر"],
+    undisclosedFeatures: ["سلامت باتری", "وضعیت نمایشگر"],
     testTerms: "۷ روز تست",
     explanation:
       "همین مدل با دو برابر حافظهٔ SSD و کارت گرافیک MX130، با ۷ روز تست.",
@@ -249,7 +275,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Lenovo ThinkPad E14",
     seller: "ArkaDigi در Technolife",
     url: "https://www.technolife.com/product-596292/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D9%84%D9%86%D9%88%D9%88-14-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D9%85%D8%AF%D9%84-thinkpad-e14-i3-10110u-16gb-120gb---%D9%85%D8%B4%DA%A9%DB%8C",
-    observedAt: "2026-11-17T15:54:00+03:30",
+    lastCheckedAt: "2026-11-17T15:54:00+03:30",
     priceToman: 86_791_800,
     shippingToman: null,
     useCases: ["everyday"],
@@ -261,10 +287,9 @@ export const representativeOffers: readonly Offer[] = [
       {
         id: "chassisScratch",
         label: "خط‌وخش یا شکستگی سطح بدنه؛ محل و شدت اعلام نشده",
-        severity: "undisclosed",
       },
     ],
-    undisclosed: ["محل و شدت خط‌وخش بدنه", "وضعیت نمایشگر"],
+    undisclosedFeatures: ["محل و شدت خط‌وخش بدنه", "وضعیت نمایشگر"],
     testTerms: "۱۴ روز ضمانت مرجوعی",
     explanation:
       "۱۶ گیگابایت رم و ۱۴ روز ضمانت مرجوعی، با قیمتی نزدیک به گزینه‌های بدون ایراد.",
@@ -276,7 +301,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "HP ZBook 15 G3",
     seller: "Radin Computer",
     url: "https://radincomputer.com/product/hp-zbook-15-g3-core-i7-6820hq-16gb-256gb-stock/",
-    observedAt: "2026-11-17T15:56:00+03:30",
+    lastCheckedAt: "2026-11-17T15:56:00+03:30",
     priceToman: 80_620_000,
     shippingToman: null,
     useCases: ["graphics"],
@@ -286,7 +311,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "کارت گرافیک مجزای AMD با ۲ گیگابایت حافظه؛ مدل دقیق اعلام نشده",
     },
     defects: [],
-    undisclosed: ["مدل دقیق کارت گرافیک", "سلامت باتری"],
+    undisclosedFeatures: ["مدل دقیق کارت گرافیک", "سلامت باتری"],
     testTerms: "۷ روز تست",
     explanation:
       "ارزان‌ترین پیشنهاد گرافیکی این فهرست با کارت گرافیک مجزا، ۱۶ گیگابایت رم و ۷ روز تست.",
@@ -298,7 +323,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Dell Precision 3510",
     seller: "Stock Iran",
     url: "https://stockirshop.com/product/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-%D8%A7%D8%B3%D8%AA%D9%88%DA%A9-%D8%AF%D9%84-dell-precision-3510/",
-    observedAt: "2026-11-17T15:58:00+03:30",
+    lastCheckedAt: "2026-11-17T15:58:00+03:30",
     priceToman: 83_970_000,
     shippingToman: null,
     useCases: ["graphics"],
@@ -308,7 +333,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "Radeon R9 M360",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "وضعیت نمایشگر"],
+    undisclosedFeatures: ["سلامت باتری", "وضعیت نمایشگر"],
     testTerms: "۷ روز تست سخت‌افزار یا تعویض؛ گزارش ظاهری تا ۲۴ ساعت",
     explanation:
       "کارت گرافیک مجزای Radeon R9 M360 و شرایط تست سخت‌افزار هفت‌روزه، با اختلاف قیمت کم از ZBook.",
@@ -320,7 +345,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Dell Precision 7540",
     seller: "Radin Computer",
     url: "https://radincomputer.com/product/dell-precision-7540-core-i7-9850h-16gb-512gb-stock/",
-    observedAt: "2026-11-17T16:00:00+03:30",
+    lastCheckedAt: "2026-11-17T16:00:00+03:30",
     priceToman: 130_700_000,
     shippingToman: null,
     useCases: ["graphics"],
@@ -330,7 +355,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "Quadro T1000",
     },
     defects: [],
-    undisclosed: ["سلامت باتری"],
+    undisclosedFeatures: ["سلامت باتری"],
     testTerms: "۷ روز تست",
     explanation:
       "پرقدرت‌ترین گزینهٔ گرافیکی فهرست: پردازندهٔ H، Quadro T1000 و ۵۱۲ گیگابایت حافظه با ۷ روز تست.",
@@ -342,7 +367,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "HP Victus 15-fa1128TX",
     seller: "Fars Pardazesh در Qeshmoff",
     url: "https://qeshmoff.com/shop/hp-victus-15-fa1128tx-i5-13420h-16gb-512gb",
-    observedAt: "2026-11-17T16:02:00+03:30",
+    lastCheckedAt: "2026-11-17T16:02:00+03:30",
     priceToman: 210_000_000,
     shippingToman: null,
     useCases: ["gaming"],
@@ -352,7 +377,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "RTX 2050",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "وضعیت نمایشگر", "شرایط تست و مرجوعی"],
+    undisclosedFeatures: ["سلامت باتری", "وضعیت نمایشگر", "شرایط تست و مرجوعی"],
     explanation:
       "ارزان‌ترین پیشنهاد بازی فهرست: RTX 2050 و ۱۶ گیگابایت رم با پردازندهٔ نسل ۱۳.",
     tradeOff:
@@ -363,7 +388,7 @@ export const representativeOffers: readonly Offer[] = [
     model: "Lenovo LOQ 15IRH8",
     seller: "PCC Center",
     url: "https://pcccenter.com/product/لپ-تاپ-15-6-اینچی-گیمینگ-لنوو-notebook-lenovo-loq-15irh8-i5-13420h-16gb-ddr5-1tb-ssd-rtx3050-15-6/",
-    observedAt: "2026-11-17T16:04:00+03:30",
+    lastCheckedAt: "2026-11-17T16:04:00+03:30",
     priceToman: 245_000_000,
     shippingToman: null,
     useCases: ["gaming"],
@@ -373,7 +398,7 @@ export const representativeOffers: readonly Offer[] = [
       graphics: "RTX 3050",
     },
     defects: [],
-    undisclosed: ["سلامت باتری", "شرایط تست و مرجوعی"],
+    undisclosedFeatures: ["سلامت باتری", "شرایط تست و مرجوعی"],
     explanation:
       "RTX 3050 و یک ترابایت حافظه با همان پردازندهٔ Victus؛ توان گرافیکی بیشتر برای بازی‌های سنگین‌تر.",
     tradeOff:
