@@ -75,3 +75,15 @@ test("display-only or unspecified condition and storage do not supply required f
   assert.ok(evaluateStoredOffer({ ...offer, disclosed_defects: "No scratches" }, strict).includes("defect_unknown"));
   assert.ok(evaluateStoredOffer({ ...offer, configuration_evidence: "i5-8250U / 256 GB SSD" }, journey).includes("technical_unknown"));
 });
+
+test("negated availability and unknown condition descriptions fail closed", () => {
+  assert.ok(evaluateStoredOffer({ ...offer, availability_evidence: "Not listed in stock" }, journey).includes("unavailable"));
+  const unknownCondition = { ...offer, battery_evidence: "Battery health unknown", disclosed_defects: "Defects not disclosed", test_or_return_terms: "Not specified" };
+  assert.ok(evaluateStoredOffer(unknownCondition, journey).includes("insufficient_evidence"));
+  const strict = { ...journey, defects: { chassisScratch: { tolerance: "unacceptable" as const } } };
+  assert.ok(evaluateStoredOffer({ ...offer, disclosed_defects: "Chassis condition unknown" }, strict).includes("defect_unknown"));
+  assert.ok(evaluateStoredOffer({ ...offer, offer_url: "", evidence_url: "" }, journey).includes("insufficient_evidence"));
+  const invalidPrice = evaluateStoredOffer({ ...offer, price_toman_as_listed: Infinity }, journey);
+  assert.ok(invalidPrice.includes("invalid_price"));
+  assert.ok(!invalidPrice.includes("over_budget"));
+});

@@ -17,18 +17,18 @@ export type ExclusionReason =
   | "defect_unknown" | "intolerable_defect";
 
 function disclosed(value: string): boolean {
-  return !!value?.trim() && !/^(not disclosed|unknown|unconfirmed|none|n\/?a)$/i.test(value.trim());
+  return !!value?.trim() && !/\b(?:not disclosed|undisclosed|unknown|unconfirmed|not specified|unspecified)\b/i.test(value) && !/^(none|n\/?a)$/i.test(value.trim());
 }
 
 function hasConditionEvidence(offer: StoredOffer): boolean {
   const terms = offer.test_or_return_terms || "";
-  const specificTerms = /\b\d+\s*[- ]\s*(?:day|month|year)/i.test(terms) && /test|return|exchange|replacement/i.test(terms);
+  const specificTerms = disclosed(terms) && /\b\d+\s*[- ]\s*(?:day|month|year)/i.test(terms) && /test|return|exchange|replacement/i.test(terms);
   return disclosed(offer.battery_evidence) || disclosed(offer.disclosed_defects) || specificTerms;
 }
 
 function availability(value: string): boolean | null {
   if (!value) return null;
-  if (/out of stock|unavailable|sold out/i.test(value)) return false;
+  if (/out of stock|unavailable|sold out|not (?:currently |listed |shown as )?(?:available|in stock)/i.test(value)) return false;
   if (/unconfirmed|preorder|contact seller|phone quote|older|catalog|category/i.test(value)) return null;
   if (/active purchase option|listed available|listed in stock|\b\d+ in stock\b|one in stock|seller displays in stock/i.test(value)) return true;
   return null;
@@ -70,9 +70,9 @@ export function evaluateStoredOffer(offer: StoredOffer, journey: Journey): Exclu
   else if (!available) reasons.push("unavailable");
   if (!Number.isSafeInteger(offer.price_toman_as_listed) || offer.price_toman_as_listed <= 0) reasons.push("invalid_price");
   if (!Number.isSafeInteger(journey.budget) || (journey.budget ?? 0) <= 0) reasons.push("budget_unknown");
-  else if (offer.price_toman_as_listed > journey.budget!) reasons.push("over_budget");
+  else if (Number.isSafeInteger(offer.price_toman_as_listed) && offer.price_toman_as_listed > journey.budget!) reasons.push("over_budget");
 
-  if (offer.screening_status !== "Provisionally eligible" || offer.evidence_url !== offer.offer_url ||
+  if (offer.screening_status !== "Provisionally eligible" || !offer.offer_url?.trim() || offer.evidence_url !== offer.offer_url ||
       !hasConditionEvidence(offer)) {
     reasons.push("insufficient_evidence");
   }
