@@ -18,9 +18,15 @@ To run the production build locally, use `npm run build` followed by `npm start`
 - `/` — start screen.
 - `/guide/usecase`, `/guide/budget`, `/guide/priority`, `/guide/defects`, `/guide/review` — wizard steps.
 - `/guide/requirement`, `/guide/expectation` — extra questions asked only for the gaming and graphics use cases: a searchable game or application and the expected performance level.
-- `/results` — sample ranked offers for the completed journey.
+- `/results` — up to five representative offer cards for the completed journey, with the actual match count and links to change the constraints.
 
 Answers travel in the query string, for example `/results?usecase=office&budget=18000000&priority=price&defect.chassisScratch=acceptable` or `/guide/review?usecase=gaming&requirement=cs2&expectation=balanced&budget=25000000&priority=performance&defect.chassisScratch=acceptable`. That keeps the browser's back and forward buttons working and lets the step routes restore earlier choices. A step route redirects to the first unanswered question when its prerequisites are missing, `/results` redirects to the first unanswered question while the journey is incomplete, and values that fail validation are dropped. The game or application must belong to the selected use case, so switching to a use case without these questions drops both answers. The rules live in `app/journey.ts`; the searchable catalogs and search rules live in `app/requirements.ts`.
+
+## Results screen
+
+`app/results.ts` selects the offers shown on `/results` from the representative offers in `app/offers.ts`: the offer must serve the chosen use case, sit at or below the budget cap, and not disclose a defect the buyer rejected. The screen shows the actual count, up to five cards, and links back to the budget, priority, defect or game/software questions so a buyer with too few results can change them. Each card shows the seller's page link, the device price, shipping separately (or `مبلغ اعلام نشده` when the seller stated none), the last-checked time, disclosed defects, unknown fields, the trade-off and a grounded reason.
+
+Representative offers are copied from the audited rows in `docs/stock-laptop-offer-sample.csv`; the order is representative, not the final priority-weighted ranking, and two offers of the same model stay separate cards. Stored offers, eligibility rules and ranking explanations replace this fixture path in later work.
 
 ## Tests
 
@@ -29,7 +35,7 @@ npm test
 npm run typecheck
 ```
 
-`app/journey.ts` holds the journey model and its route helpers; `tests/journey.test.ts` covers parsing, validation, step order and route building. `tests/requirements.test.ts` covers the game/application catalogs and Persian-aware search, `tests/labels.test.ts` covers the review summary, and `tests/software-picker.test.tsx` renders the searchable picker in jsdom with Testing Library. The test command loads `tsx` for the TSX tests and `tests/setup-dom.ts` installs the jsdom globals.
+`app/journey.ts` holds the journey model and its route helpers; `tests/journey.test.ts` covers parsing, validation, step order and route building. `tests/requirements.test.ts` covers the game/application catalogs and Persian-aware search, `tests/labels.test.ts` covers the review summary, and `tests/software-picker.test.tsx` renders the searchable picker in jsdom with Testing Library. `tests/offers.test.ts` checks the representative offer data, `tests/results.test.ts` covers selection, counts and refine links, and `tests/results-view.test.tsx` renders the cards and too-few/zero states. The test command loads `tsx` for the TSX tests and `tests/setup-dom.ts` installs the jsdom globals.
 
 ## Runtime configuration
 

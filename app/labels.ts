@@ -14,6 +14,18 @@ import { findRequirement } from "./requirements";
 
 export const numberFormat = new Intl.NumberFormat("fa-IR");
 
+const lastCheckedFormat = new Intl.DateTimeFormat("fa-IR", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "Asia/Tehran",
+});
+
+/** The observation time in Tehran, as the buyer should read it. */
+export function lastCheckedLabel(observedAt: string): string {
+  const date = new Date(observedAt);
+  return Number.isNaN(date.getTime()) ? "زمان بررسی نامشخص" : lastCheckedFormat.format(date);
+}
+
 export const useCaseLabels: Record<UseCase, string> = {
   everyday: "روزمره و تحصیل",
   office: "کار اداری",

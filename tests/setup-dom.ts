@@ -9,6 +9,7 @@ const { window } = dom;
 
 const globals: Record<string, unknown> = {
   window,
+  self: window,
   document: window.document,
   navigator: window.navigator,
   HTMLElement: window.HTMLElement,
