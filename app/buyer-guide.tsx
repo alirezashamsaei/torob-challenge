@@ -36,12 +36,14 @@ export default function BuyerGuide() {
     }
   }, [step]);
 
-  function editAnswer(answer: string) {
+  function sendAnswer(answer: string) {
     setAnswers((previous) => {
       const updated = [...previous];
       updated[step] = answer;
       return updated;
     });
+    setStep(editing ? steps.length : step + 1);
+    setEditing(false);
   }
 
   return (
@@ -54,14 +56,6 @@ export default function BuyerGuide() {
       </header>
 
       <main className={styles.container}>
-        <ol className={styles.steps} aria-label="مراحل انتخاب لپ‌تاپ">
-          {[...steps.map(({ name }) => name), "مرور", "نتایج"].map((label, index) => (
-            <li key={label} aria-current={index === step ? "step" : undefined}>
-              <span>{number.format(index + 1)}</span> {label}
-            </li>
-          ))}
-        </ol>
-
         {showingResults ? (
           <>
             <h1 ref={heading} tabIndex={-1}>لپ‌تاپ‌های استوک</h1>
@@ -89,17 +83,33 @@ export default function BuyerGuide() {
             </button>
           </>
         ) : (
-          <section className={styles.panel} aria-labelledby="guide-title">
-            <h1 id="guide-title" ref={heading} tabIndex={-1}>{question?.title ?? "مرور انتخاب‌های شما"}</h1>
+          <section className={styles.chat} aria-label="گفت‌وگوی انتخاب لپ‌تاپ">
+            <ol className={styles.transcript} aria-label="پیام‌ها">
+              <li className={styles.assistant}>
+                <p>سلام! چند سؤال کوتاه می‌پرسم تا ببینیم چه لپ‌تاپی به نیاز شما می‌خورد.</p>
+              </li>
+              {steps.slice(0, step).map(({ name, title }, index) => (
+                <li key={name} className={styles.exchange}>
+                  <p className={styles.assistant}>{title}</p>
+                  <p className={styles.reply}>{answers[index]}</p>
+                </li>
+              ))}
+              <li className={styles.assistant}>
+                <h1 id="guide-title" ref={heading} tabIndex={-1}>{question?.title ?? "انتخاب‌هایتان را مرور کنید."}</h1>
+              </li>
+            </ol>
+
             {question ? (
-              <fieldset className={styles.options} aria-labelledby="guide-title">
-                {question.options.map((option) => (
-                  <label key={option} className={styles.option}>
-                    <input type="radio" name={question.name} checked={answers[step] === option} onChange={() => editAnswer(option)} />
-                    {option}
-                  </label>
-                ))}
-              </fieldset>
+              <div className={styles.composer} aria-labelledby="guide-title" role="group">
+                <div className={styles.composerLabel}>یک گزینه را انتخاب کنید <span>{number.format(step + 1)} از {number.format(steps.length)}</span></div>
+                <div className={styles.options}>
+                  {question.options.map((option) => (
+                    <button className={styles.button} key={option} type="button" onClick={() => sendAnswer(option)}>
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </div>
             ) : (
               <dl className={styles.summary}>
                 {steps.map(({ name }, index) => (
@@ -116,15 +126,22 @@ export default function BuyerGuide() {
                 ))}
               </dl>
             )}
+
             <div className={styles.actions}>
-              <button className={`${styles.button} ${styles.primary}`} type="button" disabled={Boolean(question && !answers[step])} onClick={() => {
-                setStep(editing ? steps.length : step + 1);
-                setEditing(false);
-              }}>
-                {editing ? "بازگشت به مرور" : question ? "ادامه" : "دیدن پیشنهادهای نمونه"}
-              </button>
-              {step === 0 && !editing && <button className={styles.button} type="button" onClick={() => setStep(resultsStep)}>دیدن پیشنهادهای نمونه</button>}
-              {step > 0 && !editing && <button className={styles.button} type="button" onClick={() => setStep(step - 1)}>مرحلهٔ قبل</button>}
+              {(!question || (step === 0 && !editing)) && (
+                <button className={question ? styles.textButton : `${styles.button} ${styles.primary}`} type="button" onClick={() => setStep(resultsStep)}>
+                  دیدن پیشنهادهای نمونه
+                </button>
+              )}
+              {question && step > 0 && !editing && (
+                <button className={styles.textButton} type="button" onClick={() => setStep(step - 1)}>مرحلهٔ قبل</button>
+              )}
+              {editing && (
+                <button className={styles.textButton} type="button" onClick={() => {
+                  setEditing(false);
+                  setStep(steps.length);
+                }}>بازگشت به مرور</button>
+              )}
             </div>
           </section>
         )}
