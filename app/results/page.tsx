@@ -20,5 +20,5 @@ export default async function ResultsPage({ searchParams }: PageProps) {
   const decisions = evaluateStoredOffers(readStoredOffers(), journey);
   const offers = decisions.filter((decision) => decision.reasons.length === 0)
     .map((decision) => storedOfferForDisplay(decision.offer, journey));
-  return <ResultsView journey={journey} summary={summarizeEligibleOffers(offers)} />;
+  return <ResultsView journey={journey} summary={summarizeEligibleOffers(offers, journey)} />;
 }

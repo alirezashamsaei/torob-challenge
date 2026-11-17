@@ -88,11 +88,8 @@ test("a card shows the seller link, price, shipping, check time, defects, unknow
   assert.ok(within(card).getByText(`${numberFormat.format(stockland.priceToman)} تومان`));
   assert.ok(within(card).getByText(/ارسال: مبلغ اعلام نشده/));
   assert.ok(within(card).getByText(/آخرین بررسی/));
-  assert.equal(
-    within(card).getByText(stockland.explanation).textContent,
-    stockland.explanation,
-  );
-  assert.ok(within(card).getByText(stockland.tradeOff));
+  assert.ok(within(card).getByText(/رتبه‌بندی rules-v1/));
+  assert.ok(card.querySelector(".tradeOff")?.textContent?.endsWith(stockland.tradeOff));
   assert.ok(within(card).getByText(/هیچ ایرادی اعلام نشده/));
   assert.ok(within(card).getByText(stockland.undisclosedFeatures.join("، ")));
 
@@ -168,7 +165,7 @@ test("a card lists the defects the seller disclosed", () => {
   );
 
   assert.ok(screen.getByText("خط‌وخش بدنه، پیکسل سوخته و هالهٔ نمایشگر"));
-  assert.ok(screen.getByText(pavilion.tradeOff));
+  assert.ok(screen.getAllByRole("listitem")[0].querySelector(".tradeOff")?.textContent?.endsWith(pavilion.tradeOff));
 });
 
 test("five cards can appear while the count reports every suitable offer", () => {

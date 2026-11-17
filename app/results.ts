@@ -3,6 +3,7 @@ import { needsRequirement, stepPath } from "./journey";
 import type { Offer, OfferDefect } from "./offers";
 import { representativeOffers } from "./offers";
 import { numberFormat } from "./labels";
+import { rankEligibleOffers } from "./ranking";
 
 export const maxResults = 5;
 
@@ -76,16 +77,19 @@ export function summarizeResults(
   journey: Journey,
   offers: readonly Offer[] = representativeOffers,
 ): ResultsSummary {
-  return summarizeEligibleOffers(selectSuitableOffers(journey, offers));
+  return summarizeEligibleOffers(selectSuitableOffers(journey, offers), journey);
 }
 
 /** Summarize offers that have already passed the stored-offer eligibility checks. */
-export function summarizeEligibleOffers(suitable: readonly Offer[]): ResultsSummary {
+export function summarizeEligibleOffers(suitable: readonly Offer[], journey?: Journey): ResultsSummary {
   const state = stateFor(suitable.length);
+  const ranked = journey
+    ? rankEligibleOffers(suitable, journey).map(({ offer, explanation, tradeOff }) => ({ ...offer, explanation, tradeOff }))
+    : suitable;
 
   return {
     suitable: suitable.length,
-    shown: suitable.slice(0, maxResults),
+    shown: ranked.slice(0, maxResults),
     state,
     headline: resultsHeadline(suitable.length),
     refineHint: refineHintFor(state),
