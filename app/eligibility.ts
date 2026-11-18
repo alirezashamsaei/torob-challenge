@@ -9,6 +9,7 @@ export type StoredOffer = {
   battery_evidence: string; disclosed_defects: string; test_or_return_terms: string;
   availability_evidence: string; configuration_evidence: string; screening_status: string;
   observation_batch: string; notes: string; image_url: string;
+  demo_chassis_scratch?: "none" | "minor" | "major";
 };
 
 export type ExclusionReason =
@@ -84,7 +85,10 @@ export function evaluateStoredOffer(offer: StoredOffer, journey: Journey): Exclu
   if (!answer) reasons.push("defect_unknown");
   else if (answer.tolerance === "depends" && !answer.severity) reasons.push("defect_unknown");
   else if (answer.tolerance !== "acceptable") {
-    const condition = offer.disclosed_defects || "";
+    const simulated = offer.demo_chassis_scratch;
+    const condition = simulated === "none" ? "No chassis scratches" :
+      simulated === "minor" ? "Small case scratches" :
+      simulated === "major" ? "Deep chassis scratches" : offer.disclosed_defects || "";
     if (!disclosed(condition)) reasons.push("defect_unknown");
     else {
       const negatedChassis = /\bno (?:(?:chassis|case|body) scratches|scratches on (?:the )?(?:chassis|case|body))\b/ig;

@@ -53,6 +53,8 @@ npm run dev
 
 Open [localhost:3000](http://localhost:3000). Run `npm test`, `npm run typecheck`, and `npm run build` to verify the project.
 
+For a demo environment, set `OFFERS_DEMO_SCRATCHES=1` and restart the app. Every missing chassis scratch status gets a stable simulated value, labeled on its card; the SQLite and CSV seller evidence stays intact. The setting is off by default.
+
 ```sh
 docker build -t torob-challenge .
 docker run --rm -p 127.0.0.1:3000:3000 torob-challenge

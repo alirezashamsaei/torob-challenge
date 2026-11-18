@@ -1,4 +1,5 @@
 import { DatabaseSync } from "node:sqlite";
+import { createHash } from "node:crypto";
 import { evaluateStoredOffer, type ExclusionReason, type StoredOffer } from "./eligibility";
 import type { Journey } from "./journey";
 import type { Offer } from "./offers";
@@ -42,13 +43,24 @@ export function suggestedBudgets(offers: readonly StoredOffer[], journey: Journe
 }
 
 /** Open the configured staging store read-only; missing or broken stores are errors. */
-export function readStoredOffers(path = process.env.OFFERS_DB_PATH || "data/offers.sqlite"): StoredOffer[] {
+export function readStoredOffers(
+  path = process.env.OFFERS_DB_PATH || "data/offers.sqlite",
+  demo = process.env.OFFERS_DEMO_SCRATCHES === "1",
+): StoredOffer[] {
   const db = new DatabaseSync(path, { readOnly: true });
   try {
-    return db.prepare("SELECT * FROM offers ORDER BY rowid").all() as StoredOffer[];
+    const offers = db.prepare("SELECT * FROM offers ORDER BY rowid").all() as StoredOffer[];
+    return demo ? offers.map(withDemoScratch) : offers;
   } finally {
     db.close();
   }
+}
+
+export function withDemoScratch(offer: StoredOffer): StoredOffer {
+  const strict: Journey = { defects: { chassisScratch: { tolerance: "unacceptable" } } };
+  if (!evaluateStoredOffer(offer, strict).includes("defect_unknown")) return offer;
+  const sample = createHash("sha256").update(offer.offer_url).digest()[0];
+  return { ...offer, demo_chassis_scratch: sample >= 128 ? "none" : sample >= 32 ? "minor" : "major" };
 }
 
 /** Map reviewed source fields for display without inventing device condition or shipping. */
@@ -58,13 +70,17 @@ export function storedOfferForDisplay(row: StoredOffer, journey: Journey): Offer
   const hasTerms = row.test_or_return_terms && !/^not disclosed$/i.test(row.test_or_return_terms.trim());
   const unknown = ["وضعیت نمایشگر", "وضعیت صفحه‌کلید و درگاه‌ها"];
   if (!row.battery_evidence || /^not disclosed$/i.test(row.battery_evidence.trim())) unknown.push("وضعیت باتری");
-  if (!hasDefects) unknown.push("ایرادهای دستگاه");
+  const simulated = row.demo_chassis_scratch;
+  const demoCondition = simulated && { none: "بدون خط‌وخش بدنه", minor: "خط‌وخش جزئی بدنه", major: "خط‌وخش عمیق بدنه" }[simulated];
+  if (!hasDefects) unknown.push(simulated ? "سایر ایرادهای دستگاه" : "ایرادهای دستگاه");
   return {
     id: row.offer_url, model: row.model, seller: row.seller, url: row.offer_url,
     lastCheckedAt: row.observed_on_tehran, priceToman: row.price_toman_as_listed,
     shippingToman: null, useCases: journey.useCase ? [journey.useCase] : [],
     configuration: { cpu: parts[0] || "نامشخص", memory: parts.slice(1).join(" / ") || "نامشخص" },
-    defects: [], conditionDisclosure: hasDefects ? row.disclosed_defects : "اعلام نشده",
+    defects: [], conditionDisclosure: demoCondition
+      ? `شبیه‌سازی دمو: ${demoCondition} (فروشنده تأیید نکرده است)${hasDefects ? `؛ گزارش فروشنده: ${row.disclosed_defects}` : ""}`
+      : hasDefects ? row.disclosed_defects : "اعلام نشده",
     undisclosedFeatures: unknown,
     testTerms: hasTerms ? row.test_or_return_terms : undefined,
     explanation: "قیمت دستگاه در محدودهٔ بودجه است و اطلاعات ثبت‌شده حداقل شرایط انتخاب را دارد.",
