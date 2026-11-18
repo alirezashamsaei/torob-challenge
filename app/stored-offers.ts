@@ -45,7 +45,7 @@ export function suggestedBudgets(offers: readonly StoredOffer[], journey: Journe
 /** Open the configured staging store read-only; missing or broken stores are errors. */
 export function readStoredOffers(
   path = process.env.OFFERS_DB_PATH || "data/offers.sqlite",
-  demo = process.env.OFFERS_DEMO_SCRATCHES === "1",
+  demo = process.env.OFFERS_DEMO_SCRATCHES !== "0",
 ): StoredOffer[] {
   const db = new DatabaseSync(path, { readOnly: true });
   try {
