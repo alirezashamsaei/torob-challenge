@@ -78,12 +78,18 @@ export function nearbyAlternatives(decisions: readonly EligibilityDecision[], jo
   return decisions
     .filter(({ reasons }) => reasons.length > 0 && reasons.every((reason) => allowed.has(reason)))
     .sort((a, b) => {
-      const difference = Number(a.reasons.includes("technical_minimum")) - Number(b.reasons.includes("technical_minimum")) || a.reasons.length - b.reasons.length;
+      const difference = Number(needsChassisCheck(b)) - Number(needsChassisCheck(a)) ||
+        Number(a.reasons.includes("technical_minimum")) - Number(b.reasons.includes("technical_minimum")) || a.reasons.length - b.reasons.length;
       if (difference) return difference;
       return a.offer.price_toman_as_listed - b.offer.price_toman_as_listed;
     })
     .slice(0, Math.max(0, limit))
     .map(({ offer, reasons }) => {
+      if (needsChassisCheck({ offer, reasons })) {
+        return { ...storedOfferForDisplay(offer, journey),
+          explanation: "قیمت و مشخصات ثبت‌شده با نیاز شما جور است.",
+          tradeOff: "وضعیت خط‌وخش بدنه نامشخص است؛ پیش از خرید از فروشنده عکس بدنه بگیرید و وضعیت خط‌وخش را تأیید کنید." };
+      }
       const compromises: string[] = [];
       if (reasons.includes("over_budget")) compromises.push("قیمت بالاتر از بودجهٔ شماست");
       if (reasons.includes("defect_unknown")) compromises.push("وضعیت خط‌وخش بدنه مشخص نیست");
@@ -93,4 +99,8 @@ export function nearbyAlternatives(decisions: readonly EligibilityDecision[], jo
         explanation: "این گزینه با همهٔ شرایط شما سازگار نیست؛ جزئیات زیر را بررسی کنید.",
         tradeOff: compromises.join("? ") + "." };
     });
+}
+
+function needsChassisCheck({ reasons }: EligibilityDecision): boolean {
+  return reasons.length === 1 && reasons[0] === "defect_unknown";
 }

@@ -11,7 +11,7 @@ export function applyOfferReview(db, corrections) {
 
   db.exec("BEGIN IMMEDIATE");
   try {
-    for (const { previous, changes } of corrections) {
+    for (const { previous, alsoAcceptPrevious, changes } of corrections) {
       const current = read.get(previous.offer_url);
       if (!current) {
         result.missing++;
@@ -21,7 +21,7 @@ export function applyOfferReview(db, corrections) {
       const matches = (expected) => Object.entries(expected).every(([key, value]) => current[key] === value);
       if (matches(reviewed)) {
         result.alreadyApplied++;
-      } else if (matches(previous)) {
+      } else if (matches(previous) || (alsoAcceptPrevious && matches(alsoAcceptPrevious))) {
         update.run(reviewed.screening_status, reviewed.configuration_evidence, reviewed.notes, reviewed.offer_url);
         result.updated++;
       } else {

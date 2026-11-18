@@ -33,9 +33,11 @@ export default function ResultsBody({
   return (
     <section className={classNames.root} aria-labelledby="results-count">
       <h2 id="results-count" className={classNames.count}>
-        {summary.headline}
+        {summary.state === "none" && summary.alternatives?.length
+          ? "پیشنهاد مطابق همهٔ شرایط پیدا نشد؛ این گزینه‌ها را بررسی کنید"
+          : summary.headline}
       </h2>
-      {summary.state === "none" ? (
+      {summary.state === "none" ? !summary.alternatives?.length && (
         <div className={classNames.empty}>
           {summary.refineHint && <p className={classNames.hint}>{summary.refineHint}</p>}
         </div>

@@ -67,14 +67,35 @@
       "test_or_return_terms": "7-day returns (seller terms apply)",
       "availability_evidence": "Listed available in original audit",
       "configuration_evidence": "See source page",
+      "screening_status": "Needs exact configuration confirmation",
+      "observation_batch": "Original source audit",
+      "notes": "i5-7200U, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded.",
+      "image_url": "https://stockland.ir/_next/image?dpl=7468ab37b749&q=75&url=%2Fuploads%2F1790522463802-a584f55c-2cd2-4161-9a86-f16b900020ed.webp&w=3840"
+    },
+    "changes": {
+      "screening_status": "Provisionally eligible",
+      "configuration_evidence": "i5-7200U / 8 GB / 256 GB SSD / Intel HD Graphics 620",
+      "notes": "Seller offer page lists the exact CPU, RAM, SSD and GPU in the purchase configuration. Chassis scratch status remains undisclosed."
+    },
+    "alsoAcceptPrevious": {
+      "seller": "Stockland",
+      "model": "Dell Latitude 5580",
+      "offer_url": "https://stockland.ir/products/لپ-تاپ-dell-latitude-5580",
+      "evidence_url": "https://stockland.ir/products/لپ-تاپ-dell-latitude-5580",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 54500000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day returns (seller terms apply)",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
       "screening_status": "Provisionally eligible",
       "observation_batch": "Original source audit",
       "notes": "i5-7200U, available for purchase and covered by the return policy",
       "image_url": "https://stockland.ir/_next/image?dpl=7468ab37b749&q=75&url=%2Fuploads%2F1790522463802-a584f55c-2cd2-4161-9a86-f16b900020ed.webp&w=3840"
-    },
-    "changes": {
-      "screening_status": "Needs exact configuration confirmation",
-      "notes": "i5-7200U, available for purchase and covered by the return policy Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
     }
   },
   {
@@ -119,14 +140,35 @@
       "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
       "availability_evidence": "Listed available in original audit",
       "configuration_evidence": "See source page",
+      "screening_status": "Needs exact configuration confirmation",
+      "observation_batch": "Original source audit",
+      "notes": "i7-7600U and 930MX, available for purchase and covered by hardware testing terms Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded.",
+      "image_url": "https://stockirshop.com/wp-content/uploads/2022/03/dell-latitude-5580.jpg"
+    },
+    "changes": {
+      "screening_status": "Provisionally eligible",
+      "configuration_evidence": "i7-7600U / 8 GB / 256 GB SSD / Nvidia 930MX 2 GB",
+      "notes": "Seller offer page lists the exact CPU, RAM, SSD and GPU in the purchase configuration. Chassis scratch status remains undisclosed."
+    },
+    "alsoAcceptPrevious": {
+      "seller": "Stock Iran",
+      "model": "Dell Latitude 5580",
+      "offer_url": "https://stockirshop.com/product/لپ-تاپ-استوک-dell-latitude-5580/",
+      "evidence_url": "https://stockirshop.com/product/لپ-تاپ-استوک-dell-latitude-5580/",
+      "observed_on_tehran": "2026-11-17",
+      "price_toman_as_listed": 57970000,
+      "primary_use_case": "Everyday use and study",
+      "seller_condition_type": "used / stock",
+      "cosmetic_grade": "Not disclosed",
+      "battery_evidence": "Not disclosed",
+      "disclosed_defects": "Not disclosed",
+      "test_or_return_terms": "7-day hardware test / replacement; 24-hour cosmetic reporting",
+      "availability_evidence": "Listed available in original audit",
+      "configuration_evidence": "See source page",
       "screening_status": "Provisionally eligible",
       "observation_batch": "Original source audit",
       "notes": "i7-7600U and 930MX, available for purchase and covered by hardware testing terms",
       "image_url": "https://stockirshop.com/wp-content/uploads/2022/03/dell-latitude-5580.jpg"
-    },
-    "changes": {
-      "screening_status": "Needs exact configuration confirmation",
-      "notes": "i7-7600U and 930MX, available for purchase and covered by hardware testing terms Review: previously provisionally eligible; complete CPU, RAM, storage and GPU evidence was not recorded."
     }
   },
   {

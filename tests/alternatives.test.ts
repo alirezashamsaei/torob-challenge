@@ -7,6 +7,24 @@ import { evaluateStoredOffers, nearbyAlternatives } from "../app/stored-offers.t
 import { readJourney } from "../app/journey.ts";
 import { gameCatalog, softwareCatalog } from "../app/requirements.ts";
 
+test("at 60 million, reviewed offers that only need a chassis check come before other compromises", () => {
+  const db = new DatabaseSync(":memory:");
+  try {
+    seedOffers(db, readFileSync("docs/stock-laptop-offer-sample.csv", "utf8"));
+    const offers = db.prepare("SELECT * FROM offers").all() as Parameters<typeof evaluateStoredOffers>[0];
+    for (const usecase of ["office", "everyday"]) {
+      const journey = readJourney(new URLSearchParams(`usecase=${usecase}&budget=60000000&priority=price&defect.chassisScratch=unacceptable`));
+      const decisions = evaluateStoredOffers(offers, journey);
+      const alternatives = nearbyAlternatives(decisions, journey, 5);
+      assert.deepEqual(alternatives.slice(0, 3).map((offer) => offer.priceToman), [54_500_000, 55_790_000, 57_970_000]);
+      for (const offer of alternatives.slice(0, 3)) {
+        assert.deepEqual(decisions.find((decision) => decision.offer.offer_url === offer.id)?.reasons, ["defect_unknown"]);
+        assert.match(offer.tradeOff, /از فروشنده/);
+      }
+    }
+  } finally { db.close(); }
+});
+
 test("alternatives disclose compromises and never include unverified offers", () => {
   const db = new DatabaseSync(":memory:");
   try {
