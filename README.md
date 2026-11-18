@@ -37,7 +37,9 @@ The deployed Next.js app has a Persian right-to-left chat-style guide, server-si
 
 ## 6. Practical use of AI
 
-I used AI to prototype the flow, review source data, and iterate on code and tests. During the offer review, I checked conflicting or incomplete claims against seller pages and policies and held listings where the evidence remained inconclusive. The shipped ranker uses deterministic rules. The planned SubQ comparison remains unevaluated. [Offer review](torob-stock-laptop-source-audit.md#review-corrections-and-coverage) · [SubQ decision record](docs/adr/0002-evaluate-subq-ranking.md)
+I built the entire project with ChatGPT Codex, from research and scoping through data review, design, implementation, and testing. I used Matt Pocock’s skills for the software engineering workflow and Impeccable and Taste for visual design.
+
+During the offer review, we checked conflicting or incomplete claims against seller pages and policies and held listings where the evidence remained inconclusive. The deployed app ranks offers with deterministic rules. The planned SubQ comparison remains unevaluated. [Offer review](torob-stock-laptop-source-audit.md#review-corrections-and-coverage) · [SubQ decision record](docs/adr/0002-evaluate-subq-ranking.md)
 
 ## Run locally
 
