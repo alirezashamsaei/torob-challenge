@@ -26,6 +26,21 @@ export function evaluateStoredOffers(offers: readonly StoredOffer[], journey: Jo
   return offers.map((offer) => ({ offer, reasons: evaluateStoredOffer(offer, journey) }));
 }
 
+/** Budget choices reflect currently eligible hardware, before condition preferences are known. */
+export function suggestedBudgets(offers: readonly StoredOffer[], journey: Journey): number[] {
+  const exploratoryJourney: Journey = {
+    ...journey, budget: Number.MAX_SAFE_INTEGER,
+    defects: { ...journey.defects, chassisScratch: { tolerance: "acceptable" } },
+  };
+  const prices = evaluateStoredOffers(offers, exploratoryJourney)
+    .filter(({ reasons }) => reasons.length === 0)
+    .map(({ offer }) => offer.price_toman_as_listed)
+    .sort((a, b) => a - b);
+  if (!prices.length) return [];
+  const indexes = [0, Math.floor((prices.length - 1) / 2), prices.length - 1];
+  return [...new Set(indexes.map((index) => Math.ceil(prices[index] / 5_000_000) * 5_000_000))];
+}
+
 /** Open the configured staging store read-only; missing or broken stores are errors. */
 export function readStoredOffers(path = process.env.OFFERS_DB_PATH || "data/offers.sqlite"): StoredOffer[] {
   const db = new DatabaseSync(path, { readOnly: true });

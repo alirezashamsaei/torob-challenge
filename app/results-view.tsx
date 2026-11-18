@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 import styles from "./guide.module.css";
 import { type Journey, defectParam, defects, journeyParams, priorities, severities, severityParam, tolerances } from "./journey";
 import { defectLabels, priorityLabels, severityLabels, toleranceLabels } from "./labels";
@@ -36,12 +37,13 @@ const resultsClassNames: ResultsBodyClassNames = {
 
 export default function ResultsView({ journey, summary }: { journey: Journey; summary: ResultsSummary }) {
   const actions = refineActions(journey);
+  const [tolerance, setTolerance] = useState<Record<string, string>>(() => Object.fromEntries(defects.map((id) => [id, journey.defects[id]?.tolerance ?? "acceptable"])));
 
   return (
     <div className={styles.verdict}>
       <p className={styles.verdictLead}>
         {summary.shown[0]
-          ? <>پیشنهاد اول من <bdi>{summary.shown[0].model}</bdi> است. {summary.shown[0].explanation}</>
+          ? <>پیشنهاد اول من <bdi>{summary.shown[0].model}</bdi> است.</>
           : "با شرایط فعلی پیشنهادی پیدا نکردم. می‌توانید شرایط را تغییر دهید و دوباره بررسی کنید."}
       </p>
       <p className={styles.brief}>قیمت دستگاه و هزینهٔ ارسال جدا نمایش داده می‌شوند.</p>
@@ -65,24 +67,24 @@ export default function ResultsView({ journey, summary }: { journey: Journey; su
               {defects.map((id) => (
                 <div key={id} className={styles.refineDefect}>
                   <label>{defectLabels[id]}
-                    <select name={defectParam(id)} defaultValue={journey.defects[id]?.tolerance}>
+                    <select name={defectParam(id)} value={tolerance[id]} onChange={(event) => setTolerance((current) => ({ ...current, [id]: event.target.value }))}>
                       {tolerances.map((value) => <option key={value} value={value}>{toleranceLabels[value]}</option>)}
                     </select>
                   </label>
-                  <label>حداکثر شدت قابل قبول (در صورت وابستگی به شدت)
+                  {tolerance[id] === "depends" && <label>حداکثر شدت قابل قبول
                     <select name={severityParam(id)} defaultValue={journey.defects[id]?.severity ?? "minor"}>
                       {severities.map((value) => <option key={value} value={value}>{severityLabels[value]}</option>)}
                     </select>
-                  </label>
+                  </label>}
                 </div>
               ))}
-              <button className={styles.button} type="submit">به‌روزرسانی پیشنهادها</button>
+              <button className={`${styles.button} ${styles.refineSubmit}`} type="submit">به‌روزرسانی پیشنهادها</button>
             </form>
           }
           renderAction={(action) => (
             <Link
               key={action.step}
-              className={`${styles.button} ${styles.link}`}
+              className={styles.refineLink}
               href={action.href}
             >
               {action.label}
