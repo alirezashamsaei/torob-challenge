@@ -24,8 +24,9 @@ export function SiteHeader() {
     <header className={styles.header}>
       <Link className={styles.brand} href="/" aria-label="بازگشت به صفحهٔ نخست"><Mark /><bdi data-entry-content>torob</bdi><span data-entry-content> / لپ‌تاپ</span></Link>
       <span className={styles.tagline} data-entry-content>خرید هوشمندانه‌تر لپ‌تاپ استوک</span>
-      <Link className={`${styles.button} ${styles.link}`} data-entry-content href="/guide/usecase">
-        <span aria-hidden="true">↻</span> شروع دوباره
+      <Link className={styles.restart} data-entry-content href="/guide/usecase">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg>
+        شروع دوباره
       </Link>
     </header>
   );

@@ -208,6 +208,9 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
               </li>
             ))}
           </ol>
+          {summary && back && (
+            <button className={`${styles.textButton} ${styles.resultsBack}`} type="button" onClick={() => go(back, journey)}>مرحلهٔ قبل</button>
+          )}
         </div>
         <ol ref={transcript} className={styles.transcript} data-entry-transcript aria-label="پیام‌ها" aria-busy={isPending}>
           {order.slice(0, answered).map((answeredStep, index) => (
@@ -311,7 +314,7 @@ export default function GuideView({ step, journey, defectCandidateCount = 0, bud
               تغییر پاسخ
             </button>
           )}
-          {back && !askingSeverity && (
+          {back && !askingSeverity && !summary && (
             <button className={styles.textButton} type="button" onClick={() => go(back, journey)}>مرحلهٔ قبل</button>
           )}
           {step === "usecase" && (
