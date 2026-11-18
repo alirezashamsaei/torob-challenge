@@ -32,13 +32,18 @@ export function parseCsv(input) {
 export function seedOffers(db, csv) {
   const rows = parseCsv(csv);
   const header = rows.shift();
-  if (!header || header.length !== columns.length || columns.some((name, i) => header[i] !== name)) {
+  const scratchColumn = "simulated_chassis_scratch";
+  const hasScratch = header?.[columns.length] === scratchColumn;
+  if (!header || header.length !== columns.length + Number(hasScratch) || columns.some((name, i) => header[i] !== name)) {
     throw new Error("Unexpected offer CSV header");
   }
   const seen = new Set();
   for (const [index, row] of rows.entries()) {
-    if (row.length !== columns.length || !row[0].trim() || !row[1].trim() || !row[2].trim() || !row[3].trim() || !/^\d{4}-\d{2}-\d{2}$/.test(row[4]) || !/^[1-9]\d*$/.test(row[5]) || !Number.isSafeInteger(Number(row[5]))) {
+    if (row.length !== header.length || !row[0].trim() || !row[1].trim() || !row[2].trim() || !row[3].trim() || !/^\d{4}-\d{2}-\d{2}$/.test(row[4]) || !/^[1-9]\d*$/.test(row[5]) || !Number.isSafeInteger(Number(row[5]))) {
       throw new Error(`Invalid offer CSV row ${index + 2}`);
+    }
+    if (hasScratch && !["none", "minor", "major", "seller_evidence"].includes(row[columns.length])) {
+      throw new Error(`Invalid simulated scratch status in CSV row ${index + 2}`);
     }
     if (seen.has(row[2])) throw new Error(`Duplicate offer URL in CSV row ${index + 2}`);
     seen.add(row[2]);
@@ -58,10 +63,18 @@ export function seedOffers(db, csv) {
   let inserted = 0;
   db.exec("BEGIN IMMEDIATE");
   try {
+    if (hasScratch && !db.prepare("PRAGMA table_info(offers)").all().some(({ name }) => name === scratchColumn)) {
+      db.exec("ALTER TABLE offers ADD COLUMN simulated_chassis_scratch TEXT");
+    }
+    const updateScratch = hasScratch ? db.prepare(
+      "UPDATE offers SET simulated_chassis_scratch = ? WHERE offer_url = ? AND simulated_chassis_scratch IS NOT ?",
+    ) : null;
     for (const row of rows) {
-      const values = [...row];
+      const values = row.slice(0, columns.length);
       values[5] = Number(values[5]);
       inserted += Number(insert.run(...values).changes);
+      const scratch = row[columns.length];
+      updateScratch?.run(scratch, row[2], scratch);
     }
     db.exec("COMMIT");
   } catch (error) {

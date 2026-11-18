@@ -59,6 +59,8 @@ export function readStoredOffers(
 export function withDemoScratch(offer: StoredOffer): StoredOffer {
   const strict: Journey = { defects: { chassisScratch: { tolerance: "unacceptable" } } };
   if (!evaluateStoredOffer(offer, strict).includes("defect_unknown")) return offer;
+  const stored = offer.simulated_chassis_scratch;
+  if (stored && stored !== "seller_evidence") return { ...offer, demo_chassis_scratch: stored };
   const sample = createHash("sha256").update(offer.offer_url).digest()[0];
   return { ...offer, demo_chassis_scratch: sample >= 128 ? "none" : sample >= 32 ? "minor" : "major" };
 }

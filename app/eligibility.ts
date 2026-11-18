@@ -10,6 +10,7 @@ export type StoredOffer = {
   availability_evidence: string; configuration_evidence: string; screening_status: string;
   observation_batch: string; notes: string; image_url: string;
   demo_chassis_scratch?: "none" | "minor" | "major";
+  simulated_chassis_scratch?: "none" | "minor" | "major" | "seller_evidence" | null;
 };
 
 export type ExclusionReason =

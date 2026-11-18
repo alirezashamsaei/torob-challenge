@@ -8,7 +8,8 @@ test("seed retains source evidence and never overwrites existing offers", () => 
   const db = new DatabaseSync(":memory:");
   try {
     const csv = readFileSync("docs/stock-laptop-offer-sample.csv", "utf8");
-    assert.deepEqual(seedOffers(db, csv), { inserted: 120, skipped: 0 });
+    const legacyCsv = csv.replace(/,"(?:simulated_chassis_scratch|none|minor|major|seller_evidence)"(?=\r?$)/gm, "");
+    assert.deepEqual(seedOffers(db, legacyCsv), { inserted: 120, skipped: 0 });
     const original = db.prepare("SELECT * FROM offers ORDER BY rowid LIMIT 1").get()!;
     assert.equal(original.evidence_url, "https://itjonoob.com/product-category/laptop/");
     assert.equal(original.observed_on_tehran, "2026-11-17");
@@ -16,6 +17,8 @@ test("seed retains source evidence and never overwrites existing offers", () => 
     assert.equal(original.image_url, "");
     db.prepare("UPDATE offers SET notes = ? WHERE offer_url = ?").run("reviewed", original.offer_url!);
     assert.deepEqual(seedOffers(db, csv), { inserted: 0, skipped: 120 });
+    assert.deepEqual(seedOffers(db, csv), { inserted: 0, skipped: 120 });
+    assert.equal(db.prepare("SELECT count(simulated_chassis_scratch) AS count FROM offers").get()!.count, 120);
     assert.equal(db.prepare("SELECT notes FROM offers WHERE offer_url = ?").get(original.offer_url!)!.notes, "reviewed");
   } finally { db.close(); }
 });

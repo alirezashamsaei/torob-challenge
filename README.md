@@ -53,7 +53,7 @@ npm run dev
 
 Open [localhost:3000](http://localhost:3000). Run `npm test`, `npm run typecheck`, and `npm run build` to verify the project.
 
-The challenge demo fills every missing chassis scratch status with a stable simulated value, labeled on its card. Set `OFFERS_DEMO_SCRATCHES=0` and restart the app to use only seller evidence for chassis scratches. SQLite and CSV seller evidence stays intact in both modes.
+The challenge demo uses the CSV’s `simulated_chassis_scratch` column and labels simulated values on offer cards. Startup imports the column into SQLite, including existing databases. Set `OFFERS_DEMO_SCRATCHES=0` and restart the app to use only seller evidence for chassis scratches.
 
 ```sh
 docker build -t torob-challenge .
